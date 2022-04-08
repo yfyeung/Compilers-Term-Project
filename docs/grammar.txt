@@ -98,33 +98,34 @@
 98. function -> MIN
 99. function -> SUM
 100. joinPart -> JOIN tableSourceItem joinRightPart
-101. joinRightPart -> joinDirection JOIN tableSourceItem ON expression
-102. joinRightPart -> ON expression joinDirection JOIN tableSourceItem ON expression
-103. joinDirection -> LEFT
-104. joinDirection -> RIGHT
-105. insertStatement -> insertKeyword tableName insertStatementRight
-106. insertStatementRight -> insertStatementValue
-107. insertStatementRight -> ( uidList ) insertStatementValue
+101. joinPart -> joinDirection JOIN tableSourceItem ON expression
+102. joinRightPart -> ON expression
+103. joinRightPart -> $
+104. joinDirection -> LEFT
+105. joinDirection -> RIGHT
+106. insertStatement -> insertKeyword tableName insertStatementRight
+107. insertStatementRight -> insertStatementValue
+108. insertStatementRight -> ( uidList ) insertStatementValue
 108. insertKeyword -> INSERT into
-109. into -> INTO
-110. into -> $
-111. insertStatementValue -> insertFormat ( expressionsWithDefaults ) expressionsWithDefaultsListRec
-112. insertFormat -> VALUES
-113. insertFormat -> VALUE
-114. expressionsWithDefaultsListRec -> , ( expressionsWithDefaults ) expressionsWithDefaultsListRec
-115. expressionsWithDefaultsListRec -> $
-116. expressionsWithDefaults -> expressionOrDefault expressionOrDefaultListRec
-117. expressionsWithDefaults -> $
-118. expressionOrDefaultListRec -> , expressionOrDefault expressionOrDefaultListRec
-119. expressionOrDefaultListRec -> $
-120. expressionOrDefault -> expression
-121. expressionOrDefault -> DEFAULT
-122. updateStatement -> UPDATE tableName elementNameAlias SET updatedElement updatedElementListRec whereExpression
-123. updatedElementListRec -> , updatedElement updatedElementListRec
-124. updatedElementListRec -> $
-125. whereExpression -> WHERE expression
-126. whereExpression -> $
-127. updatedElement -> fullColumnName = expressionOrDefault
-128. deleteStatement -> DELETE FROM tableName deleteStatementRight
-129. deleteStatementRight -> whereExpression
-130. deleteStatementRight -> ( uidList ) whereExpression
+110. into -> INTO
+111. into -> $
+112. insertStatementValue -> insertFormat ( expressionsWithDefaults ) expressionsWithDefaultsListRec
+113. insertFormat -> VALUES
+114. insertFormat -> VALUE
+115. expressionsWithDefaultsListRec -> , ( expressionsWithDefaults ) expressionsWithDefaultsListRec
+116. expressionsWithDefaultsListRec -> $
+117. expressionsWithDefaults -> expressionOrDefault expressionOrDefaultListRec
+118. expressionsWithDefaults -> $
+119. expressionOrDefaultListRec -> , expressionOrDefault expressionOrDefaultListRec
+120. expressionOrDefaultListRec -> $
+121. expressionOrDefault -> expression
+122. expressionOrDefault -> DEFAULT
+123. updateStatement -> UPDATE tableName elementNameAlias SET updatedElement updatedElementListRec whereExpression
+124. updatedElementListRec -> , updatedElement updatedElementListRec
+125. updatedElementListRec -> $
+126. whereExpression -> WHERE expression
+127. whereExpression -> $
+128. updatedElement -> fullColumnName = expressionOrDefault
+129. deleteStatement -> DELETE FROM tableName deleteStatementRight
+130. deleteStatementRight -> whereExpression
+131. deleteStatementRight -> ( uidList ) whereExpression

@@ -1,8 +1,7 @@
 grammar_path = './docs/grammar.txt'
 import copy as cp
-from turtle import left, right
 
-from aem import con
+from more_itertools import first
 
 
 class production():
@@ -33,21 +32,28 @@ class grammar():
         for index, line in enumerate(self.grammar_content): # Loop through the lines
             line = line[:-1] # remove \n
             words = line.split(' ')  # split the line by space
-            self.productions.append(production(words[1], words[3:], index)) # Add the production to the list
-                                                                            # index starts from 0
+            self.productions.append(production(words[1], words[3:], index + 1)) # Add the production to the list
             self.non_terminals.append(words[1]) # Add the non-terminal to the list
-            all_symbols.extend(list(words[1]) + words[3:]) # Add the symbols to the list
+            all_symbols.extend([words[1]]+ words[3:]) # Add the symbols to the list
             
         self.non_terminals = list(set(self.non_terminals)) # Remove duplicates
         all_symbols = list(set(all_symbols)) # Remove duplicates
         self.terminals = list((set(all_symbols) - set(self.non_terminals))) # Get the terminals
         self.start = self.productions[0].left # Set the start symbol
+    
+    def get_augumented_grammar(self):
+        self.non_terminals.append('rootP')
+        self.start = 'rootP'
+        indexMax = len(self.productions)
+        self.productions.insert(0, production('rootP', ['root'], 0))
 
 class FIRST():
-    def __init__(self):
+    def __init__(self, grammar):
         self.first_dict = {}
+        self.grammar = grammar
+        self.calculate_first(grammar.non_terminals, grammar.terminals, grammar.productions)
         
-    def get_first(self, non_terminals, terminals, productions):
+    def calculate_first(self, non_terminals, terminals, productions):
         # Initialize the first set
         for symbol in non_terminals:
             self.first_dict[symbol] = [] 
@@ -91,14 +97,37 @@ class FIRST():
                     
             if not changed: # Loop until all the first sets don't changed
                 break
-            
+    def calculate_first_set(self, symbols):
+        first_set = []
+        if len(symbols) == 0:
+            return first_set
+        symbol = symbols[0]
+        while True:
+            if symbol in self.grammar.terminals:
+                first_set.append(symbol)
+                break
+            else:
+                if '$' in self.first_dict[symbol]:
+                    first_set.extend(list(set(self.first_dict[symbol]) - set(['$'])))
+                    symbols.remove(symbol)
+                    if len(symbols) == 0:
+                        first_set.append('$')
+                        break
+                    else:
+                        symbol = symbols[0]
+                else:
+                    first_set.extend(self.first_dict[symbol])
+                    break
+        first_set = list(set(first_set))
+        return first_set
     def dump_first_sets_into_file(self, file_path):
         pass
 
 class FOLLOW():
-    def __init__(self, grammar):
+    def __init__(self, grammar, first_sets):
         self.follow_dict = {}
-    def get_follow(self, non_terminals, terminals, productions, start, firstSets):
+        self.calculate_follow(grammar.non_terminals, grammar.terminals, grammar.productions, first_sets)
+    def calculate_follow(self, non_terminals, terminals, productions, start, firstSets):
         # Initialize the follow set
         for symbol in non_terminals:
             self.follow_dict[symbol] = []
@@ -158,17 +187,44 @@ class FOLLOW():
         pass
 
 class item():
+    def __init__(self, left, right, dot_pos, terminals):
+        self.left = left
+        self.right = right
+        self.dot_pos = dot_pos
+        self.terminals = terminals
+    
+    
+class itemSets():
     def __init__(self):
-        self.left = None
-        self.right = None
-        self.dot_pos = None
-        self.terminals = []
+        self.item_sets = []
+    def calculate_itemSets(self, productions, non_terminals, FIRST, FOLLOW):
         pass
-    
-    
-class itemSet():
-    def __init__(self):
-        self.items = []
+        
+    def calculate_closure(self, item_set, productions, non_terminals, FIRST):
+        while True:
+            before_len = len(item_set)
+            for item in item_set:
+                if item.dot_pos == len(item.right):
+                    continue
+                else:
+                    dot_right_symbol = item.right[item.dot_pos]
+                    if dot_right_symbol in non_terminals:
+                        for production in productions:
+                            if production.left == dot_right_symbol:
+                                symbols = []
+                                if not item.dot_pos == len(item.right) - 1:
+                                    symbols.append(item.right[item.dot_pos + 1:])
+                                symbols.append(item.terminals)
+                                first_set = FIRST.calculate_first_set(symbols)
+                                tmp_item = item(production.left, production.right, 0, first_set)
+                                if tmp_item not in item_set:
+                                    item_set.append(tmp_item)
+            item_set = list(set(item_set))
+            after_len = len(item_set)
+            if after_len == before_len:
+                break        
+        return item_set
+        
         
 class actionTable():
     pass
@@ -184,16 +240,21 @@ class analysisTable():
         
 if __name__ == '__main__':
     G = grammar(grammar_path)
-    # print(G.non_terminals)
-    # print(G.terminals)
-    # for production in G.productions:
-    #     print(production.left, production.right, production.index)
-    # print(G.start)
-    FIRST_obj = FIRST()
-    FIRST_obj.get_first(G.non_terminals, G.terminals, G.productions)
+    G.get_augumented_grammar()
+    print(G.non_terminals)
+    print(len(G.non_terminals))
+    print(G.terminals)
+    print(len(G.terminals))
+    for production in G.productions:
+        print(production.left, production.right, production.index)
+    print(G.start)
+    # FIRST_obj = FIRST()
+    # FIRST_obj.calculate_first(G.non_terminals, G.terminals, G.productions)
     # for firstset in FIRST_obj.first_dict.items():
     #     print(firstset)
-    FOLLOW_obj = FOLLOW()
-    FOLLOW_obj.get_follow(G.non_terminals, G.terminals, G.productions, G.start, FIRST_obj.first_dict)
-    for followset in FOLLOW_obj.follow_dict.items():
-        print(followset)
+    # print(len(FIRST_obj.first_dict))
+    # FOLLOW_obj = FOLLOW()
+    # FOLLOW_obj.calculate_follow(G.non_terminals, G.terminals, G.productions, G.start, FIRST_obj.first_dict)
+    # for followset in FOLLOW_obj.follow_dict.items():
+    #     print(followset)
+    # print(len(FOLLOW_obj.follow_dict))
