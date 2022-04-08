@@ -28,10 +28,10 @@ class LexicalAnalyzer():
                 with open(test) as f:
                     file_content = f.read()
                 file_content = self._preprocess(file_content)
-                print(file_content)
-                # for line_seq, line_content in enumerate(lines):
-                #     if line_content.rstrip():
-                #         self._preprocess(line_seq, line_content.rstrip())
+                raw_lines = file_content.split("\n", -1)
+                for line_seq, line_content in enumerate(raw_lines):
+                    if line_content.strip():
+                        self._process(line_seq, line_content.strip())
 
     def _get_tests(self):
         tests = []
@@ -147,7 +147,8 @@ class LexicalAnalyzer():
         
         return s
         
-
+    def _process(self, line_seq, line_content):
+        print(line_seq, line_content)
 
 if __name__ == '__main__':
     lex = LexicalAnalyzer()
