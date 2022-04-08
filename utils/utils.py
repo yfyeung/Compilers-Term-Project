@@ -20,4 +20,14 @@ SE = [
     "(", ")", ","
 ]
 
-VOCABULARY = [item for item in '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ !"#$%&\'()*+,-./:;<=>?@[]^_`{|}~'] + ["\\"]
+VOCABULARY = [_ for _ in '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ !"#$%&\'()*+,-./:;<=>?@[]^_`{|}~'] + ["\\"]
+
+dir_names = {
+    'bin': 'bin',
+    'docs': 'docs',
+    'log': 'log',
+    'output': 'output',
+    'src': 'src',
+    'tests': 'tests',
+    'utils': 'utils'
+}
