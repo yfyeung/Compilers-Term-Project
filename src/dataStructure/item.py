@@ -1,5 +1,7 @@
+from matplotlib import collections
 from grammar import grammar
 from FF import FIRST, FOLLOW
+import collections
 grammar_path = './docs/grammar.txt'
 
 
@@ -8,9 +10,11 @@ class item():
         self.left = left
         self.right = right
         self.dot_pos = dot_pos
+        terminals.sort()
         self.terminals = terminals
         
     def go(self, symbol):
+        
         if self.dot_pos > len(self.right) - 1:
             return None
         elif self.right[self.dot_pos] == symbol:
@@ -92,10 +96,9 @@ class itemSets():
         self.item_sets.append(start_item_set)
         
         while True:
-            before_len = len(self.item_sets)
+            before_len = len(self.go)
             for add_item_set in self.item_sets:
                 add_go = self.calculate_go(add_item_set, grammar_obj)
-                pass
                 for key, value in add_go.items():
                     value_closure = itemSet(value, grammar_obj, FIRST_obj, -1)
                     flag = False
@@ -109,7 +112,7 @@ class itemSets():
                         max_index += 1
                         self.go[key] = value_closure
                         self.item_sets.append(value_closure)
-            after_len = len(self.item_sets)
+            after_len = len(self.go)
             if after_len == before_len:
                 break
         self.convert_go()
@@ -118,7 +121,7 @@ class itemSets():
         terminals = grammar_obj.terminals
         non_terminals = grammar_obj.non_terminals
         symbols = terminals + non_terminals
-        add_go = {}
+        add_go = collections.OrderedDict()
         for symbol in symbols:
             for item_ in itemSet_obj.item_set:
                 if item_.go(symbol) is not None:
