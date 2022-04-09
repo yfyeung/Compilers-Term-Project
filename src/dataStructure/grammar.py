@@ -45,9 +45,9 @@ class grammar():
         
         
     def get_augumented_grammar(self):
-        self.non_terminals.append('rootP')
-        self.start = 'rootP'
-        self.productions.insert(0, production('rootP', ['root'], 0))
+        self.non_terminals.append('rootp')
+        self.start = 'rootp'
+        self.productions.insert(0, production('rootp', ['root'], 0))
         
 if __name__ == '__main__':
     grammar_obj = grammar(grammar_path)

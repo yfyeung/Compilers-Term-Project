@@ -1,24 +1,27 @@
+from math import prod
 from matplotlib import collections
 from grammar import grammar
 from FF import FIRST, FOLLOW
 import collections
+import copy as cp
 grammar_path = './docs/grammar.txt'
 
 
 class item():
-    def __init__(self, left, right, dot_pos, terminals):
+    def __init__(self, left, right, dot_pos, terminals, index):
         self.left = left
         self.right = right
         self.dot_pos = dot_pos
         terminals.sort()
         self.terminals = terminals
+        self.index = index
         
     def go(self, symbol):
         
         if self.dot_pos > len(self.right) - 1:
             return None
         elif self.right[self.dot_pos] == symbol:
-            return item(self.left, self.right, self.dot_pos + 1, self.terminals)
+            return item(self.left, self.right, self.dot_pos + 1, self.terminals, self.index)
         else:
             return None
         
@@ -66,9 +69,9 @@ class itemSet():
                                     first_set.extend(FIRST_obj.calculate_first_set(symbols))
                                 first_set = list(set(first_set))
                                 if production.right == ['$']:
-                                    tmp_item = item(production.left, [], 0, first_set)
+                                    tmp_item = item(production.left, [], 0, first_set, production.index)
                                 else:
-                                    tmp_item = item(production.left, production.right, 0, first_set)
+                                    tmp_item = item(production.left, production.right, 0, first_set, production.index)
                                 if tmp_item not in item_set_origin:
                                     item_set_origin.append(tmp_item)
             after_len = len(item_set_origin)
@@ -90,7 +93,7 @@ class itemSets():
         max_index = 0
         productions = grammar_obj.productions
         non_terminals = grammar_obj.non_terminals
-        start_item = item(productions[0].left, productions[0].right, 0, ['#'])
+        start_item = item(productions[0].left, productions[0].right, 0, ['#'], productions[0].index)
         start_item_set = itemSet([start_item], grammar_obj, FIRST_obj, max_index)
         max_index += 1
         self.item_sets.append(start_item_set)
@@ -116,7 +119,7 @@ class itemSets():
             if after_len == before_len:
                 break
         self.convert_go()
-        # self.item_sets.sort()
+        self.merge_item_sets()
     def calculate_go(self, itemSet_obj, grammar_obj):
         terminals = grammar_obj.terminals
         non_terminals = grammar_obj.non_terminals
@@ -136,7 +139,30 @@ class itemSets():
         for key, value in self.go.items():
             new_go[key] = value.index
         self.go = new_go
+
+    def merge_item_sets(self):
+        for index, item_set in enumerate(self.item_sets):
+            new_item_set = []
+            store_dict = {}
+            query_dict = {}
+            for item_ in item_set.item_set:
+                tmp_tri = [item_.left, item_.right, item_.dot_pos, item_.index]
+                query_dict[str(tmp_tri)] = tmp_tri
+                store_dict[str(tmp_tri)] = []
+            for item_ in item_set.item_set:
+                tmp_tri = [item_.left, item_.right, item_.dot_pos, item_.index]
+                store_dict[str(tmp_tri)].extend(item_.terminals)
+            for key, value in store_dict.items(): 
+                value = list(set(value))
+                value.sort()
+                tri = query_dict[key]
+                tmp_item = item(tri[0], tri[1], tri[2], value, tri[3])
+                new_item_set.append(tmp_item)
+            
+            self.item_sets[index].item_set = new_item_set
         
+        pass
+            
 
 if __name__ == '__main__':
     grammar_obj = grammar(grammar_path)
@@ -162,6 +188,7 @@ if __name__ == '__main__':
     itemSets_obj.calculate_itemSets(grammar_obj, FIRST_obj)
     for item_set_obj in itemSets_obj.item_sets:
         for item in item_set_obj.item_set:
-            print(item.left, item.right, item.dot_pos, item.terminals)
+            print(item.left, item.right, item.dot_pos, item.terminals, item.index)
         print(item_set_obj.index)
-    
+    for go in itemSets_obj.go.items():
+        print(go)
