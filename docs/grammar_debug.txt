@@ -1,0 +1,4 @@
+1. root -> A root
+3. root -> b
+4. A -> root A
+5. A -> a

@@ -1,3 +1,8 @@
+from grammar import grammar
+from FF import FIRST, FOLLOW
+grammar_path = './docs/grammar.txt'
+
+
 class item():
     def __init__(self, left, right, dot_pos, terminals):
         self.left = left
@@ -5,16 +10,27 @@ class item():
         self.dot_pos = dot_pos
         self.terminals = terminals
         
-    def go(self, terminal):
+    def go(self, symbol):
         if self.dot_pos > len(self.right) - 1:
             return None
-        elif self.right[self.dot_pos] == terminal:
+        elif self.right[self.dot_pos] == symbol:
             return item(self.left, self.right, self.dot_pos + 1, self.terminals)
         else:
             return None
         
     def __eq__(self, __o: object) -> bool:
         return self.__dict__ == __o.__dict__
+    
+    def __lt__(self, __o: object):
+        if not self.left == __o.left:
+            return self.left < __o.left
+        elif not self.dot_pos < __o.dot_pos:
+            return self.dot_pos < __o.dot_pos
+        elif not self.right == __o.right:
+            return self.right < __o.right
+        else:
+            return self.terminals < __o.terminals
+        
     
 class itemSet():
     def __init__(self, item_set_origin, grammar_obj, FIRST_obj, index):
@@ -27,27 +43,41 @@ class itemSet():
     def calculate_closure(self, item_set_origin, productions, non_terminals, FIRST_obj):
         while True:
             before_len = len(item_set_origin)
-            for item_ in item_set_origin:
-                if item_.dot_pos == len(item_.right):
+            for item_obj in item_set_origin:
+                if item_obj.dot_pos == len(item_obj.right):
                     continue
                 else:
-                    dot_right_symbol = item_.right[item_.dot_pos]
+                    dot_right_symbol = item_obj.right[item_obj.dot_pos]
                     if dot_right_symbol in non_terminals:
                         for production in productions:
                             if production.left == dot_right_symbol:
-                                symbols = []
-                                if not item_.dot_pos == len(item_.right) - 1:
-                                    symbols.extend(item_.right[item_.dot_pos + 1:])
-                                symbols.extend(item_.terminals)
-                                first_set = FIRST_obj.calculate_first_set(symbols)
-                                tmp_item = item(production.left, production.right, 0, first_set)
+                                symbol = []
+                                first_set = []
+                                if not item_obj.dot_pos == len(item_obj.right) - 1:
+                                    symbol.extend(item_obj.right[item_obj.dot_pos + 1:])
+                                for terminal in item_obj.terminals:
+                                    symbols = []
+                                    symbols.extend(symbol)
+                                    symbols.extend([terminal])
+                                    first_set.extend(FIRST_obj.calculate_first_set(symbols))
+                                first_set = list(set(first_set))
+                                if production.right == ['$']:
+                                    tmp_item = item(production.left, [], 0, first_set)
+                                else:
+                                    tmp_item = item(production.left, production.right, 0, first_set)
                                 if tmp_item not in item_set_origin:
                                     item_set_origin.append(tmp_item)
             after_len = len(item_set_origin)
             if after_len == before_len:
                 break        
+        # item_set_origin.sort()
         return item_set_origin
-
+    def __lt__(self, __o):
+        if not self.item_set[0] == __o.item_set[0]:
+            return self.item_set[0] < __o.item_set[0]
+        else:
+            return len(self.item_set) < len(__o.item_set)
+        
 class itemSets():
     def __init__(self):
         self.item_sets = []
@@ -65,6 +95,7 @@ class itemSets():
             before_len = len(self.item_sets)
             for add_item_set in self.item_sets:
                 add_go = self.calculate_go(add_item_set, grammar_obj)
+                pass
                 for key, value in add_go.items():
                     value_closure = itemSet(value, grammar_obj, FIRST_obj, -1)
                     flag = False
@@ -82,7 +113,7 @@ class itemSets():
             if after_len == before_len:
                 break
         self.convert_go()
-
+        # self.item_sets.sort()
     def calculate_go(self, itemSet_obj, grammar_obj):
         terminals = grammar_obj.terminals
         non_terminals = grammar_obj.non_terminals
@@ -102,3 +133,32 @@ class itemSets():
         for key, value in self.go.items():
             new_go[key] = value.index
         self.go = new_go
+        
+
+if __name__ == '__main__':
+    grammar_obj = grammar(grammar_path)
+    grammar_obj.get_augumented_grammar()
+    # print(grammar_obj.non_terminals)
+    # print(len(grammar_obj.non_terminals))
+    # print(grammar_obj.terminals)
+    # print(len(grammar_obj.terminals))
+    # for production in grammar_obj.productions:
+    #     print(production.left, production.right, production.index)
+    # print(grammar_obj.start)
+    FIRST_obj = FIRST(grammar_obj)
+    # FIRST_obj.calculate_first(grammar_obj.non_terminals, grammar_obj.terminals, grammar_obj.productions)
+    # for firstset in FIRST_obj.first_sets.items():
+    #     print(firstset)
+    # print(len(FIRST_obj.first_sets))
+    FOLLOW_obj = FOLLOW(grammar_obj, FIRST_obj)
+    # FOLLOW_obj.calculate_follow(grammar_obj.non_terminals, grammar_obj.terminals, grammar_obj.productions, grammar_obj.start, FIRST_obj.first_sets)
+    # for followset in FOLLOW_obj.follow_sets.items():
+    #     print(followset)
+    # print(len(FOLLOW_obj.follow_sets))
+    itemSets_obj = itemSets()
+    itemSets_obj.calculate_itemSets(grammar_obj, FIRST_obj)
+    for item_set_obj in itemSets_obj.item_sets:
+        for item in item_set_obj.item_set:
+            print(item.left, item.right, item.dot_pos, item.terminals)
+        print(item_set_obj.index)
+    

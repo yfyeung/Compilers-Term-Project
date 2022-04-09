@@ -1,18 +1,22 @@
 import copy as cp
+from grammar import grammar
+
+
+grammar_path = './docs/grammar_debug.txt'
 
 class FIRST():
     def __init__(self, grammar_obj):
         self.first_sets = {}
         self.grammar_obj = grammar_obj
-        self.calculate_first(grammar_obj.non_terminals, grammar_obj.terminals, grammar_obj.productions)
+        self.calculate_first_sets(grammar_obj.non_terminals, grammar_obj.terminals, grammar_obj.productions)
         
-    def calculate_first(self, non_terminals, terminals, productions):
+    def calculate_first_sets(self, non_terminals, terminals, productions):
         # Initialize the first set
         for symbol in non_terminals:
             self.first_sets[symbol] = [] 
         for symbol in terminals:
             self.first_sets[symbol] = [symbol]
-            
+        self.first_sets['#'] = ['#']
         while True:
             changed = False # Flag to check if the FIRST sets has changed
 
@@ -40,7 +44,9 @@ class FIRST():
                         else:
                             self.first_sets[left_symbol].extend(self.first_sets[tmp_symbol])
                             break # If the first dict of the right side[0] doesn't include epsilon, then break
-                
+                    if tmp_symbol == '$':
+                        self.first_sets[left_symbol].append('$')
+                        break
                 self.first_sets[left_symbol] = list(set(self.first_sets[left_symbol]))
                 
                 after_len = len(self.first_sets[left_symbol])
@@ -50,18 +56,17 @@ class FIRST():
                     
             if not changed: # Loop until all the first sets don't changed
                 break
-
     def calculate_first_set(self, symbols):
-        if symbols == ['#']:
-            return ['#']
-        if len(symbols) > 1 and '#' in symbols:
-            symbols.remove('#')
         first_set = []
+        terminals = self.grammar_obj.terminals + ['$']
         if len(symbols) == 0:
             return first_set
         symbol = symbols[0]
         while True:
-            if symbol in self.grammar_obj.terminals:
+            if symbol == '$':
+                first_set.append('$')
+                break
+            elif symbol in terminals:
                 first_set.append(symbol)
                 break
             else:
@@ -147,3 +152,18 @@ class FOLLOW():
                 break
     def dump_follow_sets_into_file(self, file_path):
         pass
+
+
+if __name__ == '__main__':
+    grammar_obj = grammar(grammar_path)
+    grammar_obj.get_augumented_grammar()
+    FIRST_obj = FIRST(grammar_obj)
+    FIRST_obj.calculate_first_set(grammar_obj.non_terminals, grammar_obj.terminals, grammar_obj.productions)
+    for firstset in FIRST_obj.first_sets.items():
+        print(firstset)
+    print(len(FIRST_obj.first_sets))
+    FOLLOW_obj = FOLLOW(grammar_obj, FIRST_obj)
+    FOLLOW_obj.calculate_follow(grammar_obj.non_terminals, grammar_obj.terminals, grammar_obj.productions, grammar_obj.start, FIRST_obj.first_sets)
+    for followset in FOLLOW_obj.follow_sets.items():
+        print(followset)
+    print(len(FOLLOW_obj.follow_sets))

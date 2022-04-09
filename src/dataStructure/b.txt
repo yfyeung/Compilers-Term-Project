@@ -1,0 +1,876 @@
+functionCall ['aggregateWindowedFunction'] 1 ['=', '>=', '>', '||', '!=', 'WHERE', 'HAVING', 'IS', 'JOIN', 'AND', 'ORDER', 'OR', 'LEFT', ')', '<=', 'XOR', '<', 'RIGHT', '&&', '<=>', 'GROUP', ',']
+791
+functionCall ['aggregateWindowedFunction'] 1 ['OR', 'XOR', 'LEFT', '=', '<', ')', 'RIGHT', '<=>', '>=', '>', '&&', ',', '||', 'IS', '<=', '!=', 'JOIN', 'AND']
+852
+groupByClause ['GROUP', 'BY', 'expressions'] 0 ['ORDER', 'HAVING', 'UNION', '#']
+groupByClause [] 0 ['ORDER', 'HAVING', 'UNION', '#']
+selectClause ['fromClause', 'groupByClause', 'havingClause', 'orderByClause'] 1 ['UNION', '#']
+76
+groupByClause ['GROUP', 'BY', 'expressions'] 0 ['ORDER', 'HAVING', ')']
+groupByClause [] 0 ['ORDER', 'HAVING', ')']
+selectClause ['fromClause', 'groupByClause', 'havingClause', 'orderByClause'] 1 [')']
+130
+groupByClause ['GROUP', 'BY', 'expressions'] 1 ['ORDER', 'HAVING', 'UNION', '#']
+113
+groupByClause ['GROUP', 'BY', 'expressions'] 1 ['ORDER', 'HAVING', ')']
+228
+groupByClause ['GROUP', 'BY', 'expressions'] 3 ['ORDER', 'HAVING', 'UNION', '#']
+329
+groupByClause ['GROUP', 'BY', 'expressions'] 3 ['ORDER', 'HAVING', ')']
+536
+havingClause ['HAVING', 'expression'] 0 ['ORDER', 'UNION', '#']
+havingClause [] 0 ['ORDER', 'UNION', '#']
+selectClause ['fromClause', 'groupByClause', 'havingClause', 'orderByClause'] 2 ['UNION', '#']
+114
+havingClause ['HAVING', 'expression'] 0 ['ORDER', ')']
+havingClause [] 0 ['ORDER', ')']
+selectClause ['fromClause', 'groupByClause', 'havingClause', 'orderByClause'] 2 [')']
+229
+havingClause ['HAVING', 'expression'] 2 ['ORDER', 'UNION', '#']
+350
+havingClause ['HAVING', 'expression'] 2 ['ORDER', ')']
+557
+insertFormat ['VALUES'] 0 ['(']
+insertFormat ['VALUE'] 0 ['(']
+insertStatementRight ['(', 'uidList', ')', 'insertStatementValue'] 3 ['#']
+insertStatementValue ['insertFormat', '(', 'expressionsWithDefaults', ')', 'expressionsWithDefaultsListRec'] 0 ['#']
+161
+insertFormat ['VALUES'] 0 ['(']
+insertFormat ['VALUE'] 0 ['(']
+insertStatement ['insertKeyword', 'tableName', 'insertStatementRight'] 2 ['#']
+insertStatementRight ['insertStatementValue'] 0 ['#']
+insertStatementRight ['(', 'uidList', ')', 'insertStatementValue'] 0 ['#']
+insertStatementValue ['insertFormat', '(', 'expressionsWithDefaults', ')', 'expressionsWithDefaultsListRec'] 0 ['#']
+28
+insertFormat ['VALUES'] 1 ['(']
+57
+insertFormat ['VALUE'] 1 ['(']
+58
+insertKeyword ['INSERT', 'into'] 1 ['IDN']
+into ['INTO'] 0 ['IDN']
+into [] 0 ['IDN']
+1
+insertKeyword ['INSERT', 'into'] 2 ['IDN']
+15
+insertStatement ['insertKeyword', 'tableName', 'insertStatementRight'] 1 ['#']
+tableName ['uid'] 0 ['(', 'VALUES', 'VALUE']
+uid ['IDN'] 0 ['(', 'VALUES', 'VALUE']
+7
+insertStatement ['insertKeyword', 'tableName', 'insertStatementRight'] 3 ['#']
+61
+insertStatementRight ['(', 'uidList', ')', 'insertStatementValue'] 1 ['#']
+uid ['IDN'] 0 [',', ')']
+uidList ['uid', 'uidListRec'] 0 [')']
+59
+insertStatementRight ['insertStatementValue'] 1 ['#']
+60
+insertStatementRight ['(', 'uidList', ')', 'insertStatementValue'] 2 ['#']
+101
+insertStatementRight ['(', 'uidList', ')', 'insertStatementValue'] 4 ['#']
+256
+insertStatementValue ['insertFormat', '(', 'expressionsWithDefaults', ')', 'expressionsWithDefaultsListRec'] 1 ['#']
+62
+insertStatementValue ['insertFormat', '(', 'expressionsWithDefaults', ')', 'expressionsWithDefaultsListRec'] 3 ['#']
+182
+insertStatementValue ['insertFormat', '(', 'expressionsWithDefaults', ')', 'expressionsWithDefaultsListRec'] 5 ['#']
+418
+into ['INTO'] 1 ['IDN']
+14
+joinDirection ['LEFT'] 0 ['JOIN']
+joinDirection ['RIGHT'] 0 ['JOIN']
+joinPart ['JOIN', 'tableSourceItem', 'joinRightPart'] 0 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'JOIN']
+joinPart ['joinDirection', 'JOIN', 'tableSourceItem', 'ON', 'expression'] 0 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'JOIN']
+joinParts ['joinPart', 'joinParts'] 0 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'GROUP', ',', '#']
+joinParts [] 0 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'GROUP', ',', '#']
+tableSource ['tableSourceItem', 'joinParts'] 1 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'GROUP', ',', '#']
+110
+joinDirection ['LEFT'] 0 ['JOIN']
+joinDirection ['RIGHT'] 0 ['JOIN']
+joinPart ['JOIN', 'tableSourceItem', 'joinRightPart'] 0 [')', 'LEFT', 'RIGHT', ',', 'JOIN']
+joinPart ['joinDirection', 'JOIN', 'tableSourceItem', 'ON', 'expression'] 0 [')', 'LEFT', 'RIGHT', ',', 'JOIN']
+joinParts ['joinPart', 'joinParts'] 0 [',', ')']
+joinParts [] 0 [',', ')']
+tableSource ['tableSourceItem', 'joinParts'] 1 [',', ')']
+189
+joinDirection ['LEFT'] 1 ['JOIN']
+195
+joinDirection ['LEFT'] 0 ['JOIN']
+joinDirection ['RIGHT'] 0 ['JOIN']
+joinPart ['JOIN', 'tableSourceItem', 'joinRightPart'] 0 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'JOIN']
+joinPart ['joinDirection', 'JOIN', 'tableSourceItem', 'ON', 'expression'] 0 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'JOIN']
+joinParts ['joinPart', 'joinParts'] 1 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'GROUP', ',', '#']
+joinParts ['joinPart', 'joinParts'] 0 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'GROUP', ',', '#']
+joinParts [] 0 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'GROUP', ',', '#']
+199
+joinDirection ['LEFT'] 0 ['JOIN']
+joinDirection ['RIGHT'] 0 ['JOIN']
+joinPart ['JOIN', 'tableSourceItem', 'joinRightPart'] 0 ['ORDER', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'JOIN']
+joinPart ['joinDirection', 'JOIN', 'tableSourceItem', 'ON', 'expression'] 0 ['ORDER', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'JOIN']
+joinParts ['joinPart', 'joinParts'] 0 ['ORDER', 'WHERE', 'HAVING', ')', 'GROUP', ',']
+joinParts [] 0 ['ORDER', 'WHERE', 'HAVING', ')', 'GROUP', ',']
+tableSource ['tableSourceItem', 'joinParts'] 1 ['ORDER', 'WHERE', 'HAVING', ')', 'GROUP', ',']
+225
+joinDirection ['LEFT'] 0 ['JOIN']
+joinDirection ['RIGHT'] 0 ['JOIN']
+joinPart ['JOIN', 'tableSourceItem', 'joinRightPart'] 0 [')', 'LEFT', 'RIGHT', ',', 'JOIN']
+joinPart ['joinDirection', 'JOIN', 'tableSourceItem', 'ON', 'expression'] 0 [')', 'LEFT', 'RIGHT', ',', 'JOIN']
+joinParts ['joinPart', 'joinParts'] 1 [',', ')']
+joinParts ['joinPart', 'joinParts'] 0 [',', ')']
+joinParts [] 0 [',', ')']
+276
+joinDirection ['LEFT'] 0 ['JOIN']
+joinDirection ['RIGHT'] 0 ['JOIN']
+joinPart ['JOIN', 'tableSourceItem', 'joinRightPart'] 0 ['ORDER', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'JOIN']
+joinPart ['joinDirection', 'JOIN', 'tableSourceItem', 'ON', 'expression'] 0 ['ORDER', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'JOIN']
+joinParts ['joinPart', 'joinParts'] 1 ['ORDER', 'WHERE', 'HAVING', ')', 'GROUP', ',']
+joinParts ['joinPart', 'joinParts'] 0 ['ORDER', 'WHERE', 'HAVING', ')', 'GROUP', ',']
+joinParts [] 0 ['ORDER', 'WHERE', 'HAVING', ')', 'GROUP', ',']
+389
+joinDirection ['RIGHT'] 1 ['JOIN']
+196
+joinPart ['JOIN', 'tableSourceItem', 'joinRightPart'] 1 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'JOIN']
+tableName ['uid'] 0 ['ORDER', 'UNION', 'WHERE', 'IDN', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'ON', 'AS', 'JOIN']
+tableSourceItem ['tableName', 'elementNameAlias'] 0 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'ON', 'JOIN']
+tableSourceItem ['(', 'tableSources', ')'] 0 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'ON', 'JOIN']
+uid ['IDN'] 0 ['ORDER', 'UNION', 'WHERE', 'IDN', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'ON', 'AS', 'JOIN']
+194
+joinPart ['joinDirection', 'JOIN', 'tableSourceItem', 'ON', 'expression'] 1 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'JOIN']
+198
+joinPart ['JOIN', 'tableSourceItem', 'joinRightPart'] 1 [')', 'LEFT', 'RIGHT', ',', 'JOIN']
+tableName ['uid'] 0 ['IDN', 'LEFT', 'RIGHT', ')', ',', 'ON', 'AS', 'JOIN']
+tableSourceItem ['tableName', 'elementNameAlias'] 0 ['LEFT', 'RIGHT', ')', ',', 'ON', 'JOIN']
+tableSourceItem ['(', 'tableSources', ')'] 0 ['LEFT', 'RIGHT', ')', ',', 'ON', 'JOIN']
+uid ['IDN'] 0 ['IDN', 'LEFT', 'RIGHT', ')', ',', 'ON', 'AS', 'JOIN']
+273
+joinPart ['joinDirection', 'JOIN', 'tableSourceItem', 'ON', 'expression'] 1 [')', 'LEFT', 'RIGHT', ',', 'JOIN']
+275
+joinPart ['JOIN', 'tableSourceItem', 'joinRightPart'] 2 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'JOIN']
+joinRightPart ['ON', 'expression'] 0 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'JOIN']
+joinRightPart [] 0 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'JOIN']
+286
+joinPart ['JOIN', 'tableSourceItem', 'joinRightPart'] 1 ['ORDER', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'JOIN']
+tableName ['uid'] 0 ['ORDER', 'WHERE', 'IDN', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'ON', 'AS', 'JOIN']
+tableSourceItem ['tableName', 'elementNameAlias'] 0 ['ORDER', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'ON', 'JOIN']
+tableSourceItem ['(', 'tableSources', ')'] 0 ['ORDER', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'ON', 'JOIN']
+uid ['IDN'] 0 ['ORDER', 'WHERE', 'IDN', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'ON', 'AS', 'JOIN']
+386
+joinPart ['joinDirection', 'JOIN', 'tableSourceItem', 'ON', 'expression'] 2 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'JOIN']
+tableName ['uid'] 0 ['IDN', 'ON', 'AS']
+tableSourceItem ['tableName', 'elementNameAlias'] 0 ['ON']
+tableSourceItem ['(', 'tableSources', ')'] 0 ['ON']
+uid ['IDN'] 0 ['AS', 'ON', 'IDN']
+288
+joinPart ['joinDirection', 'JOIN', 'tableSourceItem', 'ON', 'expression'] 1 ['ORDER', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'JOIN']
+388
+joinPart ['JOIN', 'tableSourceItem', 'joinRightPart'] 2 [')', 'LEFT', 'RIGHT', ',', 'JOIN']
+joinRightPart ['ON', 'expression'] 0 ['LEFT', ')', 'RIGHT', ',', 'JOIN']
+joinRightPart [] 0 ['LEFT', ')', 'RIGHT', ',', 'JOIN']
+424
+joinPart ['joinDirection', 'JOIN', 'tableSourceItem', 'ON', 'expression'] 2 [')', 'LEFT', 'RIGHT', ',', 'JOIN']
+tableName ['uid'] 0 ['IDN', 'ON', 'AS']
+tableSourceItem ['tableName', 'elementNameAlias'] 0 ['ON']
+tableSourceItem ['(', 'tableSources', ')'] 0 ['ON']
+uid ['IDN'] 0 ['AS', 'ON', 'IDN']
+426
+joinPart ['JOIN', 'tableSourceItem', 'joinRightPart'] 3 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'JOIN']
+432
+joinPart ['JOIN', 'tableSourceItem', 'joinRightPart'] 2 ['ORDER', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'JOIN']
+joinRightPart ['ON', 'expression'] 0 ['ORDER', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'JOIN']
+joinRightPart [] 0 ['ORDER', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'JOIN']
+493
+joinPart ['joinDirection', 'JOIN', 'tableSourceItem', 'ON', 'expression'] 3 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'JOIN']
+440
+joinPart ['joinDirection', 'JOIN', 'tableSourceItem', 'ON', 'expression'] 2 ['ORDER', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'JOIN']
+tableName ['uid'] 0 ['IDN', 'ON', 'AS']
+tableSourceItem ['tableName', 'elementNameAlias'] 0 ['ON']
+tableSourceItem ['(', 'tableSources', ')'] 0 ['ON']
+uid ['IDN'] 0 ['AS', 'ON', 'IDN']
+495
+joinPart ['JOIN', 'tableSourceItem', 'joinRightPart'] 3 [')', 'LEFT', 'RIGHT', ',', 'JOIN']
+577
+joinPart ['joinDirection', 'JOIN', 'tableSourceItem', 'ON', 'expression'] 3 [')', 'LEFT', 'RIGHT', ',', 'JOIN']
+582
+joinPart ['JOIN', 'tableSourceItem', 'joinRightPart'] 3 ['ORDER', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'JOIN']
+668
+joinPart ['joinDirection', 'JOIN', 'tableSourceItem', 'ON', 'expression'] 3 ['ORDER', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'JOIN']
+673
+joinPart ['joinDirection', 'JOIN', 'tableSourceItem', 'ON', 'expression'] 5 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'JOIN']
+744
+joinPart ['joinDirection', 'JOIN', 'tableSourceItem', 'ON', 'expression'] 5 [')', 'LEFT', 'RIGHT', ',', 'JOIN']
+861
+joinPart ['joinDirection', 'JOIN', 'tableSourceItem', 'ON', 'expression'] 5 ['ORDER', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'JOIN']
+890
+joinParts ['joinPart', 'joinParts'] 2 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'GROUP', ',', '#']
+289
+joinParts ['joinPart', 'joinParts'] 2 [',', ')']
+427
+joinParts ['joinPart', 'joinParts'] 2 ['ORDER', 'WHERE', 'HAVING', ')', 'GROUP', ',']
+496
+joinRightPart ['ON', 'expression'] 2 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'JOIN']
+602
+joinRightPart ['ON', 'expression'] 2 ['LEFT', ')', 'RIGHT', ',', 'JOIN']
+729
+joinRightPart ['ON', 'expression'] 2 ['ORDER', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'JOIN']
+800
+logicalOperator ['||'] 1 ['FLOAT', 'IDN', '!', 'MIN', 'TRUE', 'MAX', 'FALSE', 'NOT', '-', 'AVG', 'STRING', 'SUM', 'INT']
+236
+logicalOperator ['AND'] 1 ['FLOAT', 'IDN', '!', 'MIN', 'TRUE', 'MAX', 'FALSE', 'NOT', '-', 'AVG', 'STRING', 'SUM', 'INT']
+238
+logicalOperator ['OR'] 1 ['FLOAT', 'IDN', '!', 'MIN', 'TRUE', 'MAX', 'FALSE', 'NOT', '-', 'AVG', 'STRING', 'SUM', 'INT']
+239
+logicalOperator ['XOR'] 1 ['FLOAT', 'IDN', '!', 'MIN', 'TRUE', 'MAX', 'FALSE', 'NOT', '-', 'AVG', 'STRING', 'SUM', 'INT']
+240
+logicalOperator ['&&'] 1 ['FLOAT', 'IDN', '!', 'MIN', 'TRUE', 'MAX', 'FALSE', 'NOT', '-', 'AVG', 'STRING', 'SUM', 'INT']
+241
+opposite ['NOT'] 1 ['FLOAT', 'IDN', '!', 'MIN', 'TRUE', 'MAX', 'FALSE', 'NOT', '-', 'AVG', 'STRING', 'SUM', 'INT']
+138
+opposite ['!'] 1 ['FLOAT', 'IDN', '!', 'MIN', 'TRUE', 'MAX', 'FALSE', 'NOT', '-', 'AVG', 'STRING', 'SUM', 'INT']
+142
+oppositeOrNot ['NOT'] 1 ['FALSE', 'UNKNOWN', 'TRUE']
+403
+orderByClause ['ORDER', 'BY', 'expressions'] 0 ['UNION', '#']
+orderByClause [] 0 ['UNION', '#']
+selectClause ['fromClause', 'groupByClause', 'havingClause', 'orderByClause'] 3 ['UNION', '#']
+208
+orderByClause ['ORDER', 'BY', 'expressions'] 0 [')']
+orderByClause [] 0 [')']
+selectClause ['fromClause', 'groupByClause', 'havingClause', 'orderByClause'] 3 [')']
+398
+orderByClause ['ORDER', 'BY', 'expressions'] 1 ['UNION', '#']
+352
+orderByClause ['ORDER', 'BY', 'expressions'] 1 [')']
+559
+orderByClause ['ORDER', 'BY', 'expressions'] 3 ['UNION', '#']
+656
+orderByClause ['ORDER', 'BY', 'expressions'] 3 [')']
+831
+predicate ['expressionAtom', 'predicateRight'] 2 ['OR', 'XOR', '&&', '||', '#', 'IS', 'AND']
+252
+predicate ['expressionAtom', 'predicateRight'] 2 ['OR', 'XOR', ')', '&&', ',', '||', 'IS', 'AND']
+267
+predicate ['expressionAtom', 'predicateRight'] 2 ['ORDER', 'UNION', 'OR', 'XOR', 'HAVING', '&&', 'GROUP', '||', '#', 'IS', 'AND']
+450
+predicate ['expressionAtom', 'predicateRight'] 2 ['ORDER', 'UNION', 'OR', 'XOR', 'HAVING', '&&', ',', '||', '#', 'IS', 'AND']
+460
+predicate ['expressionAtom', 'predicateRight'] 2 ['ORDER', 'UNION', 'OR', 'XOR', '&&', '||', '#', 'IS', 'AND']
+472
+predicate ['expressionAtom', 'predicateRight'] 2 ['OR', 'WHERE', 'XOR', '&&', ',', '||', '#', 'IS', 'AND']
+486
+predicate ['expressionAtom', 'predicateRight'] 2 ['ORDER', 'OR', 'XOR', 'HAVING', ')', '&&', 'GROUP', '||', 'IS', 'AND']
+682
+predicate ['expressionAtom', 'predicateRight'] 2 ['ORDER', 'OR', 'XOR', 'HAVING', ')', '&&', ',', '||', 'IS', 'AND']
+692
+predicate ['expressionAtom', 'predicateRight'] 2 ['ORDER', 'OR', 'XOR', ')', '&&', '||', 'IS', 'AND']
+704
+predicate ['expressionAtom', 'predicateRight'] 2 ['ORDER', 'UNION', 'OR', 'WHERE', 'XOR', 'HAVING', 'LEFT', 'RIGHT', '&&', 'GROUP', ',', '||', '#', 'IS', 'JOIN', 'AND']
+741
+predicate ['expressionAtom', 'predicateRight'] 2 ['ORDER', 'UNION', 'OR', 'HAVING', 'XOR', '&&', 'GROUP', '||', '#', 'IS', 'AND']
+750
+predicate ['expressionAtom', 'predicateRight'] 2 ['ORDER', 'UNION', 'OR', 'HAVING', 'XOR', '&&', ',', '||', '#', 'IS', 'AND']
+756
+predicate ['expressionAtom', 'predicateRight'] 2 ['UNION', 'OR', 'XOR', '&&', ',', '||', '#', 'IS', 'AND']
+772
+predicate ['expressionAtom', 'predicateRight'] 2 ['OR', 'XOR', 'LEFT', 'RIGHT', ')', '&&', ',', '||', 'IS', 'JOIN', 'AND']
+842
+predicate ['expressionAtom', 'predicateRight'] 2 ['ORDER', 'OR', 'WHERE', 'XOR', 'HAVING', 'LEFT', 'RIGHT', ')', '&&', 'GROUP', ',', '||', 'IS', 'JOIN', 'AND']
+888
+predicate ['expressionAtom', 'predicateRight'] 2 ['ORDER', 'OR', 'HAVING', 'XOR', ')', '&&', 'GROUP', '||', 'IS', 'AND']
+895
+predicate ['expressionAtom', 'predicateRight'] 2 ['ORDER', 'OR', 'HAVING', 'XOR', ')', '&&', ',', '||', 'IS', 'AND']
+901
+predicate ['expressionAtom', 'predicateRight'] 2 ['OR', 'XOR', 'LEFT', ')', 'RIGHT', '&&', ',', '||', 'IS', 'JOIN', 'AND']
+923
+predicateRight ['comparisonOperator', 'predicate'] 2 ['OR', 'XOR', '&&', '||', '#', 'IS', 'AND']
+406
+predicateRight ['comparisonOperator', 'predicate'] 2 ['OR', 'XOR', ')', '&&', ',', '||', 'IS', 'AND']
+415
+predicateRight ['comparisonOperator', 'predicate'] 2 ['ORDER', 'UNION', 'OR', 'HAVING', 'XOR', '&&', 'GROUP', '||', '#', 'IS', 'AND']
+616
+predicateRight ['comparisonOperator', 'predicate'] 2 ['ORDER', 'UNION', 'OR', 'HAVING', 'XOR', '&&', ',', '||', '#', 'IS', 'AND']
+626
+predicateRight ['comparisonOperator', 'predicate'] 2 ['ORDER', 'UNION', 'OR', 'XOR', '&&', '||', '#', 'IS', 'AND']
+636
+predicateRight ['comparisonOperator', 'predicate'] 2 ['OR', 'WHERE', 'XOR', '&&', ',', '||', '#', 'IS', 'AND']
+663
+predicateRight ['comparisonOperator', 'predicate'] 2 ['ORDER', 'OR', 'HAVING', 'XOR', ')', '&&', 'GROUP', '||', 'IS', 'AND']
+809
+predicateRight ['comparisonOperator', 'predicate'] 2 ['ORDER', 'OR', 'HAVING', 'XOR', ')', '&&', ',', '||', 'IS', 'AND']
+819
+predicateRight ['comparisonOperator', 'predicate'] 2 ['ORDER', 'OR', 'XOR', ')', '&&', '||', 'IS', 'AND']
+829
+predicateRight ['comparisonOperator', 'predicate'] 2 ['ORDER', 'UNION', 'OR', 'WHERE', 'XOR', 'HAVING', 'LEFT', 'RIGHT', '&&', 'GROUP', ',', '||', '#', 'IS', 'JOIN', 'AND']
+867
+predicateRight ['comparisonOperator', 'predicate'] 2 ['UNION', 'OR', 'XOR', '&&', ',', '||', '#', 'IS', 'AND']
+876
+predicateRight ['comparisonOperator', 'predicate'] 2 ['OR', 'XOR', 'LEFT', 'RIGHT', ')', '&&', ',', '||', 'IS', 'JOIN', 'AND']
+916
+predicateRight ['comparisonOperator', 'predicate'] 2 ['ORDER', 'OR', 'WHERE', 'XOR', 'HAVING', 'LEFT', 'RIGHT', ')', '&&', 'GROUP', ',', '||', 'IS', 'JOIN', 'AND']
+940
+querySpecification ['SELECT', 'unionType', 'selectElements', 'selectClause'] 1 ['UNION', '#']
+unionType ['ALL'] 0 ['IDN', 'MIN', 'MAX', '*', 'AVG', 'SUM']
+unionType ['DISTINCT'] 0 ['IDN', 'MIN', 'MAX', '*', 'AVG', 'SUM']
+unionType [] 0 ['IDN', 'MIN', 'MAX', '*', 'AVG', 'SUM']
+2
+querySpecification ['(', 'querySpecification', ')'] 1 ['UNION', '#']
+querySpecification ['SELECT', 'unionType', 'selectElements', 'selectClause'] 0 [')']
+querySpecification ['(', 'querySpecification', ')'] 0 [')']
+4
+querySpecification ['SELECT', 'unionType', 'selectElements', 'selectClause'] 1 [')']
+unionType ['ALL'] 0 ['IDN', 'MIN', 'MAX', '*', 'AVG', 'SUM']
+unionType ['DISTINCT'] 0 ['IDN', 'MIN', 'MAX', '*', 'AVG', 'SUM']
+unionType [] 0 ['IDN', 'MIN', 'MAX', '*', 'AVG', 'SUM']
+22
+querySpecification ['(', 'querySpecification', ')'] 1 [')']
+querySpecification ['SELECT', 'unionType', 'selectElements', 'selectClause'] 0 [')']
+querySpecification ['(', 'querySpecification', ')'] 0 [')']
+23
+querySpecification ['(', 'querySpecification', ')'] 2 ['UNION', '#']
+24
+querySpecification ['SELECT', 'unionType', 'selectElements', 'selectClause'] 0 ['UNION', '#']
+querySpecification ['(', 'querySpecification', ')'] 0 ['UNION', '#']
+unionStatement ['unionStatementKey', 'unionStatementQuery'] 1 ['UNION', '#']
+unionStatementQuery ['querySpecification'] 0 ['UNION', '#']
+32
+querySpecification ['(', 'querySpecification', ')'] 2 [')']
+52
+querySpecification ['(', 'querySpecification', ')'] 3 ['UNION', '#']
+53
+querySpecification ['(', 'querySpecification', ')'] 3 [')']
+94
+querySpecification ['SELECT', 'unionType', 'selectElements', 'selectClause'] 4 ['UNION', '#']
+77
+querySpecification ['SELECT', 'unionType', 'selectElements', 'selectClause'] 4 [')']
+131
+root ['dmlStatement'] 1 ['#']
+12
+rootP ['root'] 1 ['#']
+11
+selectClause ['fromClause', 'groupByClause', 'havingClause', 'orderByClause'] 4 ['UNION', '#']
+353
+selectClause ['fromClause', 'groupByClause', 'havingClause', 'orderByClause'] 4 [')']
+560
+selectElement ['functionCall', 'elementNameAlias'] 2 ['ORDER', 'UNION', 'HAVING', 'GROUP', ',', '#', 'FROM']
+73
+selectElement ['fullColumnName', 'elementNameAlias'] 2 ['ORDER', 'UNION', 'HAVING', 'GROUP', ',', '#', 'FROM']
+80
+selectElement ['functionCall', 'elementNameAlias'] 2 ['ORDER', 'HAVING', ')', 'GROUP', ',', 'FROM']
+127
+selectElement ['fullColumnName', 'elementNameAlias'] 2 ['ORDER', 'HAVING', ')', 'GROUP', ',', 'FROM']
+134
+selectElementHead ['*'] 1 ['ORDER', 'UNION', 'HAVING', 'GROUP', ',', '#', 'FROM']
+38
+selectElementHead ['selectElement'] 1 ['ORDER', 'UNION', 'HAVING', 'GROUP', ',', '#', 'FROM']
+46
+selectElementHead ['*'] 1 ['ORDER', 'HAVING', ')', 'GROUP', ',', 'FROM']
+85
+selectElementHead ['selectElement'] 1 ['ORDER', 'HAVING', ')', 'GROUP', ',', 'FROM']
+93
+selectElementListRec [',', 'selectElement', 'selectElementListRec'] 0 ['ORDER', 'UNION', 'HAVING', 'GROUP', '#', 'FROM']
+selectElementListRec [] 0 ['ORDER', 'UNION', 'HAVING', 'GROUP', '#', 'FROM']
+selectElements ['selectElementHead', 'selectElementListRec'] 1 ['ORDER', 'UNION', 'HAVING', 'GROUP', '#', 'FROM']
+43
+selectElementListRec [',', 'selectElement', 'selectElementListRec'] 0 ['ORDER', 'HAVING', ')', 'GROUP', 'FROM']
+selectElementListRec [] 0 ['ORDER', 'HAVING', ')', 'GROUP', 'FROM']
+selectElements ['selectElementHead', 'selectElementListRec'] 1 ['ORDER', 'HAVING', ')', 'GROUP', 'FROM']
+90
+selectElementListRec [',', 'selectElement', 'selectElementListRec'] 2 ['ORDER', 'UNION', 'HAVING', 'GROUP', '#', 'FROM']
+selectElementListRec [',', 'selectElement', 'selectElementListRec'] 0 ['ORDER', 'UNION', 'HAVING', 'GROUP', '#', 'FROM']
+selectElementListRec [] 0 ['ORDER', 'UNION', 'HAVING', 'GROUP', '#', 'FROM']
+115
+selectElementListRec [',', 'selectElement', 'selectElementListRec'] 2 ['ORDER', 'HAVING', ')', 'GROUP', 'FROM']
+selectElementListRec [',', 'selectElement', 'selectElementListRec'] 0 ['ORDER', 'HAVING', ')', 'GROUP', 'FROM']
+selectElementListRec [] 0 ['ORDER', 'HAVING', ')', 'GROUP', 'FROM']
+230
+selectElementListRec [',', 'selectElement', 'selectElementListRec'] 3 ['ORDER', 'UNION', 'HAVING', 'GROUP', '#', 'FROM']
+209
+selectElementListRec [',', 'selectElement', 'selectElementListRec'] 3 ['ORDER', 'HAVING', ')', 'GROUP', 'FROM']
+399
+selectElements ['selectElementHead', 'selectElementListRec'] 2 ['ORDER', 'UNION', 'HAVING', 'GROUP', '#', 'FROM']
+79
+selectElements ['selectElementHead', 'selectElementListRec'] 2 ['ORDER', 'HAVING', ')', 'GROUP', 'FROM']
+133
+selectStatement ['querySpecification', 'unionStatements'] 1 ['#']
+unionStatement ['unionStatementKey', 'unionStatementQuery'] 0 ['UNION', '#']
+unionStatementKey ['UNION', 'unionType'] 0 ['SELECT', '(']
+unionStatements ['unionStatement', 'unionStatements'] 0 ['#']
+unionStatements [] 0 ['#']
+9
+selectStatement ['querySpecification', 'unionStatements'] 2 ['#']
+31
+stringLiteral ['STRING'] 1 ['OR', 'XOR', '=', '<', '&&', '<=>', '>=', '>', '||', '#', 'IS', '<=', '!=', 'AND']
+140
+stringLiteral ['STRING'] 1 ['OR', 'XOR', ')', '=', '<', '&&', '<=>', '>=', '>', ',', '||', 'IS', '<=', '!=', 'AND']
+165
+stringLiteral ['STRING'] 1 ['ORDER', 'UNION', 'OR', 'HAVING', 'XOR', '=', '<', '&&', '<=>', '>=', '>', 'GROUP', '||', '#', 'IS', '<=', '!=', 'AND']
+294
+stringLiteral ['STRING'] 1 ['ORDER', 'UNION', 'OR', 'HAVING', 'XOR', '=', '<', '&&', '<=>', '>=', '>', ',', '||', '#', 'IS', '<=', '!=', 'AND']
+314
+stringLiteral ['STRING'] 1 ['ORDER', 'UNION', 'OR', 'XOR', '=', '<', '&&', '<=>', '>=', '>', '||', '#', 'IS', '<=', '!=', 'AND']
+335
+stringLiteral ['STRING'] 1 ['OR', 'WHERE', 'XOR', '=', '<', '&&', '<=>', '>=', '>', ',', '||', '#', 'IS', '<=', '!=', 'AND']
+364
+stringLiteral ['STRING'] 1 ['ORDER', 'OR', 'HAVING', 'XOR', ')', '=', '<', '&&', '<=>', '>=', '>', 'GROUP', '||', 'IS', '<=', '!=', 'AND']
+501
+stringLiteral ['STRING'] 1 ['ORDER', 'OR', 'HAVING', 'XOR', ')', '=', '<', '&&', '<=>', '>=', '>', ',', '||', 'IS', '<=', '!=', 'AND']
+521
+stringLiteral ['STRING'] 1 ['ORDER', 'OR', 'XOR', ')', '=', '<', '&&', '<=>', '>=', '>', '||', 'IS', '<=', '!=', 'AND']
+542
+stringLiteral ['STRING'] 1 ['=', '>=', '>', '||', '#', '!=', 'UNION', 'WHERE', 'HAVING', 'IS', 'JOIN', 'AND', 'ORDER', 'OR', 'LEFT', '<=', 'XOR', '<', 'RIGHT', '&&', '<=>', 'GROUP', ',']
+587
+stringLiteral ['STRING'] 1 ['UNION', 'OR', 'XOR', '=', '<', '&&', '<=>', '>=', '>', ',', '||', '#', 'IS', '<=', '!=', 'AND']
+641
+stringLiteral ['STRING'] 1 ['OR', 'XOR', 'LEFT', '=', '<', 'RIGHT', ')', '<=>', '>=', '>', '&&', ',', '||', 'IS', '<=', '!=', 'JOIN', 'AND']
+714
+stringLiteral ['STRING'] 1 ['=', '>=', '>', '||', '!=', 'WHERE', 'HAVING', 'IS', 'JOIN', 'AND', 'ORDER', 'OR', 'LEFT', ')', '<=', 'XOR', '<', 'RIGHT', '&&', '<=>', 'GROUP', ',']
+785
+stringLiteral ['STRING'] 1 ['OR', 'XOR', 'LEFT', '=', '<', ')', 'RIGHT', '<=>', '>=', '>', '&&', ',', '||', 'IS', '<=', '!=', 'JOIN', 'AND']
+847
+tableName ['uid'] 0 ['IDN', 'SET', 'AS']
+uid ['IDN'] 0 ['AS', 'SET', 'IDN']
+updateStatement ['UPDATE', 'tableName', 'elementNameAlias', 'SET', 'updatedElement', 'updatedElementListRec', 'whereExpression'] 1 ['#']
+3
+tableName ['uid'] 0 ['IDN', ')', 'RIGHT', 'LEFT', ',', 'JOIN', 'AS']
+tableSource ['tableSourceItem', 'joinParts'] 0 [',', ')']
+tableSourceItem ['tableName', 'elementNameAlias'] 0 [')', 'LEFT', 'RIGHT', ',', 'JOIN']
+tableSourceItem ['(', 'tableSources', ')'] 0 [')', 'LEFT', 'RIGHT', ',', 'JOIN']
+tableSourceListRec [',', 'tableSource', 'tableSourceListRec'] 1 [')']
+uid ['IDN'] 0 ['IDN', 'LEFT', ')', 'RIGHT', ',', 'JOIN', 'AS']
+271
+tableName ['uid'] 0 ['IDN', ')', 'RIGHT', 'LEFT', ',', 'JOIN', 'AS']
+tableSource ['tableSourceItem', 'joinParts'] 0 [',', ')']
+tableSourceItem ['(', 'tableSources', ')'] 1 [')', 'LEFT', 'RIGHT', ',', 'JOIN']
+tableSourceItem ['tableName', 'elementNameAlias'] 0 [')', 'LEFT', 'RIGHT', ',', 'JOIN']
+tableSourceItem ['(', 'tableSources', ')'] 0 [')', 'LEFT', 'RIGHT', ',', 'JOIN']
+tableSources ['tableSource', 'tableSourceListRec'] 0 [')']
+uid ['IDN'] 0 ['IDN', 'LEFT', ')', 'RIGHT', ',', 'JOIN', 'AS']
+185
+tableName ['uid'] 0 ['IDN', ')', 'RIGHT', 'LEFT', ',', 'JOIN', 'AS']
+tableSource ['tableSourceItem', 'joinParts'] 0 [',', ')']
+tableSourceItem ['(', 'tableSources', ')'] 1 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'ON', 'JOIN']
+tableSourceItem ['tableName', 'elementNameAlias'] 0 [')', 'LEFT', 'RIGHT', ',', 'JOIN']
+tableSourceItem ['(', 'tableSources', ')'] 0 [')', 'LEFT', 'RIGHT', ',', 'JOIN']
+tableSources ['tableSource', 'tableSourceListRec'] 0 [')']
+uid ['IDN'] 0 ['IDN', 'LEFT', ')', 'RIGHT', ',', 'JOIN', 'AS']
+283
+tableName ['uid'] 0 ['IDN', ')', 'RIGHT', 'LEFT', ',', 'JOIN', 'AS']
+tableSource ['tableSourceItem', 'joinParts'] 0 [',', ')']
+tableSourceItem ['(', 'tableSources', ')'] 1 ['ORDER', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'ON', 'JOIN']
+tableSourceItem ['tableName', 'elementNameAlias'] 0 [')', 'LEFT', 'RIGHT', ',', 'JOIN']
+tableSourceItem ['(', 'tableSources', ')'] 0 [')', 'LEFT', 'RIGHT', ',', 'JOIN']
+tableSources ['tableSource', 'tableSourceListRec'] 0 [')']
+uid ['IDN'] 0 ['IDN', 'LEFT', ')', 'RIGHT', ',', 'JOIN', 'AS']
+490
+tableName ['uid'] 1 ['IDN', 'SET', 'AS']
+20
+tableName ['uid'] 1 ['(', 'VALUES', 'VALUE']
+27
+tableName ['uid'] 1 ['(', 'WHERE', '#']
+55
+tableName ['uid'] 0 ['IDN', ')', 'RIGHT', 'LEFT', ',', 'JOIN', 'AS']
+tableSource ['tableSourceItem', 'joinParts'] 0 [',', ')']
+tableSourceItem ['(', 'tableSources', ')'] 1 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'JOIN']
+tableSourceItem ['tableName', 'elementNameAlias'] 0 [')', 'LEFT', 'RIGHT', ',', 'JOIN']
+tableSourceItem ['(', 'tableSources', ')'] 0 [')', 'LEFT', 'RIGHT', ',', 'JOIN']
+tableSources ['tableSource', 'tableSourceListRec'] 0 [')']
+uid ['IDN'] 0 ['IDN', 'LEFT', ')', 'RIGHT', ',', 'JOIN', 'AS']
+106
+tableName ['uid'] 1 ['ORDER', 'UNION', 'WHERE', 'IDN', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'JOIN', 'AS']
+109
+tableName ['uid'] 1 ['IDN', ')', 'RIGHT', 'LEFT', ',', 'JOIN', 'AS']
+188
+tableName ['uid'] 0 ['ORDER', 'UNION', 'WHERE', 'IDN', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'JOIN', 'AS']
+tableSource ['tableSourceItem', 'joinParts'] 0 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'GROUP', ',', '#']
+tableSourceItem ['tableName', 'elementNameAlias'] 0 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'JOIN']
+tableSourceItem ['(', 'tableSources', ')'] 0 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'JOIN']
+tableSourceListRec [',', 'tableSource', 'tableSourceListRec'] 1 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'GROUP', '#']
+uid ['IDN'] 0 ['ORDER', 'UNION', 'WHERE', 'IDN', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'JOIN', 'AS']
+192
+tableName ['uid'] 0 ['IDN', ')', 'RIGHT', 'LEFT', ',', 'JOIN', 'AS']
+tableSource ['tableSourceItem', 'joinParts'] 0 [',', ')']
+tableSourceItem ['(', 'tableSources', ')'] 1 ['ORDER', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'JOIN']
+tableSourceItem ['tableName', 'elementNameAlias'] 0 [')', 'LEFT', 'RIGHT', ',', 'JOIN']
+tableSourceItem ['(', 'tableSources', ')'] 0 [')', 'LEFT', 'RIGHT', ',', 'JOIN']
+tableSources ['tableSource', 'tableSourceListRec'] 0 [')']
+uid ['IDN'] 0 ['IDN', 'LEFT', ')', 'RIGHT', ',', 'JOIN', 'AS']
+221
+tableName ['uid'] 1 ['ORDER', 'WHERE', 'IDN', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'JOIN', 'AS']
+224
+tableName ['uid'] 1 ['ORDER', 'UNION', 'WHERE', 'IDN', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'ON', 'AS', 'JOIN']
+285
+tableName ['uid'] 0 ['ORDER', 'WHERE', 'IDN', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'JOIN', 'AS']
+tableSource ['tableSourceItem', 'joinParts'] 0 ['ORDER', 'WHERE', 'HAVING', ')', 'GROUP', ',']
+tableSourceItem ['tableName', 'elementNameAlias'] 0 ['ORDER', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'JOIN']
+tableSourceItem ['(', 'tableSources', ')'] 0 ['ORDER', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'JOIN']
+tableSourceListRec [',', 'tableSource', 'tableSourceListRec'] 1 ['ORDER', 'WHERE', 'HAVING', ')', 'GROUP']
+uid ['IDN'] 0 ['ORDER', 'WHERE', 'IDN', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'JOIN', 'AS']
+384
+tableName ['uid'] 0 ['IDN', ')', 'RIGHT', 'LEFT', ',', 'JOIN', 'AS']
+tableSource ['tableSourceItem', 'joinParts'] 0 [',', ')']
+tableSourceItem ['(', 'tableSources', ')'] 1 ['LEFT', 'RIGHT', ')', ',', 'ON', 'JOIN']
+tableSourceItem ['tableName', 'elementNameAlias'] 0 [')', 'LEFT', 'RIGHT', ',', 'JOIN']
+tableSourceItem ['(', 'tableSources', ')'] 0 [')', 'LEFT', 'RIGHT', ',', 'JOIN']
+tableSources ['tableSource', 'tableSourceListRec'] 0 [')']
+uid ['IDN'] 0 ['IDN', 'LEFT', ')', 'RIGHT', ',', 'JOIN', 'AS']
+421
+tableName ['uid'] 0 ['IDN', ')', 'RIGHT', 'LEFT', ',', 'JOIN', 'AS']
+tableSource ['tableSourceItem', 'joinParts'] 0 [',', ')']
+tableSourceItem ['(', 'tableSources', ')'] 1 ['ON']
+tableSourceItem ['tableName', 'elementNameAlias'] 0 [')', 'LEFT', 'RIGHT', ',', 'JOIN']
+tableSourceItem ['(', 'tableSources', ')'] 0 [')', 'LEFT', 'RIGHT', ',', 'JOIN']
+tableSources ['tableSource', 'tableSourceListRec'] 0 [')']
+uid ['IDN'] 0 ['IDN', 'LEFT', ')', 'RIGHT', ',', 'JOIN', 'AS']
+437
+tableName ['uid'] 1 ['IDN', 'LEFT', 'RIGHT', ')', ',', 'ON', 'AS', 'JOIN']
+423
+tableName ['uid'] 1 ['IDN', 'ON', 'AS']
+439
+tableName ['uid'] 1 ['ORDER', 'WHERE', 'IDN', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'ON', 'AS', 'JOIN']
+492
+tableSource ['tableSourceItem', 'joinParts'] 2 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'GROUP', ',', '#']
+197
+tableSource ['tableSourceItem', 'joinParts'] 2 [',', ')']
+274
+tableSource ['tableSourceItem', 'joinParts'] 2 ['ORDER', 'WHERE', 'HAVING', ')', 'GROUP', ',']
+387
+tableSourceItem ['(', 'tableSources', ')'] 2 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'JOIN']
+191
+tableSourceItem ['tableName', 'elementNameAlias'] 2 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'JOIN']
+202
+tableSourceItem ['(', 'tableSources', ')'] 2 [')', 'LEFT', 'RIGHT', ',', 'JOIN']
+270
+tableSourceItem ['tableName', 'elementNameAlias'] 2 [')', 'LEFT', 'RIGHT', ',', 'JOIN']
+279
+tableSourceItem ['(', 'tableSources', ')'] 3 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'JOIN']
+281
+tableSourceItem ['(', 'tableSources', ')'] 2 ['ORDER', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'JOIN']
+383
+tableSourceItem ['tableName', 'elementNameAlias'] 2 ['ORDER', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'JOIN']
+392
+tableSourceItem ['(', 'tableSources', ')'] 3 [')', 'LEFT', 'RIGHT', ',', 'JOIN']
+419
+tableSourceItem ['(', 'tableSources', ')'] 2 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'ON', 'JOIN']
+430
+tableSourceItem ['tableName', 'elementNameAlias'] 2 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'ON', 'JOIN']
+435
+tableSourceItem ['(', 'tableSources', ')'] 2 ['LEFT', 'RIGHT', ')', ',', 'ON', 'JOIN']
+575
+tableSourceItem ['(', 'tableSources', ')'] 3 ['ORDER', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'JOIN']
+488
+tableSourceItem ['tableName', 'elementNameAlias'] 2 ['LEFT', 'RIGHT', ')', ',', 'ON', 'JOIN']
+580
+tableSourceItem ['(', 'tableSources', ')'] 2 ['ON']
+605
+tableSourceItem ['(', 'tableSources', ')'] 3 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'ON', 'JOIN']
+583
+tableSourceItem ['tableName', 'elementNameAlias'] 2 ['ON']
+609
+tableSourceItem ['(', 'tableSources', ')'] 2 ['ORDER', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'ON', 'JOIN']
+666
+tableSourceItem ['tableName', 'elementNameAlias'] 2 ['ORDER', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'ON', 'JOIN']
+671
+tableSourceItem ['(', 'tableSources', ')'] 3 ['LEFT', 'RIGHT', ')', ',', 'ON', 'JOIN']
+710
+tableSourceItem ['(', 'tableSources', ')'] 3 ['ON']
+743
+tableSourceItem ['(', 'tableSources', ')'] 3 ['ORDER', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'ON', 'JOIN']
+781
+tableSourceListRec [',', 'tableSource', 'tableSourceListRec'] 0 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'GROUP', '#']
+tableSourceListRec [] 0 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'GROUP', '#']
+tableSources ['tableSource', 'tableSourceListRec'] 1 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'GROUP', '#']
+108
+tableSourceListRec [',', 'tableSource', 'tableSourceListRec'] 0 [')']
+tableSourceListRec [] 0 [')']
+tableSources ['tableSource', 'tableSourceListRec'] 1 [')']
+187
+tableSourceListRec [',', 'tableSource', 'tableSourceListRec'] 0 ['ORDER', 'WHERE', 'HAVING', ')', 'GROUP']
+tableSourceListRec [] 0 ['ORDER', 'WHERE', 'HAVING', ')', 'GROUP']
+tableSources ['tableSource', 'tableSourceListRec'] 1 ['ORDER', 'WHERE', 'HAVING', ')', 'GROUP']
+223
+tableSourceListRec [',', 'tableSource', 'tableSourceListRec'] 2 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'GROUP', '#']
+tableSourceListRec [',', 'tableSource', 'tableSourceListRec'] 0 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'GROUP', '#']
+tableSourceListRec [] 0 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'GROUP', '#']
+282
+tableSourceListRec [',', 'tableSource', 'tableSourceListRec'] 2 [')']
+tableSourceListRec [',', 'tableSource', 'tableSourceListRec'] 0 [')']
+tableSourceListRec [] 0 [')']
+420
+tableSourceListRec [',', 'tableSource', 'tableSourceListRec'] 3 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'GROUP', '#']
+429
+tableSourceListRec [',', 'tableSource', 'tableSourceListRec'] 2 ['ORDER', 'WHERE', 'HAVING', ')', 'GROUP']
+tableSourceListRec [',', 'tableSource', 'tableSourceListRec'] 0 ['ORDER', 'WHERE', 'HAVING', ')', 'GROUP']
+tableSourceListRec [] 0 ['ORDER', 'WHERE', 'HAVING', ')', 'GROUP']
+489
+tableSourceListRec [',', 'tableSource', 'tableSourceListRec'] 3 [')']
+574
+tableSourceListRec [',', 'tableSource', 'tableSourceListRec'] 3 ['ORDER', 'WHERE', 'HAVING', ')', 'GROUP']
+665
+tableSources ['tableSource', 'tableSourceListRec'] 2 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'GROUP', '#']
+193
+tableSources ['tableSource', 'tableSourceListRec'] 2 [')']
+272
+tableSources ['tableSource', 'tableSourceListRec'] 2 ['ORDER', 'WHERE', 'HAVING', ')', 'GROUP']
+385
+trueValue ['FALSE'] 1 ['#']
+562
+trueValue ['UNKNOWN'] 1 ['#']
+563
+trueValue ['TRUE'] 1 ['#']
+564
+trueValue ['FALSE'] 1 [',', ')']
+567
+trueValue ['UNKNOWN'] 1 [',', ')']
+568
+trueValue ['TRUE'] 1 [',', ')']
+569
+trueValue ['FALSE'] 1 ['ORDER', 'UNION', 'HAVING', 'GROUP', '#']
+746
+trueValue ['UNKNOWN'] 1 ['ORDER', 'UNION', 'HAVING', 'GROUP', '#']
+747
+trueValue ['TRUE'] 1 ['ORDER', 'UNION', 'HAVING', 'GROUP', '#']
+748
+trueValue ['FALSE'] 1 ['ORDER', 'UNION', 'HAVING', ',', '#']
+752
+trueValue ['UNKNOWN'] 1 ['ORDER', 'UNION', 'HAVING', ',', '#']
+753
+trueValue ['TRUE'] 1 ['ORDER', 'UNION', 'HAVING', ',', '#']
+754
+trueValue ['FALSE'] 1 ['ORDER', 'UNION', '#']
+759
+trueValue ['UNKNOWN'] 1 ['ORDER', 'UNION', '#']
+760
+trueValue ['TRUE'] 1 ['ORDER', 'UNION', '#']
+761
+trueValue ['FALSE'] 1 [',', 'WHERE', '#']
+776
+trueValue ['UNKNOWN'] 1 [',', 'WHERE', '#']
+777
+trueValue ['TRUE'] 1 [',', 'WHERE', '#']
+778
+trueValue ['FALSE'] 1 ['ORDER', 'GROUP', 'HAVING', ')']
+891
+trueValue ['UNKNOWN'] 1 ['ORDER', 'GROUP', 'HAVING', ')']
+892
+trueValue ['TRUE'] 1 ['ORDER', 'GROUP', 'HAVING', ')']
+893
+trueValue ['FALSE'] 1 ['ORDER', 'HAVING', ',', ')']
+897
+trueValue ['UNKNOWN'] 1 ['ORDER', 'HAVING', ',', ')']
+898
+trueValue ['TRUE'] 1 ['ORDER', 'HAVING', ',', ')']
+899
+trueValue ['FALSE'] 1 ['ORDER', ')']
+904
+trueValue ['UNKNOWN'] 1 ['ORDER', ')']
+905
+trueValue ['TRUE'] 1 ['ORDER', ')']
+906
+trueValue ['FALSE'] 1 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'JOIN']
+925
+trueValue ['UNKNOWN'] 1 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'JOIN']
+926
+trueValue ['TRUE'] 1 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'JOIN']
+927
+trueValue ['FALSE'] 1 ['UNION', ',', '#']
+930
+trueValue ['UNKNOWN'] 1 ['UNION', ',', '#']
+931
+trueValue ['TRUE'] 1 ['UNION', ',', '#']
+932
+trueValue ['FALSE'] 1 ['LEFT', 'RIGHT', ')', ',', 'JOIN']
+946
+trueValue ['UNKNOWN'] 1 ['LEFT', 'RIGHT', ')', ',', 'JOIN']
+947
+trueValue ['TRUE'] 1 ['LEFT', 'RIGHT', ')', ',', 'JOIN']
+948
+trueValue ['FALSE'] 1 ['ORDER', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'JOIN']
+956
+trueValue ['UNKNOWN'] 1 ['ORDER', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'JOIN']
+957
+trueValue ['TRUE'] 1 ['ORDER', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'JOIN']
+958
+uid ['IDN'] 0 [',', ')']
+uidListRec [',', 'uid', 'uidListRec'] 1 [')']
+159
+uid ['IDN'] 1 ['AS', 'SET', 'IDN']
+19
+uid ['IDN'] 1 ['(', 'VALUES', 'VALUE']
+26
+uid ['IDN'] 1 ['ORDER', 'UNION', 'IDN', 'HAVING', 'GROUP', ',', '#', 'FROM', '.', 'AS']
+36
+uid ['IDN'] 1 ['SET']
+48
+uid ['IDN'] 1 ['(', 'WHERE', '#']
+54
+uid ['IDN'] 1 ['ORDER', 'UNION', 'HAVING', 'GROUP', ',', '#', 'FROM']
+72
+uid ['IDN'] 1 ['ORDER', 'IDN', 'HAVING', ')', 'GROUP', ',', 'FROM', '.', 'AS']
+84
+uid ['IDN'] 1 [',', ')']
+99
+uid ['IDN'] 1 ['ORDER', 'UNION', 'IDN', 'HAVING', 'GROUP', ',', '#', 'FROM', 'AS']
+103
+uid ['IDN'] 1 ['ORDER', 'UNION', 'WHERE', 'IDN', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'JOIN', 'AS']
+107
+uid ['IDN'] 1 ['.', '=']
+119
+uid ['IDN'] 1 ['ORDER', 'HAVING', ')', 'GROUP', ',', 'FROM']
+126
+uid ['IDN'] 1 ['OR', 'XOR', '=', '<', '&&', '<=>', '>=', '>', '||', '#', 'IS', '<=', '!=', '.', 'AND']
+143
+uid ['IDN'] 1 ['OR', 'XOR', ')', '=', '<', '&&', '<=>', '>=', '>', ',', '||', 'IS', '<=', '!=', '.', 'AND']
+167
+uid ['IDN'] 1 ['IDN', 'LEFT', ')', 'RIGHT', ',', 'JOIN', 'AS']
+186
+uid ['IDN'] 1 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'JOIN']
+201
+uid ['IDN'] 1 ['.', ')']
+210
+uid ['IDN'] 1 ['ORDER', 'IDN', 'HAVING', ')', 'GROUP', ',', 'FROM', 'AS']
+218
+uid ['IDN'] 1 ['ORDER', 'WHERE', 'IDN', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'JOIN', 'AS']
+222
+uid ['IDN'] 1 ['LEFT', 'RIGHT', ')', ',', 'JOIN']
+278
+uid ['IDN'] 1 ['ORDER', 'UNION', 'WHERE', 'IDN', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'ON', 'AS', 'JOIN']
+284
+uid ['IDN'] 1 ['=', '>=', '>', '||', '#', '!=', '.', 'UNION', 'HAVING', 'IS', 'AND', 'ORDER', 'OR', '<=', 'XOR', '<', '&&', '<=>', 'GROUP']
+296
+uid ['IDN'] 1 ['=', '>=', '>', '||', '#', '!=', '.', 'UNION', 'HAVING', 'IS', 'AND', 'ORDER', 'OR', '<=', 'XOR', '<', '&&', '<=>', ',']
+316
+uid ['IDN'] 1 ['ORDER', 'UNION', 'OR', 'XOR', '=', '<', '&&', '<=>', '>=', '>', '||', '#', 'IS', '<=', '!=', '.', 'AND']
+337
+uid ['IDN'] 1 ['=']
+357
+uid ['IDN'] 1 ['OR', 'WHERE', 'XOR', '=', '<', '&&', '<=>', '>=', '>', ',', '||', '#', 'IS', '<=', '!=', '.', 'AND']
+366
+uid ['IDN'] 1 ['ORDER', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'JOIN']
+391
+uid ['IDN'] 1 ['OR', 'XOR', '=', '<', '&&', '<=>', '>=', '>', '||', '#', 'IS', '<=', '!=', 'AND']
+401
+uid ['IDN'] 1 ['OR', 'XOR', ')', '=', '<', '&&', '<=>', '>=', '>', ',', '||', 'IS', '<=', '!=', 'AND']
+410
+uid ['IDN'] 1 ['IDN', 'LEFT', 'RIGHT', ')', ',', 'ON', 'AS', 'JOIN']
+422
+uid ['IDN'] 1 ['ORDER', 'UNION', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', 'GROUP', ',', '#', 'ON', 'JOIN']
+434
+uid ['IDN'] 1 ['AS', 'ON', 'IDN']
+438
+uid ['IDN'] 1 [')']
+475
+uid ['IDN'] 1 ['ORDER', 'WHERE', 'IDN', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'ON', 'AS', 'JOIN']
+491
+uid ['IDN'] 1 ['ORDER', 'OR', 'HAVING', 'XOR', ')', '=', '<', '&&', '<=>', '>=', '>', 'GROUP', '||', 'IS', '<=', '!=', '.', 'AND']
+503
+uid ['IDN'] 1 ['ORDER', 'OR', 'HAVING', 'XOR', ')', '=', '<', '&&', '<=>', '>=', '>', ',', '||', 'IS', '<=', '!=', '.', 'AND']
+523
+uid ['IDN'] 1 ['ORDER', 'OR', 'XOR', ')', '=', '<', '&&', '<=>', '>=', '>', '||', 'IS', '<=', '!=', '.', 'AND']
+544
+uid ['IDN'] 1 ['LEFT', 'RIGHT', ')', ',', 'ON', 'JOIN']
+579
+uid ['IDN'] 1 ['=', '>=', '>', '||', '#', '!=', '.', 'UNION', 'WHERE', 'HAVING', 'IS', 'JOIN', 'AND', 'ORDER', 'OR', 'LEFT', '<=', 'XOR', '<', 'RIGHT', '&&', '<=>', 'GROUP', ',']
+589
+uid ['IDN'] 1 ['ON']
+608
+uid ['IDN'] 1 ['ORDER', 'UNION', 'OR', 'HAVING', 'XOR', '=', '<', '&&', '<=>', '>=', '>', 'GROUP', '||', '#', 'IS', '<=', '!=', 'AND']
+611
+uid ['IDN'] 1 ['ORDER', 'UNION', 'OR', 'HAVING', 'XOR', '=', '<', '&&', '<=>', '>=', '>', ',', '||', '#', 'IS', '<=', '!=', 'AND']
+621
+uid ['IDN'] 1 ['ORDER', 'UNION', 'OR', 'XOR', '=', '<', '&&', '<=>', '>=', '>', '||', '#', 'IS', '<=', '!=', 'AND']
+632
+uid ['IDN'] 1 ['UNION', 'OR', 'XOR', '=', '<', '&&', '<=>', '>=', '>', ',', '||', '#', 'IS', '<=', '!=', '.', 'AND']
+643
+uid ['IDN'] 1 ['OR', 'WHERE', 'XOR', '=', '<', '&&', '<=>', '>=', '>', ',', '||', '#', 'IS', '<=', '!=', 'AND']
+659
+uid ['IDN'] 1 ['ORDER', 'WHERE', 'HAVING', 'LEFT', 'RIGHT', ')', 'GROUP', ',', 'ON', 'JOIN']
+670
+uid ['IDN'] 1 ['=', '>=', '>', '||', '!=', '.', 'IS', 'JOIN', 'AND', 'OR', 'LEFT', ')', '<=', 'XOR', '<', 'RIGHT', '&&', '<=>', ',']
+716
+uid ['IDN'] 1 ['=', '>=', '>', '||', '!=', '.', 'WHERE', 'HAVING', 'IS', 'JOIN', 'AND', 'ORDER', 'OR', 'LEFT', ')', '<=', 'XOR', '<', 'RIGHT', '&&', '<=>', 'GROUP', ',']
+787
+uid ['IDN'] 1 ['ORDER', 'OR', 'HAVING', 'XOR', ')', '=', '<', '&&', '<=>', '>=', '>', 'GROUP', '||', 'IS', '<=', '!=', 'AND']
+804
+uid ['IDN'] 1 ['ORDER', 'OR', 'HAVING', 'XOR', ')', '=', '<', '&&', '<=>', '>=', '>', ',', '||', 'IS', '<=', '!=', 'AND']
+814
+uid ['IDN'] 1 ['ORDER', 'OR', 'XOR', ')', '=', '<', '&&', '<=>', '>=', '>', '||', 'IS', '<=', '!=', 'AND']
+825
+uid ['IDN'] 1 ['=', '>=', '>', '||', '#', '!=', 'UNION', 'WHERE', 'HAVING', 'IS', 'JOIN', 'AND', 'ORDER', 'OR', 'LEFT', '<=', 'XOR', '<', 'RIGHT', '&&', '<=>', 'GROUP', ',']
+863
+uid ['IDN'] 1 ['UNION', 'OR', 'XOR', '=', '<', '&&', '<=>', '>=', '>', ',', '||', '#', 'IS', '<=', '!=', 'AND']
+872
+uid ['IDN'] 1 ['OR', 'XOR', 'LEFT', '=', '<', 'RIGHT', ')', '<=>', '>=', '>', '&&', ',', '||', 'IS', '<=', '!=', 'JOIN', 'AND']
+912
+uid ['IDN'] 1 ['=', '>=', '>', '||', '!=', 'WHERE', 'HAVING', 'IS', 'JOIN', 'AND', 'ORDER', 'OR', 'LEFT', ')', '<=', 'XOR', '<', 'RIGHT', '&&', '<=>', 'GROUP', ',']
+936
+uid ['IDN'] 1 ['OR', 'XOR', 'LEFT', '=', '<', ')', 'RIGHT', '<=>', '>=', '>', '&&', ',', '||', 'IS', '<=', '!=', 'JOIN', 'AND']
+951
+uidList ['uid', 'uidListRec'] 1 [')']
+uidListRec [',', 'uid', 'uidListRec'] 0 [')']
+uidListRec [] 0 [')']
+100
+uidList ['uid', 'uidListRec'] 2 [')']
+160
+uidListRec [',', 'uid', 'uidListRec'] 2 [')']
+uidListRec [',', 'uid', 'uidListRec'] 0 [')']
+uidListRec [] 0 [')']
+255
+uidListRec [',', 'uid', 'uidListRec'] 3 [')']
+409
+unionStatement ['unionStatementKey', 'unionStatementQuery'] 0 ['UNION', '#']
+unionStatementKey ['UNION', 'unionType'] 0 ['SELECT', '(']
+unionStatements ['unionStatement', 'unionStatements'] 1 ['#']
+unionStatements ['unionStatement', 'unionStatements'] 0 ['#']
+unionStatements [] 0 ['#']
+30
+unionStatement ['unionStatementKey', 'unionStatementQuery'] 2 ['UNION', '#']
+68
+unionStatementKey ['UNION', 'unionType'] 1 ['SELECT', '(']
+unionType ['ALL'] 0 ['SELECT', '(']
+unionType ['DISTINCT'] 0 ['SELECT', '(']
+unionType [] 0 ['SELECT', '(']
+29
+unionStatementKey ['UNION', 'unionType'] 2 ['SELECT', '(']
+65
+unionStatementQuery ['querySpecification'] 1 ['UNION', '#']
+67
+unionStatements ['unionStatement', 'unionStatements'] 2 ['#']
+66
+unionType ['DISTINCT'] 1 ['IDN', 'MIN', 'MAX', '*', 'AVG', 'SUM']
+16
+unionType ['ALL'] 1 ['IDN', 'MIN', 'MAX', '*', 'AVG', 'SUM']
+17
+unionType ['DISTINCT'] 1 ['SELECT', '(']
+63
+unionType ['ALL'] 1 ['SELECT', '(']
+64
+unionType ['DISTINCT'] 1 ['IDN']
+116
+unionType ['ALL'] 1 ['IDN']
+117
+updateStatement ['UPDATE', 'tableName', 'elementNameAlias', 'SET', 'updatedElement', 'updatedElementListRec', 'whereExpression'] 3 ['#']
+49
+updateStatement ['UPDATE', 'tableName', 'elementNameAlias', 'SET', 'updatedElement', 'updatedElementListRec', 'whereExpression'] 5 ['#']
+updatedElementListRec [',', 'updatedElement', 'updatedElementListRec'] 0 ['WHERE', '#']
+updatedElementListRec [] 0 ['WHERE', '#']
+121
+updateStatement ['UPDATE', 'tableName', 'elementNameAlias', 'SET', 'updatedElement', 'updatedElementListRec', 'whereExpression'] 6 ['#']
+whereExpression ['WHERE', 'expression'] 0 ['#']
+whereExpression [] 0 ['#']
+216
+updateStatement ['UPDATE', 'tableName', 'elementNameAlias', 'SET', 'updatedElement', 'updatedElementListRec', 'whereExpression'] 7 ['#']
+360
+updatedElement ['fullColumnName', '=', 'expressionOrDefault'] 1 [',', 'WHERE', '#']
+122
+updatedElement ['fullColumnName', '=', 'expressionOrDefault'] 3 [',', 'WHERE', '#']
+375
+updatedElementListRec [',', 'updatedElement', 'updatedElementListRec'] 2 ['WHERE', '#']
+updatedElementListRec [',', 'updatedElement', 'updatedElementListRec'] 0 ['WHERE', '#']
+updatedElementListRec [] 0 ['WHERE', '#']
+359
+updatedElementListRec [',', 'updatedElement', 'updatedElementListRec'] 3 ['WHERE', '#']
+477
+whereExpression ['WHERE', 'expression'] 2 ['#']
+156
+whereExpression ['WHERE', 'expression'] 2 ['ORDER', 'UNION', 'HAVING', 'GROUP', '#']
+309
+whereExpression ['WHERE', 'expression'] 2 ['ORDER', 'GROUP', 'HAVING', ')']
+516

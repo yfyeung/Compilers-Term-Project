@@ -1,3 +1,5 @@
+grammar_path = './docs/grammar_debug.txt'
+
 class production():
     def __init__(self, left, right, index):
         self.left = left
@@ -33,9 +35,27 @@ class grammar():
         self.non_terminals = list(set(self.non_terminals)) # Remove duplicates
         all_symbols = list(set(all_symbols)) # Remove duplicates
         self.terminals = list((set(all_symbols) - set(self.non_terminals))) # Get the terminals
+        if '$' in self.terminals:
+            self.terminals.remove('$')
         self.start = self.productions[0].left # Set the start symbol
-    
+        
+        self.terminals.sort()
+        self.non_terminals.sort()
+
+        
+        
     def get_augumented_grammar(self):
         self.non_terminals.append('rootP')
         self.start = 'rootP'
         self.productions.insert(0, production('rootP', ['root'], 0))
+        
+if __name__ == '__main__':
+    grammar_obj = grammar(grammar_path)
+    grammar_obj.get_augumented_grammar()
+    print(grammar_obj.non_terminals)
+    print(len(grammar_obj.non_terminals))
+    print(grammar_obj.terminals)
+    print(len(grammar_obj.terminals))
+    for production in grammar_obj.productions:
+        print(production.left, production.right, production.index)
+    print(grammar_obj.start)
