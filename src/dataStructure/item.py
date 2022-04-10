@@ -187,8 +187,9 @@ if __name__ == '__main__':
     itemSets_obj = itemSets()
     itemSets_obj.calculate_itemSets(grammar_obj, FIRST_obj)
     for item_set_obj in itemSets_obj.item_sets:
-        for item in item_set_obj.item_set:
-            print(item.left, item.right, item.dot_pos, item.terminals, item.index)
-        print(item_set_obj.index)
-    for go in itemSets_obj.go.items():
-        print(go)
+        if item_set_obj.index in [11,12,13]:
+            for item in item_set_obj.item_set:
+                print(item.left, item.right, item.dot_pos, item.terminals, item.index)
+            print(item_set_obj.index)
+    # for go in itemSets_obj.go.items():
+    #     print(go)

@@ -31,7 +31,11 @@ class actionTable():
                         elif self.action_table[(index, terminal)] is not None:
                             print('Error: action table confliction at: ', (index, terminal))
                         self.action_table[(index, terminal)] = "r" + str(item_.index)
+                if item_.left == grammar_obj.start and item_.right == ['root'] and item_.dot_pos == len(item_.right) and '#' in item_.terminals:
+                    self.action_table[(index, '#')] = "acc"
         
+        def dump_table_into_file(self, file_path):
+            pass
 
 class gotoTable():
     def __init__(self, grammar_obj, itemSets_obj):
@@ -52,7 +56,8 @@ class gotoTable():
                     elif self.goto_table[(index, go[0][1])] is not None:
                         print('Error: goto table confliction at: ', (index, go[0][1]))
                     self.goto_table[(index, go[0][1])] = "s" + str(go[1])
-            
+    def dump_table_into_file(self, file_path):
+        pass
 class analysisTable():
     def __init__(self, grammar_obj, itemSets_obj):
         self.action_table = actionTable(grammar_obj, itemSets_obj)
@@ -67,4 +72,3 @@ if __name__ == '__main__':
     itemSets_obj.calculate_itemSets(grammar_obj, FIRST_obj)
     
     analysisTable(grammar_obj, itemSets_obj)
-    a = 1
