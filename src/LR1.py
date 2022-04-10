@@ -1,32 +1,22 @@
 grammar_path = './docs/grammar.txt'
 from dataStructure.FF import FIRST, FOLLOW
+from dataStructure.analysisTable import actionTable, analysisTable
 from dataStructure.item import item, itemSet, itemSets
 from dataStructure.grammar import grammar
 
 if __name__ == '__main__':
+    # 读入语法并生成语法四元组
     grammar_obj = grammar(grammar_path)
     grammar_obj.get_augumented_grammar()
-    # print(G.non_terminals)
-    # print(len(G.non_terminals))
-    # print(G.terminals)
-    # print(len(G.terminals))
-    # for production in G.productions:
-    #     print(production.left, production.right, production.index)
-    # print(G.start)
+
+    # 生成FIRST集
     FIRST_obj = FIRST(grammar_obj)
-    # FIRST_obj.calculate_first(G.non_terminals, G.terminals, G.productions)
-    # for firstset in FIRST_obj.first_sets.items():
-    #     print(firstset)
-    # print(len(FIRST_obj.first_sets))
+    # 生成FOLLOW集
     FOLLOW_obj = FOLLOW(grammar_obj, FIRST_obj)
-    # FOLLOW_obj.calculate_follow(G.non_terminals, G.terminals, G.productions, G.start, FIRST_obj.first_sets)
-    # for followset in FOLLOW_obj.follow_sets.items():
-    #     print(followset)
-    # print(len(FOLLOW_obj.follow_sets))
+
+    # 生成项目集规范族
     itemSets_obj = itemSets()
     itemSets_obj.calculate_itemSets(grammar_obj, FIRST_obj)
-    # for item_set_obj in itemSets_obj.item_sets:
-    #     for item in item_set_obj.item_set:
-    #         print(item.left, item.right, item.dot_pos, item.terminals)
-    #     print(item_set_obj.index)
-    
+
+    # 生成分析表
+    analysisTable_obj = analysisTable(grammar_obj, itemSets_obj)
