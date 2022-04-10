@@ -1,8 +1,9 @@
 import copy as cp
 from grammar import grammar
 
-
-grammar_path = './docs/grammar_debug.txt'
+grammar_path = './docs/grammar.txt'
+first_sets_output_path = './output/first_sets.txt'
+follow_sets_output_path = './output/follow_sets.txt'
 
 class FIRST():
     def __init__(self, grammar_obj):
@@ -85,8 +86,14 @@ class FIRST():
         return first_set
     
     def dump_first_sets_into_file(self, file_path):
-        pass
-
+        output_file = open(file_path, 'w')
+        output_file.write('FIRST:\n')
+        
+        output_list = list(self.first_sets.items())
+        output_list.sort()
+        for first_set in output_list:
+            output_file.write('  '+ first_set[0] + '=' + str(first_set[1]) + '\n')
+        output_file.close()
 class FOLLOW():
     def __init__(self, grammar_obj, FIRST_obj):
         self.follow_sets = {}
@@ -151,6 +158,14 @@ class FOLLOW():
             if not changed: # Loop until all the follow sets don't change
                 break
     def dump_follow_sets_into_file(self, file_path):
+        output_file = open(file_path, 'w')
+        output_file.write('FOLLOW:\n')
+        
+        output_list = list(self.follow_sets.items())
+        output_list.sort()
+        for follow_set in output_list:
+            output_file.write('  '+ follow_set[0] + '=' + str(follow_set[1]) + '\n')
+        output_file.close()
         pass
 
 
@@ -158,12 +173,12 @@ if __name__ == '__main__':
     grammar_obj = grammar(grammar_path)
     grammar_obj.get_augumented_grammar()
     FIRST_obj = FIRST(grammar_obj)
-    FIRST_obj.calculate_first_set(grammar_obj.non_terminals, grammar_obj.terminals, grammar_obj.productions)
-    for firstset in FIRST_obj.first_sets.items():
-        print(firstset)
-    print(len(FIRST_obj.first_sets))
+    # for firstset in FIRST_obj.first_sets.items():
+    #     print(firstset)
+    # print(len(FIRST_obj.first_sets))
     FOLLOW_obj = FOLLOW(grammar_obj, FIRST_obj)
-    FOLLOW_obj.calculate_follow(grammar_obj.non_terminals, grammar_obj.terminals, grammar_obj.productions, grammar_obj.start, FIRST_obj.first_sets)
-    for followset in FOLLOW_obj.follow_sets.items():
-        print(followset)
-    print(len(FOLLOW_obj.follow_sets))
+    # for followset in FOLLOW_obj.follow_sets.items():
+    #     print(followset)
+    # print(len(FOLLOW_obj.follow_sets))
+    FIRST_obj.dump_first_sets_into_file(first_sets_output_path)
+    FOLLOW_obj.dump_follow_sets_into_file(follow_sets_output_path)

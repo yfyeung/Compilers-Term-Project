@@ -2,6 +2,11 @@ from grammar import grammar
 from FF import FIRST, FOLLOW
 from item import itemSets
 grammar_path = './docs/grammar.txt'
+action_table_path = './output/action_table.txt'
+goto_table_path = './output/goto_table.txt'
+
+
+from prettytable import PrettyTable
 
 class actionTable():
     def __init__(self, grammar_obj, itemSets_obj):
@@ -34,8 +39,15 @@ class actionTable():
                 if item_.left == grammar_obj.start and item_.right == ['root'] and item_.dot_pos == len(item_.right) and '#' in item_.terminals:
                     self.action_table[(index, '#')] = "acc"
         
-        def dump_table_into_file(self, file_path):
-            pass
+    def dump_table_into_file(self, file_path):
+        output_file = open(file_path, 'w')
+        output_file.write('action table:\n')
+        
+        output_list = list(self.action_table.items())
+        output_list.sort()
+        for action in output_list:
+            output_file.write('  '+ str(action[0]) + '  ---->  ' + str(action[1]) + '\n')
+        output_file.close()
 
 class gotoTable():
     def __init__(self, grammar_obj, itemSets_obj):
@@ -56,12 +68,29 @@ class gotoTable():
                     elif self.goto_table[(index, go[0][1])] is not None:
                         print('Error: goto table confliction at: ', (index, go[0][1]))
                     self.goto_table[(index, go[0][1])] = "s" + str(go[1])
+                    
     def dump_table_into_file(self, file_path):
-        pass
+        output_file = open(file_path, 'w')
+        output_file.write('goto table:\n')
+        
+        output_list = list(self.goto_table.items())
+        output_list.sort()
+        for goto in output_list:
+            output_file.write('  '+ str(goto[0]) + '  ---->  ' + str(goto[1]) + '\n')
+        output_file.close()
+
+
+        
+        
 class analysisTable():
     def __init__(self, grammar_obj, itemSets_obj):
         self.action_table = actionTable(grammar_obj, itemSets_obj)
         self.gotoTable = gotoTable(grammar_obj, itemSets_obj)
+        
+    def dump_table_into_file(self, action_table_path, goto_table_path):
+        self.action_table.dump_table_into_file(action_table_path)
+        self.gotoTable.dump_table_into_file(goto_table_path)
+
 
 if __name__ == '__main__':
     grammar_obj = grammar(grammar_path)
@@ -71,4 +100,5 @@ if __name__ == '__main__':
     itemSets_obj = itemSets()
     itemSets_obj.calculate_itemSets(grammar_obj, FIRST_obj)
     
-    analysisTable(grammar_obj, itemSets_obj)
+    analysisTable_obj = analysisTable(grammar_obj, itemSets_obj)
+    analysisTable_obj.dump_table_into_file(action_table_path=action_table_path, goto_table_path=goto_table_path)
