@@ -4,7 +4,7 @@ from grammar import grammar
 from FF import FIRST, FOLLOW
 import collections
 import copy as cp
-grammar_path = './docs/grammar.txt'
+grammar_path = './docs/grammar_debug.txt'
 
 
 class item():
@@ -187,9 +187,8 @@ if __name__ == '__main__':
     itemSets_obj = itemSets()
     itemSets_obj.calculate_itemSets(grammar_obj, FIRST_obj)
     for item_set_obj in itemSets_obj.item_sets:
-        if item_set_obj.index in [11,12,13]:
-            for item in item_set_obj.item_set:
-                print(item.left, item.right, item.dot_pos, item.terminals, item.index)
-            print(item_set_obj.index)
-    # for go in itemSets_obj.go.items():
-    #     print(go)
+        for item in item_set_obj.item_set:
+            print(item.left, item.right, item.dot_pos, item.terminals, item.index)
+        print(item_set_obj.index)
+    for go in itemSets_obj.go.items():
+        print(go)

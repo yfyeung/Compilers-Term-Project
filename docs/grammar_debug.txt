@@ -1,4 +1,4 @@
-1. S -> A S
-3. S -> b
-4. A -> S A
+1. root -> A root
+3. root -> b
+4. A -> root A
 5. A -> a

@@ -1,7 +1,7 @@
 from grammar import grammar
 from FF import FIRST, FOLLOW
 from item import itemSets
-grammar_path = './docs/grammar.txt'
+grammar_path = './docs/grammar_debug.txt'
 action_table_path = './output/action_table.txt'
 goto_table_path = './output/goto_table.txt'
 
