@@ -1,9 +1,11 @@
 import copy as cp
-from grammar import grammar
 
-grammar_path = './docs/grammar.txt'
-first_sets_output_path = './output/first_sets.txt'
-follow_sets_output_path = './output/follow_sets.txt'
+from src.dataStructure.grammar import grammar
+from utils.Configs import Configs
+
+grammar_path = Configs.grammar_path
+first_sets_output_path = Configs.first_sets_output_path
+follow_sets_output_path =  Configs.follow_sets_output_path
 
 class FIRST():
     def __init__(self, grammar_obj):

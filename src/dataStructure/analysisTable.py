@@ -1,9 +1,11 @@
-from grammar import grammar
-from FF import FIRST, FOLLOW
-from item import itemSets
-grammar_path = './docs/grammar_debug.txt'
-action_table_path = './output/action_table.txt'
-goto_table_path = './output/goto_table.txt'
+from src.dataStructure.grammar import grammar
+from src.dataStructure.FF import FIRST, FOLLOW
+from src.dataStructure.item import itemSets
+from utils.Configs import Configs
+
+grammar_path = Configs.grammar_path
+action_table_path = Configs.action_table_path
+goto_table_path = Configs.goto_table_path
 
 
 from prettytable import PrettyTable
@@ -24,17 +26,21 @@ class actionTable():
             for go in go_from_I:
                 if go[0][1] in grammar_obj.terminals:
                     if not self.action_table.__contains__((index, go[0][1])):
-                        print('Error: action table does\'t have the key: ', (index, go[0][1]))  
+                        print('Error: action table does\'t have the key: ', (index, go[0][1]))
+                        exit(-1)  
                     elif self.action_table[(index, go[0][1])] is not None:
                         print('Error: action table confliction at: ', (index, go[0][1]))
+                        exit(-1)  
                     self.action_table[(index, go[0][1])] = "s" + str(go[1])
             for item_ in item_set:
                 if item_.dot_pos == len(item_.right):
                     for terminal in item_.terminals:
                         if not self.action_table.__contains__((index, terminal)):
-                            print('Error: action table does\'t have the key: ', (index, terminal))
+                            print('Error: action table does\'t have the key: ', (index, terminal), "Abort!")
+                            exit(-1)  
                         elif self.action_table[(index, terminal)] is not None:
-                            print('Error: action table confliction at: ', (index, terminal))
+                            print('Error: action table confliction at: ', (index, terminal), "Abort!")
+                            exit(-1)  
                         self.action_table[(index, terminal)] = "r" + str(item_.index)
                 if item_.left == grammar_obj.start and item_.right == ['root'] and item_.dot_pos == len(item_.right) and '#' in item_.terminals:
                     self.action_table[(index, '#')] = "acc"
@@ -64,9 +70,11 @@ class gotoTable():
             for go in go_from_I:
                 if go[0][1] in grammar_obj.non_terminals:
                     if not self.goto_table.__contains__((index, go[0][1])):
-                        print('Error: goto table does\'t have the key: ', (index, go[0][1]))
+                        print('Error: goto table does\'t have the key: ', (index, go[0][1]), "Abort!")
+                        exit(-1)  
                     elif self.goto_table[(index, go[0][1])] is not None:
-                        print('Error: goto table confliction at: ', (index, go[0][1]))
+                        print('Error: goto table confliction at: ', (index, go[0][1]), "Abort!")
+                        exit(-1)  
                     self.goto_table[(index, go[0][1])] = "s" + str(go[1])
                     
     def dump_table_into_file(self, file_path):

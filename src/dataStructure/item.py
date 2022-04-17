@@ -1,10 +1,11 @@
-from math import prod
 from matplotlib import collections
-from grammar import grammar
-from FF import FIRST, FOLLOW
 import collections
-import copy as cp
-grammar_path = './docs/grammar_debug.txt'
+
+from src.dataStructure.grammar import grammar
+from src.dataStructure.FF import FIRST, FOLLOW
+from utils.Configs import Configs
+
+grammar_path = Configs.grammar_path
 
 
 class item():

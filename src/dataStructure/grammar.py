@@ -1,4 +1,6 @@
-grammar_path = './docs/grammar_debug.txt'
+from utils.Configs import Configs
+
+grammar_path = Configs.grammar_path
 
 class production():
     def __init__(self, left, right, index):
