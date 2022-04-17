@@ -36,7 +36,7 @@ class LexicalAnalyzer():
     def _get_tests(self):
         tests = []
         tests_names = os.listdir(dir_names['tests'])
-        tests_names.remove(".DS_Store")
+        # tests_names.remove(".DS_Store")
         for tests_name in tests_names[-1:]:
             tests.append(os.path.join(dir_names['tests'], tests_name))
         return tests
