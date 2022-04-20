@@ -1,18 +1,19 @@
 KW = [
-    "SELECT", "FROM", "WHERE", "AS",
-    "INSERT", "INTO", "VALUES",
-    "UPDATE",
+    "SELECT", "FROM", "WHERE", "AS", "*"
+    "INSERT", "INTO", "VALUES", "VALUE", "DEFAULT"
+    "UPDATE", "SET"
     "DELETE",
-    "JOIN", "LEFT", "RIGHT",
+    "JOIN", "LEFT", "RIGHT", "ON"
     "MIN", "MAX", "AVG", "SUM",
     "UNION", "ALL",
     "GROUP BY", "HAVING", "DISTINCT", "ORDER BY"
-    "TRUE", "FALSE", "IS", "NOT", "NULL"
+    "TRUE", "FALSE", "UNKNOWN", "IS", "NULL"
 ]
 
 OP = [
     "=", ">", "<", ">=", "<=", "!=", "<=>",
-    "AND", "&&", "||", "OR", "XOR",
+    "AND", "&&", "OR", "||", "XOR", "NOT", "!",
+    "-",
     "."
 ]
 
