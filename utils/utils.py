@@ -1,12 +1,12 @@
 KW = [
-    "SELECT", "FROM", "WHERE", "AS", "*"
-    "INSERT", "INTO", "VALUES", "VALUE", "DEFAULT"
-    "UPDATE", "SET"
+    "SELECT", "FROM", "WHERE", "AS", "*",
+    "INSERT", "INTO", "VALUES", "VALUE", "DEFAULT",
+    "UPDATE", "SET",
     "DELETE",
-    "JOIN", "LEFT", "RIGHT", "ON"
+    "JOIN", "LEFT", "RIGHT", "ON",
     "MIN", "MAX", "AVG", "SUM",
     "UNION", "ALL",
-    "GROUP BY", "HAVING", "DISTINCT", "ORDER BY"
+    "GROUP BY", "HAVING", "DISTINCT", "ORDER BY",
     "TRUE", "FALSE", "UNKNOWN", "IS", "NULL"
 ]
 

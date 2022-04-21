@@ -52,7 +52,7 @@ DROP PROCEDURE IF EXISTS currently_disabled DELIMITER
 -- 单⾏注释
 CREATE PROCEDURE currently_disabled(show_instruments BOOLEAN) COMMENT "this is not an annotation /* haha */, tju tju -- tju // end_line"
 SQL SECURITY INVOKER BEGIN
-SELECT @@performance_schema AS performance_schema_enabled
+SELECT performance_schema AS performance_schema_enabled
 
 SELECT name AS disabled_consumers
 FROM performance_schema.setup_consumers WHERE enabled = "NO"

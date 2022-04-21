@@ -32,13 +32,9 @@ class LexicalAnalyzer():
         tests = []
         tests_names = os.listdir(dir_names['tests'])
         tests_names.remove(".DS_Store")
-        for tests_name in tests_names[:1]:
+        for tests_name in tests_names[2:3]:
             tests.append(os.path.join(dir_names['tests'], tests_name))
         return tests
-
-    def save_word(self, word_content, word_type):
-        current_token = TokenLine(word_content, word_type)
-        print(current_token)
 
     def _preprocess(self, file_content):
         """删除sql的注释"""
@@ -147,6 +143,7 @@ class LexicalAnalyzer():
         return s
 
     def _process_line(self, line_seq, line_content):
+
         if line_content is None:
             return
         
@@ -169,8 +166,18 @@ class LexicalAnalyzer():
                     current_word += line_content[i]
                     i += 1
 
-                self.save_word(current_word, "kW+IDN+4OP")
-                current_word = ""
+                if current_word == "ORDER":
+                    if i + 2 < len(line_content) and line_content[i : i+3] == " BY":
+                        current_word += " BY"
+                        self.save_word(current_word, "SE+1KW+3OP")
+                        current_word = ""
+                        i += 3
+                    else:
+                        print("ERROR ORDER BY")
+                
+                else:
+                    self.save_word(current_word, "kW+IDN+4OP")
+                    current_word = ""
 
             # 单符号
             elif line_content[i] in ["(", ")", ",", "*", "=", "-", "."]:
@@ -293,7 +300,10 @@ class LexicalAnalyzer():
             else:
                 print("Error else")
                 break
-            
+
+    def save_word(self, word_content, word_type):
+        current_token = TokenLine(word_content, word_type)
+        print(current_token)  
 
 
 
