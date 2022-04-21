@@ -178,6 +178,7 @@ class LexicalAnalyzer():
                         i += 3
                     else:
                         print("ERROR ORDER BY")
+                        break
                 
                 else:
                     self.save_word(current_word, "kW+IDN+4OP")
