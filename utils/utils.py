@@ -23,6 +23,9 @@ SE = [
 
 VOCABULARY = [_ for _ in '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ !"#$%&\'()*+,-./:;<=>?@[]^_`{|}~'] + ["\\"]
 
+digit = "0123456789"
+letter = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
 dir_names = {
     'bin': 'bin',
     'docs': 'docs',
