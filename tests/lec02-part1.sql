@@ -144,7 +144,7 @@ WHERE A < D
 
 SELECT * 
 FROM U INNER JOIN V ON A < D
-WHERE U.B <> V.B
+WHERE U.B != V.B
 
 -- Combining Operations to Form Queries
 

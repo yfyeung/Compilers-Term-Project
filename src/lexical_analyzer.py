@@ -4,20 +4,14 @@ import re
 
 sys.path.append(".")
 from utils.utils import *
+from utils.datastructure import *
 
 
 class LexicalAnalyzer():
     """词法分析器"""
 
     def __init__(self):  
-        self.KW = KW
-        self.OP = OP
-        self.SE = SE
-        self.VOCABULARY = VOCABULARY
-
-        self.Token = []
         self.tests = self._get_tests()
-
 
     def lexical_analyze(self):
         self._get_tests()
@@ -29,10 +23,10 @@ class LexicalAnalyzer():
                     file_content = f.read()
                 file_content = self._preprocess(file_content)
                 raw_lines = file_content.split("\n", -1)
+                
                 for line_seq, line_content in enumerate(raw_lines):
                     if line_content.strip():
-                        print(line_content)
-                        # self._process_line(line_seq, line_content.strip())
+                        self._process_line(line_seq, line_content.strip())
 
     def _get_tests(self):
         tests = []
@@ -42,8 +36,9 @@ class LexicalAnalyzer():
             tests.append(os.path.join(dir_names['tests'], tests_name))
         return tests
 
-    def save_token(self, token_content, token_type):
-        print(f'{token_content} {token_type}')
+    def save_word(self, word_content, word_type):
+        current_token = TokenLine(word_content, word_type)
+        print(current_token)
 
     def _preprocess(self, file_content):
         """删除sql的注释"""
@@ -151,14 +146,11 @@ class LexicalAnalyzer():
         
         return s
 
-
     def _process_line(self, line_seq, line_content):
-        print(f'{line_seq} {line_content}')
-
         if line_content is None:
             return
         
-        current_token = ""
+        current_word = ""
         i = 0
         
         while i < len(line_content):
@@ -168,121 +160,137 @@ class LexicalAnalyzer():
             if line_content[i] == "\n":
                 return
 
-            # KW ID AND OR XOR NOT
+            # KW IDN AND OR XOR NOT
             if line_content[i] in letter + "_":
-                current_token += line_content[i]
+                current_word += line_content[i]
                 i += 1
 
                 while i < len(line_content) and line_content[i] in letter + digit + "_":
-                    current_token += line_content[i]
+                    current_word += line_content[i]
                     i += 1
 
-                self.save_token(current_token, "SE")
-                current_token = ""
+                self.save_word(current_word, "kW+IDN+4OP")
+                current_word = ""
 
             # 单符号
-            elif line_content[i] in ["(", ")", ",", "=", ".", "*", "-"]:
-                current_token += line_content[i]
-                self.save_token(current_token, "SE")
-                current_token = ""
+            elif line_content[i] in ["(", ")", ",", "*", "=", "-", "."]:
+                current_word += line_content[i]
+                self.save_word(current_word, "SE+1KW+3OP")
+                current_word = ""
                 i += 1
             
             # 字符串
             elif line_content[i] == '"':
-                current_token += line_content[i]
+                current_word += line_content[i]
                 i += 1
+
                 while line_content[i] != '"':
-                    current_token += line_content[i]
+                    current_word += line_content[i]
                     i += 1
-                current_token += line_content[i]
-                self.save_token(current_token, "SE")
-                current_token = ""
+                
+                current_word += line_content[i]
+                self.save_word(current_word, "STR")
+                current_word = ""
                 i += 1
 
             # > >=
             elif line_content[i] == '>':
-                if line_content[i] == '=':
-                    current_token += line_content[i]
-                    self.save_token(current_token, "SE")
-                    current_token = ""
+                current_word += line_content[i]
+                i += 1
+
+                if i < len(line_content) and line_content[i] == '=':
+                    current_word += line_content[i]
+                    self.save_word(current_word, "OP")
+                    current_word = ""
                     i += 1
                 else:
-                    self.save_token(current_token, "SE")
-                    current_token = ""
+                    self.save_word(current_word, "OP")
+                    current_word = ""
 
             # != !
             elif line_content[i] == '!':
-                if line_content[i] == '=':
-                    current_token += line_content[i]
-                    self.save_token(current_token, "SE")
-                    current_token = ""
+                current_word += line_content[i]
+                i += 1
+
+                if i < len(line_content) and line_content[i] == '=':
+                    current_word += line_content[i]
+                    self.save_word(current_word, "OP")
+                    current_word = ""
                     i += 1
                 else:
-                    self.save_token(current_token, "SE")
-                    current_token = ""
+                    self.save_word(current_word, "OP")
+                    current_word = ""
 
+            # < <= <=>
             elif line_content[i] == '<':
-                if line_content[i] == '=':
-                    current_token += line_content[i]
+                current_word += line_content[i]
+                i += 1
+
+                if i < len(line_content) and line_content[i] == '=':
+                    current_word += line_content[i]
                     i += 1
                     if line_content[i] == '>':
-                        current_token += line_content[i]
-                        self.save_token(current_token, "SE")
-                        current_token = ""
+                        current_word += line_content[i]
+                        self.save_word(current_word, "OP")
+                        current_word = ""
                         i += 1
                     else:
-                        self.save_token(current_token, "SE")
-                        current_token = ""
+                        self.save_word(current_word, "OP")
+                        current_word = ""
                 else:
-                    self.save_token(current_token, "SE")
-                    current_token = ""
+                    self.save_word(current_word, "OP")
+                    current_word = ""
 
+            # &&
             elif line_content[i] == '&':
-                if line_content[i] == '&':
-                    current_token += line_content[i]
-                    self.save_token(current_token, "SE")
-                    current_token = ""
+                current_word += line_content[i]
+                i += 1
+                
+                if i < len(line_content) and line_content[i] == '&':
+                    current_word += line_content[i]
+                    self.save_word(current_word, "OP")
+                    current_word = ""
                     i += 1
                 else:
                     print("Error &")
                     break
-
+            
+            # ||
             elif line_content[i] == '|':
-                if line_content[i] == '|':
-                    current_token += line_content[i]
-                    self.save_token(current_token, "SE")
-                    current_token = ""
+                current_word += line_content[i]
+                i += 1
+                
+                if i < len(line_content) and line_content[i] == '|':
+                    current_word += line_content[i]
+                    self.save_word(current_word, "OP")
+                    current_word = ""
                     i += 1
                 else:
                     print("Error |")
                     break
-
+            
+            # 数字
             elif line_content[i] in digit:
-                current_token += line_content[i]
+                current_word += line_content[i]
                 i += 1
+
                 while i < len(line_content) and line_content[i] in digit:
-                    current_token += line_content[i]
+                    current_word += line_content[i]
                     i += 1
                 
-                if i == len(line_content):
-                    self.save_token(current_token, "SE")
-                    current_token = ""
-                    return
-                
-                if line_content[i] == '.':
-                    current_token += line_content[i]
+                if i < len(line_content) and line_content[i] == '.':
+                    current_word += line_content[i]
                     i += 1
                     while i < len(line_content) and line_content[i] in digit:
-                        current_token += line_content[i]
+                        current_word += line_content[i]
                         i += 1 
-                    self.save_token(current_token, "FLOAT")
-                    current_token = ""
+                    self.save_word(current_word, "FLOAT")
+                    current_word = ""
                 else:
-                    self.save_token(current_token, "INT")
-                    current_token = ""
+                    self.save_word(current_word, "INT")
+                    current_word = ""
 
             else:
-                print(line_content[i])
                 print("Error else")
                 break
             

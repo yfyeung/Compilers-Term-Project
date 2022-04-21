@@ -48,7 +48,7 @@
 *
 *	Query OK, 0 rows affected (1.19 sec)
 */
-DROP PROCEDURE IF EXISTS currently_disabled DELIMITER $$
+DROP PROCEDURE IF EXISTS currently_disabled DELIMITER 
 -- 单⾏注释
 CREATE PROCEDURE currently_disabled(show_instruments BOOLEAN) COMMENT "this is not an annotation /* haha */, tju tju -- tju // end_line"
 SQL SECURITY INVOKER BEGIN
@@ -61,7 +61,7 @@ IF (show_instruments) THEN
 SELECT name AS disabled_instruments, timed
 FROM performance_schema.setup_instruments WHERE enabled = "NO"
 END IF
-END$$ DELIMITER 
+END DELIMITER 
 -------------------------------------------
 -- Lecture 02 - Relational Database Language
 -------------------------------------------
@@ -80,7 +80,7 @@ DROP TABLE FAKETABLE
 */ -- delete by yyf
 select employee_id, max(cast(organization_id as integer)), organization_id
 from src_ht_hr_ims.ims_rt_employee_organization where state=1
-and jobtitle <>"--" --and employee_id="50019940"
+and jobtitle != "--" --and employee_id="50019940"
 group by employee_id
 -- /*
 DROP TABLE TestPoint5 /*
