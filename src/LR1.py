@@ -46,7 +46,7 @@ class LR1_parser:
             FIRST_obj.dump_first_sets_into_file(self.Configs.first_sets_output_path)
             FOLLOW_obj.dump_follow_sets_into_file(self.Configs.follow_sets_output_path)
             analysisTable_obj.dump_table_into_file(action_table_path=self.Configs.action_table_path, goto_table_path=self.Configs.goto_table_path)
-    
+            itemSets_obj.dump_into_file()
     def parse(self, input_stack):
         
         if self.Configs.REDIRECT_STDOUT_TO_FILE:
