@@ -5,14 +5,21 @@ from utils.utils import *
 
 
 class TokenLine():
-    def __init__(self, word_content, word_type):
-        self.word_content = word_content
-        self.word_type = word_type
+    def __init__(self, word_content=None, word_type=None):
+        self.word_content = None
+        self.word_type = None
         self.token_type = None
         self.token_content = None
-        self._process_raw_line()
     
     def __str__(self):
+        return f'{self.word_content}   <{self.token_type},{self.token_content}>'
+    
+    def input_raw_line(self, word_content, word_type):
+        self.word_content = word_content
+        self.word_type = word_type
+        self._process_raw_line()
+
+    def output_token_line(self):
         return f'{self.word_content}   <{self.token_type},{self.token_content}>'
     
     def _process_raw_line(self):
@@ -75,8 +82,16 @@ class TokenLine():
             if op == self.word_content:
                 return i + 1
 
-        
-
+class TokenTable():      
+    def __init__(self):
+        self.token_table = []
+    
+    def add_token_line(self, toke_line):
+        self.token_table.append(toke_line)
+    
+    def print(self):
+        for token_line in self.token_table:
+            print(token_line)
 
 
 

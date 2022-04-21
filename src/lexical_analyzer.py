@@ -11,6 +11,8 @@ class LexicalAnalyzer():
     """词法分析器"""
 
     def __init__(self):  
+        self.token_line = TokenLine()
+        self.token_table = TokenTable()
         self.tests = self._get_tests()
 
     def lexical_analyze(self):
@@ -302,8 +304,11 @@ class LexicalAnalyzer():
                 break
 
     def save_word(self, word_content, word_type):
-        current_token = TokenLine(word_content, word_type)
-        print(current_token)  
+        self.token_line.input_raw_line(word_content, word_type)
+        self.token_table.add_token_line(self.token_line.output_token_line())
+    
+    def print_token_table(self):
+        self.token_table.print()
 
 
 
@@ -323,3 +328,4 @@ class LexicalAnalyzer():
 if __name__ == '__main__':
     lex = LexicalAnalyzer()
     lex.lexical_analyze()
+    lex.print_token_table()
