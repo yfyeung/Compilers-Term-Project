@@ -1,4 +1,5 @@
 import sys
+import os
 
 sys.path.append(".")
 from utils.utils import *
@@ -92,7 +93,16 @@ class TokenTable():
     def print(self):
         for token_line in self.token_table:
             print(token_line)
-
+    
+    def save(self, test_name):
+        file_name = 'token_table_' + test_name.replace("tests/", "").replace(".sql", ".txt")
+        save_path = os.path.join(dir_names['output'], file_name)
+        with open(save_path, 'w') as f:
+            for token_line in self.token_table:
+                f.write(token_line + '\n')
+    
+    def reset(self):
+        self.token_table = []
 
 
 # class Node():

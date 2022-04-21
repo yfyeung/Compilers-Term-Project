@@ -78,10 +78,9 @@ DROP TABLE TestPoint4
 DROP TABLE FAKETABLE
   -- where to_number(to_char(a.create_date,"YYYYMMDD"),"99999999") <= v_period_id
 */ -- delete by yyf
-select employee_id, max(cast(organization_id as integer)), organization_id
-from src_ht_hr_ims.ims_rt_employee_organization where state=1
-and jobtitle != "--" --and employee_id="50019940"
-group by employee_id
+SELECT employee_id, max(cast(organization_id AS INT)), organization_id
+FROM src_ht_hr_ims.ims_rt_employee_organization WHERE state=1
+AND jobtitle != "--" --and employee_id="50019940"
 -- /*
 DROP TABLE TestPoint5 /*
 create table report.rpt_employee_fund_match as 

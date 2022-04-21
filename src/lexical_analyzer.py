@@ -14,13 +14,15 @@ class LexicalAnalyzer():
         self.token_line = TokenLine()
         self.token_table = TokenTable()
         self.tests = self._get_tests()
+        self.current_test = None
 
     def lexical_analyze(self):
-        self._get_tests()
         if not self.tests:
             raise Exception("tests is empty!")
         else:
-            for test in self.tests:
+            for test in self.tests[:1]:
+                self.token_table.reset()
+                self.current_test = test
                 with open(test) as f:
                     file_content = f.read()
                 file_content = self._preprocess(file_content)
@@ -34,7 +36,7 @@ class LexicalAnalyzer():
         tests = []
         tests_names = os.listdir(dir_names['tests'])
         tests_names.remove(".DS_Store")
-        for tests_name in tests_names[2:3]:
+        for tests_name in tests_names:
             tests.append(os.path.join(dir_names['tests'], tests_name))
         return tests
 
@@ -309,6 +311,9 @@ class LexicalAnalyzer():
     
     def print_token_table(self):
         self.token_table.print()
+    
+    def save_token_table(self):
+        self.token_table.save(self.current_test)
 
 
 
@@ -329,3 +334,4 @@ if __name__ == '__main__':
     lex = LexicalAnalyzer()
     lex.lexical_analyze()
     lex.print_token_table()
+    lex.save_token_table()
