@@ -1,5 +1,6 @@
+from imp import init_frozen
 import sys
-
+import copy
 
 from src.dataStructure.FF import FIRST, FOLLOW
 from src.dataStructure.analysisTable import analysisTable
@@ -60,51 +61,60 @@ class LR1_parser:
 
         step = 1
         
-        while(len(input_stack) > 1):
+        while(len(input_stack.items) > 0):
             input_front = input_stack.peek()
             state_front = state_stack.peek()
             
-            if input_front in self.grammar_obj.terminals:
-                action = self.analysisTable_obj.action_table[state_front][input_front]
+            if input_front in self.grammar_obj.terminals or input_front == "#":
+                action = self.analysisTable_obj.action_table.action_table[(state_front, input_front)]
                 if action == 'acc':
-                    print('{}\t{}\t{}#{}\t{}\n'.format(step,'/',symbol_stack.peek(),input_stack.peek(),'accept'))
+                    print('{}\t{}\t{}#{}\t{}'.format(step,'/',symbol_stack.peek(),input_stack.peek(),'accept'))
                     break
                 elif action is None:
-                    print('{}\t{}\t{}#{}\t{}\n'.format(step,'/',symbol_stack.peek(),input_stack.peek(),'error'))
-                    break
+                    print('{}\t{}\t{}#{}\t{}'.format(step,'/',symbol_stack.peek(),input_stack.peek(),'error'))
+                    exit(-1)
                 else:
                     if action[0] == 's':
-                        state_stack.push(int(action[1]))
+                        state_stack.push(int(action[1:]))
                         symbol_stack.push(input_stack.pop())
-                        print('{}\t{}\t{}#{}\t{}\n'.format(step,'/',symbol_stack.peek(),input_stack.peek(),'move'))
+                        print('{}\t{}\t{}#{}\t{}'.format(step,'/',symbol_stack.peek(),input_stack.peek(),'move'))
                         step += 1
                     elif action[0] == 'r':
-                        production = self.grammar_obj.productions[int(action[1])]
-                        if production.index != int(action[1]):
+                        production = self.grammar_obj.productions[int(action[1:])]
+                        if production.index != int(action[1:]):
                             print("Error: production index not match. Abort!")
                             exit(-1)
-                        right_symbol_num = len(production.right)
+                        if production.right == ['$']:
+                            right_symbol_num = 0
+                        else:
+                            right_symbol_num = len(production.right)
+                        right_symbols = copy.deepcopy(production.right)
+                        right_symbols.reverse()
                         for i in range(right_symbol_num):
+                            if (right_symbols[i] != symbol_stack.peek()):
+                                print("Error: symbol not match. Abort!")
+                                exit(-1)
                             state_stack.pop()
                             symbol_stack.pop()
-                            
-                        state_front = state_stack.peek()
-                        state_stack.push(self.analysisTable_obj.goto_table[state_front][production.left])
                         symbol_stack.push(production.left)
-                        print('{}\t{}\t{}#{}\t{}\n'.format(step,action[1],symbol_stack.peek(),input_stack.peek(),'reduction'))
+                        state_front = state_stack.peek()
+                        symbol_front = symbol_stack.peek()
+                        state_stack.push(int(self.analysisTable_obj.gotoTable.goto_table[(state_front, symbol_front)][1:]))
+                        
+                        print('{}\t{}\t{}#{}\t{}'.format(step,action[1],symbol_stack.peek(),input_stack.peek(),'reduction'))
                         step += 1
                     else:
                         print("Error: action is neither acc nor None or 's' or 'r'. Abort!")
                         exit(-1)
             elif input_front in self.grammar_obj.non_terminals:
-                goto = self.analysisTable_obj.goto_table[state_front][input_front]
+                goto = self.analysisTable_obj.gotoTable.goto_table[(state_front, input_front)]
                 if goto == None:
-                    print('{}\t{}\t{}#{}\t{}\n'.format(step,'/',symbol_stack.peek(),input_stack.peek(),'error'))
+                    print('{}\t{}\t{}#{}\t{}'.format(step,'/',symbol_stack.peek(),input_stack.peek(),'error'))
                     break
                 elif goto[0] == 's':
                     state_stack.push(goto[1])
                     symbol_stack.push(input_stack.pop())
-                    print('{}\t{}\t{}#{}\t{}\n'.format(step,'/',symbol_stack.peek(),input_stack.peek(),'move'))
+                    print('{}\t{}\t{}#{}\t{}'.format(step,'/',symbol_stack.peek(),input_stack.peek(),'move'))
                     step += 1
                 else:
                     print("Error: goto is neither None or 's'. Abort!")

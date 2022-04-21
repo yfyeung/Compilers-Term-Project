@@ -1,3 +1,6 @@
+import sys
+sys.path.append(".")
+
 from matplotlib import collections
 import collections
 
@@ -162,8 +165,18 @@ class itemSets():
             
             self.item_sets[index].item_set = new_item_set
         
-        pass
-            
+
+    def dump_into_file(self):
+        f = open(Configs.item_sets_path, "w")
+        for index, item_set in enumerate(self.item_sets):
+            f.write("item_set{}:\n".format(index))
+            for item in item_set.item_set:
+                f.write("{}, {}, {}, {}, {}, \n".format(item.left, item.right, item.dot_pos, item.terminals, item.index))
+            f.write("\n")
+        f = open(Configs.go_path, "w")
+        for go in self.go.items():
+            f.write(str(go) + '\n')
+
 
 if __name__ == '__main__':
     grammar_obj = grammar(grammar_path)
@@ -187,9 +200,10 @@ if __name__ == '__main__':
     # print(len(FOLLOW_obj.follow_sets))
     itemSets_obj = itemSets()
     itemSets_obj.calculate_itemSets(grammar_obj, FIRST_obj)
-    for item_set_obj in itemSets_obj.item_sets:
-        for item in item_set_obj.item_set:
-            print(item.left, item.right, item.dot_pos, item.terminals, item.index)
-        print(item_set_obj.index)
-    for go in itemSets_obj.go.items():
-        print(go)
+    # for item_set_obj in itemSets_obj.item_sets:
+    #     for item in item_set_obj.item_set:
+    #         print(item.left, item.right, item.dot_pos, item.terminals, item.index)
+    #     print(item_set_obj.index)
+    # for go in itemSets_obj.go.items():
+    #     print(go)
+    itemSets_obj.dump_into_file()
