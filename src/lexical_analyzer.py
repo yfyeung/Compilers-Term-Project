@@ -180,6 +180,16 @@ class LexicalAnalyzer():
                         print("ERROR ORDER BY")
                         break
                 
+                elif current_word == "GROUP":
+                    if i + 2 < len(line_content) and line_content[i : i+3] == " BY":
+                        current_word += " BY"
+                        self.save_word(current_word, "SE+1KW+3OP")
+                        current_word = ""
+                        i += 3
+                    else:
+                        print("ERROR GROUP BY")
+                        break
+                
                 else:
                     self.save_word(current_word, "kW+IDN+4OP")
                     current_word = ""
