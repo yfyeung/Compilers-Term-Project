@@ -10,17 +10,19 @@ from utils.datastructure import *
 class LexicalAnalyzer():
     """词法分析器"""
 
-    def __init__(self):  
+    def __init__(self):
+        """初始化"""
         self.token_line = TokenLine()
         self.token_table = TokenTable()
         self.tests = self._get_tests()
         self.current_test = None
 
     def lexical_analyze(self):
+        """词法分析"""
         if not self.tests:
             raise Exception("tests is empty!")
         else:
-            for test in self.tests[2:3]:
+            for test in self.tests[0:1]:
                 self.token_table.reset()
                 self.current_test = test
                 with open(test) as f:
@@ -33,6 +35,7 @@ class LexicalAnalyzer():
                         self._process_line(line_seq, line_content.strip())
 
     def _get_tests(self):
+        """获取测试文件"""
         tests = []
         tests_names = os.listdir(dir_names['tests'])
         tests_names.remove(".DS_Store")
@@ -43,111 +46,111 @@ class LexicalAnalyzer():
     def _preprocess(self, file_content):
         """删除sql的注释"""
         # 状态定义
-        CODE = 0	               # 代码
-        SLASH = 1	               # 斜杠
-        ANNOTATION_MULTI = 2	   # 多⾏注释
-        ANNOTATION_MULTI_STAR = 3  # 多⾏注释遇到* 
-        ANNOTATION_SINGLELINE = 4  # 单⾏注释
-        BACKSLASH = 5	           # 拆⾏注释
-        CODE_CHAR = 6	           # 字符
-        CHAR_ESCAPE_SEQUENCE = 7   # 字符中的转义字符
-        CODE_STRING = 8	           # 字符串
-        STRING_ESCAPE_SEQUENCE = 9 # 字符串中的转义字符
-        STRIGULA = 10	           # 短横线
+        STATE_0 = 0	  # 代码
+        STATE_1 = 1	  # 斜杠
+        STATE_2 = 2	  # 多⾏注释
+        STATE_3 = 3   # 多⾏注释遇到* 
+        STATE_4 = 4   # 单⾏注释
+        STATE_5 = 5	  # 拆⾏注释
+        STATE_6 = 6	  # 字符
+        STATE_7 = 7   # 字符中的转义字符
+        STATE_8 = 8	  # 字符串
+        STATE_9 = 9   # 字符串中的转义字符
+        STATE_10 = 10 # 短横线
 
         # 有限状态机
-        s = ""
-        state = CODE
-        for c in file_content:
-            if state == CODE:
-                if c == '/':
-                    state = SLASH
-                elif c == "-":
-                    state = STRIGULA 
+        current_string = ""
+        state = STATE_0
+        for ch in file_content:
+            if state == STATE_0:
+                if ch == '/':
+                    state = STATE_1
+                elif ch == "-":
+                    state = STATE_10 
                 else:
-                    s += c
-                    if c == '\'':
-                        state = CODE_CHAR
-                    elif c == '\"':
-                        state = CODE_STRING
+                    current_string += ch
+                    if ch == '\'':
+                        state = STATE_6
+                    elif ch == '\"':
+                        state = STATE_8
             
-            elif state == STRIGULA:
-                if c == '-':
-                    state = ANNOTATION_SINGLELINE
+            elif state == STATE_10:
+                if ch == '-':
+                    state = STATE_4
                 else:
-                    s += "-" + c
-                    state = CODE
+                    current_string += "-" + ch
+                    state = STATE_0
             
-            elif state == SLASH:
-                if c == '*':
-                    state = ANNOTATION_MULTI
-                elif c == '/':
-                    state = ANNOTATION_SINGLELINE
+            elif state == STATE_1:
+                if ch == '*':
+                    state = STATE_2
+                elif ch == '/':
+                    state = STATE_4
                 else:
-                    s += "/"
-                    s += c
-                    state = CODE
+                    current_string += "/"
+                    current_string += ch
+                    state = STATE_0
             
-            elif state == ANNOTATION_MULTI:
-                if c == '*':
-                    state = ANNOTATION_MULTI_STAR
+            elif state == STATE_2:
+                if ch == '*':
+                    state = STATE_3
                 else:
-                    if c == '\n':
-                        s += '\r\n'
-                    state = ANNOTATION_MULTI
+                    if ch == '\n':
+                        current_string += '\r\n'
+                    state = STATE_2
             
-            elif state == ANNOTATION_MULTI_STAR:
-                if c == '/':
-                    state = CODE
-                elif c == '*':
-                    state = ANNOTATION_MULTI_STAR
+            elif state == STATE_3:
+                if ch == '/':
+                    state = STATE_0
+                elif ch == '*':
+                    state = STATE_3
                 else:
-                    state = ANNOTATION_MULTI
+                    state = STATE_2
             
-            elif state == ANNOTATION_SINGLELINE: 
-                if c == '\\':
-                    state = BACKSLASH
-                elif c == '\n':
-                    s += '\r\n'
-                    state = CODE
+            elif state == STATE_4: 
+                if ch == '\\':
+                    state = STATE_5
+                elif ch == '\n':
+                    current_string += '\r\n'
+                    state = STATE_0
                 else:
-                    state = ANNOTATION_SINGLELINE
+                    state = STATE_4
             
-            elif state == BACKSLASH:
-                if c == '\\' or c == '\r' or c == '\n':
-                    if c == '\n':
-                        s += '\r\n'
-                    state = BACKSLASH
+            elif state == STATE_5:
+                if ch == '\\' or ch == '\r' or ch == '\n':
+                    if ch == '\n':
+                        current_string += '\r\n'
+                    state = STATE_5
                 else:
-                    state = ANNOTATION_SINGLELINE
+                    state = STATE_4
             
-            elif state == CODE_CHAR:
-                s += c
-                if c == '\\':
-                    state = CHAR_ESCAPE_SEQUENCE
-                elif c == '\'':
-                    state = CODE
+            elif state == STATE_6:
+                current_string += ch
+                if ch == '\\':
+                    state = STATE_7
+                elif ch == '\'':
+                    state = STATE_0
                 else:
-                    state = CODE_CHAR
-            elif state == CHAR_ESCAPE_SEQUENCE:
-                s += c
-                state = CODE_CHAR
-            elif state == CODE_STRING:
-                s += c
-                if c == '\\':
-                    state = STRING_ESCAPE_SEQUENCE
-                elif c == '\"':
-                    state = CODE
+                    state = STATE_6
+            elif state == STATE_7:
+                current_string += ch
+                state = STATE_6
+            elif state == STATE_8:
+                current_string += ch
+                if ch == '\\':
+                    state = STATE_9
+                elif ch == '\"':
+                    state = STATE_0
                 else:
-                    state = CODE_STRING
-            elif state == STRING_ESCAPE_SEQUENCE:
-                s += c
-                state = CODE_STRING 
+                    state = STATE_8
+            elif state == STATE_9:
+                current_string += ch
+                state = STATE_8 
         
-        return s
+        return current_string
 
     def _process_line(self, line_seq, line_content):
-
+        """处理每一行"""
         if line_content is None:
             return
         
@@ -173,7 +176,7 @@ class LexicalAnalyzer():
                 if current_word == "ORDER":
                     if i + 2 < len(line_content) and line_content[i : i+3] == " BY":
                         current_word += " BY"
-                        self.save_word(current_word, "SE+1KW+3OP")
+                        self._process_word(current_word, "SE+1KW+3OP")
                         current_word = ""
                         i += 3
                     else:
@@ -183,7 +186,7 @@ class LexicalAnalyzer():
                 elif current_word == "GROUP":
                     if i + 2 < len(line_content) and line_content[i : i+3] == " BY":
                         current_word += " BY"
-                        self.save_word(current_word, "SE+1KW+3OP")
+                        self._process_word(current_word, "SE+1KW+3OP")
                         current_word = ""
                         i += 3
                     else:
@@ -191,13 +194,13 @@ class LexicalAnalyzer():
                         break
                 
                 else:
-                    self.save_word(current_word, "kW+IDN+4OP")
+                    self._process_word(current_word, "kW+IDN+4OP")
                     current_word = ""
 
             # 单符号
             elif line_content[i] in ["(", ")", ",", "*", "=", "-", "."]:
                 current_word += line_content[i]
-                self.save_word(current_word, "SE+1KW+3OP")
+                self._process_word(current_word, "SE+1KW+3OP")
                 current_word = ""
                 i += 1
             
@@ -211,7 +214,7 @@ class LexicalAnalyzer():
                     i += 1
                 
                 current_word += line_content[i]
-                self.save_word(current_word, "STR")
+                self._process_word(current_word, "STR")
                 current_word = ""
                 i += 1
 
@@ -222,11 +225,11 @@ class LexicalAnalyzer():
 
                 if i < len(line_content) and line_content[i] == '=':
                     current_word += line_content[i]
-                    self.save_word(current_word, "OP")
+                    self._process_word(current_word, "OP")
                     current_word = ""
                     i += 1
                 else:
-                    self.save_word(current_word, "OP")
+                    self._process_word(current_word, "OP")
                     current_word = ""
 
             # != !
@@ -236,11 +239,11 @@ class LexicalAnalyzer():
 
                 if i < len(line_content) and line_content[i] == '=':
                     current_word += line_content[i]
-                    self.save_word(current_word, "OP")
+                    self._process_word(current_word, "OP")
                     current_word = ""
                     i += 1
                 else:
-                    self.save_word(current_word, "OP")
+                    self._process_word(current_word, "OP")
                     current_word = ""
 
             # < <= <=>
@@ -253,14 +256,14 @@ class LexicalAnalyzer():
                     i += 1
                     if line_content[i] == '>':
                         current_word += line_content[i]
-                        self.save_word(current_word, "OP")
+                        self._process_word(current_word, "OP")
                         current_word = ""
                         i += 1
                     else:
-                        self.save_word(current_word, "OP")
+                        self._process_word(current_word, "OP")
                         current_word = ""
                 else:
-                    self.save_word(current_word, "OP")
+                    self._process_word(current_word, "OP")
                     current_word = ""
 
             # &&
@@ -270,7 +273,7 @@ class LexicalAnalyzer():
                 
                 if i < len(line_content) and line_content[i] == '&':
                     current_word += line_content[i]
-                    self.save_word(current_word, "OP")
+                    self._process_word(current_word, "OP")
                     current_word = ""
                     i += 1
                 else:
@@ -284,7 +287,7 @@ class LexicalAnalyzer():
                 
                 if i < len(line_content) and line_content[i] == '|':
                     current_word += line_content[i]
-                    self.save_word(current_word, "OP")
+                    self._process_word(current_word, "OP")
                     current_word = ""
                     i += 1
                 else:
@@ -306,24 +309,27 @@ class LexicalAnalyzer():
                     while i < len(line_content) and line_content[i] in digit:
                         current_word += line_content[i]
                         i += 1 
-                    self.save_word(current_word, "FLOAT")
+                    self._process_word(current_word, "FLOAT")
                     current_word = ""
                 else:
-                    self.save_word(current_word, "INT")
+                    self._process_word(current_word, "INT")
                     current_word = ""
 
             else:
                 print("Error else")
                 break
 
-    def save_word(self, word_content, word_type):
+    def _process_word(self, word_content, word_type):
+        """处理并保存单词"""
         self.token_line.input_raw_line(word_content, word_type)
         self.token_table.add_token_line(self.token_line.output_token_line())
     
     def print_token_table(self):
+        """打印token表"""
         self.token_table.print()
     
     def save_token_table(self):
+        """保存token表"""
         self.token_table.save(self.current_test)
 
 
