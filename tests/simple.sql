@@ -1,4 +1,14 @@
-SELECT *
-FROM tju
-WHERE studioname="jindonghan" AND year=1990
-ORDER BY length, title
+SELECT
+  r.id,
+  r.uid,
+  r.age ,
+  r.datatime
+FROM (SELECT
+    id,
+    uid,
+    age ,
+    datatime
+  FROM student
+  ORDER BY age DESC) r
+GROUP BY r.uid
+ORDER BY r.age DESC

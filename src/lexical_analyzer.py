@@ -20,7 +20,7 @@ class LexicalAnalyzer():
         if not self.tests:
             raise Exception("tests is empty!")
         else:
-            for test in self.tests[:1]:
+            for test in self.tests[2:3]:
                 self.token_table.reset()
                 self.current_test = test
                 with open(test) as f:
