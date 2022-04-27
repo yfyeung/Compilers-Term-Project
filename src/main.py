@@ -13,7 +13,7 @@ if __name__ == '__main__':
     parser = LR1_parser(Configs) # 实例化LR1语法分析器
     
     test_names = []
-    for i in range(42):
+    for i in range(39,40):
         test_names.append("testcase-{}.sql".format(i))
     
     
