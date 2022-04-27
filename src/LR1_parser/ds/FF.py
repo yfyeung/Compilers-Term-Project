@@ -1,6 +1,6 @@
 import copy as cp
 
-from src.dataStructure.grammar import grammar
+from LR1_parser.ds.grammar import grammar
 from utils.Configs import Configs
 
 grammar_path = Configs.grammar_path

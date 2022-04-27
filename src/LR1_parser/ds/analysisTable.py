@@ -1,6 +1,6 @@
-from src.dataStructure.grammar import grammar
-from src.dataStructure.FF import FIRST, FOLLOW
-from src.dataStructure.item import itemSets
+from LR1_parser.ds.grammar import grammar
+from LR1_parser.ds.FF import FIRST, FOLLOW
+from LR1_parser.ds.item import itemSets
 from utils.Configs import Configs
 
 grammar_path = Configs.grammar_path

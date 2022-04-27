@@ -1,0 +1,42 @@
+SELECT   <KW,1>
+r   <IDN,r>
+.   <OP,16>
+id   <IDN,id>
+,   <SE,3>
+r   <IDN,r>
+.   <OP,16>
+uid   <IDN,uid>
+,   <SE,3>
+r   <IDN,r>
+.   <OP,16>
+age   <IDN,age>
+,   <SE,3>
+r   <IDN,r>
+.   <OP,16>
+datatime   <IDN,datatime>
+FROM   <KW,2>
+(   <SE,1>
+SELECT   <KW,1>
+id   <IDN,id>
+,   <SE,3>
+uid   <IDN,uid>
+,   <SE,3>
+age   <IDN,age>
+,   <SE,3>
+datatime   <IDN,datatime>
+FROM   <KW,2>
+student   <IDN,student>
+ORDER BY   <KW,27>
+age   <IDN,age>
+DESC   <IDN,DESC>
+)   <SE,2>
+r   <IDN,r>
+GROUP BY   <KW,24>
+r   <IDN,r>
+.   <OP,16>
+uid   <IDN,uid>
+ORDER BY   <KW,27>
+r   <IDN,r>
+.   <OP,16>
+age   <IDN,age>
+DESC   <IDN,DESC>

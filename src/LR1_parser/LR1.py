@@ -2,11 +2,11 @@ from imp import init_frozen
 import sys
 import copy
 
-from src.dataStructure.FF import FIRST, FOLLOW
-from src.dataStructure.analysisTable import analysisTable
-from src.dataStructure.item import itemSets
-from src.dataStructure.grammar import grammar
-from src.dataStructure.Stack import Stack
+from LR1_parser.ds.FF import FIRST, FOLLOW
+from LR1_parser.ds.analysisTable import analysisTable
+from LR1_parser.ds.item import itemSets
+from LR1_parser.ds.grammar import grammar
+from LR1_parser.ds.Stack import Stack
 
 class LR1_parser:
     def __init__(self, Configs):

@@ -2,7 +2,7 @@ import sys
 sys.path.append(".")
 
 
-from src.dataStructure.Stack import Stack
+from LR1_parser.ds.Stack import Stack
 
 
 input_folder = "./tests/"

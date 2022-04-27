@@ -2,7 +2,7 @@ import sys
 sys.path.append(".")
 
 
-from src.LR1 import LR1_parser
+from LR1_parser.LR1 import LR1_parser
 from utils.Configs import Configs
 from utils.transformer import token2inputStack
 
