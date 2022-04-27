@@ -1,13 +1,7 @@
-UPDATE   <KW,11>
-tb_courses_new   <IDN,tb_courses_new>
-SET   <KW,12>
-course_name   <IDN,course_name>
-=   <OP,1>
-"DB"   <STR,"DB">
-,   <SE,3>
-course_grade   <IDN,course_grade>
-=   <OP,1>
-3.5   <FLOAT,3.5>
+SELECT   <KW,1>
+*   <KW,5>
+FROM   <KW,2>
+a   <IDN,a>
 WHERE   <KW,3>
 course_id   <IDN,course_id>
 =   <OP,1>

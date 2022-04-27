@@ -1,1 +1,1 @@
-SELECT * FROM stu JOIN class ON classid = class.id              
+SELECT * FROM stu JOIN class ON classid = class.id

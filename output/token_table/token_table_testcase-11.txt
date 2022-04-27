@@ -10,7 +10,7 @@ FROM   <KW,2>
 subject   <IDN,subject>
 JOIN   <KW,14>
 score   <IDN,score>
-on   <IDN,on>
+ON   <KW,17>
 subject   <IDN,subject>
 .   <OP,16>
 id   <IDN,id>

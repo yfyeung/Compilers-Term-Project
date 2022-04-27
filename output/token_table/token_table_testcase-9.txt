@@ -11,7 +11,7 @@ subject   <IDN,subject>
 LEFT   <KW,15>
 JOIN   <KW,14>
 score   <IDN,score>
-on   <IDN,on>
+ON   <KW,17>
 subject   <IDN,subject>
 .   <OP,16>
 id   <IDN,id>

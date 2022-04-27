@@ -1,1 +1,1 @@
-SELECT * FROM stu JOIN class              
+SELECT * FROM stu JOIN class

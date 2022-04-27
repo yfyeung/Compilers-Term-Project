@@ -1,1 +1,1 @@
-DELETE  a FROM tablename AS a LEFT JOIN temp_name AS b ON a.ID = b.ID WHERE b.UserID > 0
+DELETE FROM tablename AS a LEFT JOIN temp_name AS b ON a.ID = b.ID WHERE b.UserID > 0

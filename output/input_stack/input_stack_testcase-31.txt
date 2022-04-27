@@ -14,8 +14,6 @@ STRING
 INT
 ,
 STRING
-,
-NULL
 )
 ,
 (
@@ -30,8 +28,6 @@ STRING
 INT
 ,
 STRING
-,
-NULL
 )
 ,
 (
@@ -46,6 +42,4 @@ STRING
 INT
 ,
 STRING
-,
-NULL
 )

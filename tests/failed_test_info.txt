@@ -1,0 +1,10 @@
+左侧表示导致解析错误的语法 括号内表示解决方法 没有括号表示没有解决
+
+DELETE + ORDER BY
+UPDATE + ORDER BY
+DELETE + IDN （wrong）
+DELETE + AS/JOIN
+小写的or（改成大写）
+小写的on（改成大写）
+小写的where（改成大写）
+语法似乎不支持NULL

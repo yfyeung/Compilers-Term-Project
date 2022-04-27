@@ -6,7 +6,7 @@ WHERE   <KW,3>
 id   <IDN,id>
 =   <OP,1>
 1   <INT,1>
-or   <IDN,or>
+OR   <OP,10>
 id   <IDN,id>
 =   <OP,1>
 2   <INT,2>
