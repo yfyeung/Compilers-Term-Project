@@ -75,9 +75,7 @@ class Rex2Nfa:
 
                     OPND.append(MyGraph)
 
-        if len(OPND):
-            print(OPND[-1])
-            return OPND[-1]
+        return OPND[-1]
 
     def _isOperator(self, ch):
         if ch in ['*', '&', '|', '(', ')', '#']:
@@ -169,12 +167,14 @@ class Rex2Nfa:
                 return -1
             elif b == '#':
                 return -1
-
+    
+    def print_regex(self):
+        print(self.regex)
 
 
 if __name__ == '__main__':
     demo = "a|b*abb"
-    print(f"Input: {demo}")
-    
+    print(f"Input: {demo}")  
     regexer = Rex2Nfa('(ab|c)*abb')
+    regexer.print_regex()
     
