@@ -1,34 +1,11 @@
-# This will be a name with niubility
-
-> 天津大学 编译原理2022 课程大作业仓库
-
-## Our Team
-
-- 杨亦凡
-- 李自安
-- 石昊
-- 华溢
+**Note that**：
+语法分析器LR1定义在`./src/LR1.py`中。
+语法分析器LR1所用到的所有数据结构定义在`./src/dataStructure`中。
 
 
 
-##  Environment
-
-- macOS Monterey 12.3
-- Python 3.9
-
-
-
-## Code Structure
-
-```
-.
-├── README.md // help
-├── bin				// 启动入口：.sh脚本
-├── docs			// 文档
-├── log				// 日志
-├── output		// 输出：符号表、常量表、词素序列、token序列
-├── src				// 主程序
-├── tests			// 测试用例
-└── utils			// 全局变量、全局方法
-```
-
+## QuickStart
+1. 将待语法分析的token流放在tests文件夹内；
+2. 修改utils.Configs文件中的input_file_name为刚待分析的文件名；
+3. 根据需要修改utils.Configs中的redirect stdout属性，若将此设为True，则会将归约序列重定向至output/parse.result文件夹中。
+4. 输出文件全部位于output文件夹中。
