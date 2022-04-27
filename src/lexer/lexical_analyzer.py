@@ -2,6 +2,8 @@ import os
 import sys
 import re
 
+from boto import connect_glacier
+
 sys.path.append(".")
 from utils.Configs import Configs
 from utils.datastructure import *
@@ -10,39 +12,41 @@ from utils.datastructure import *
 class LexicalAnalyzer():
     """词法分析器"""
 
-    def __init__(self):
+    def __init__(self,Configs):
         """初始化"""
+        self.Configs = Configs
         self.token_line = TokenLine()
         self.token_table = TokenTable()
-        self.tests = self._get_tests()
-        self.current_test = None
+        self.test = self._get_tests()
+
 
     def lexical_analyze(self):
         """词法分析"""
-        if not self.tests:
+        if not self.test:
             raise Exception("tests is empty!")
         else:
-            for test in self.tests[0:1]:
-                self.token_table.reset()
-                self.current_test = test
-                with open(test) as f:
-                    file_content = f.read()
-                file_content = self._preprocess(file_content)
-                raw_lines = file_content.split("\n", -1)
-                
-                for line_seq, line_content in enumerate(raw_lines):
-                    if line_content.strip():
-                        self._process_line(line_seq, line_content.strip())
+            # for test in self.test:
+            self.token_table.reset()
+            # self.current_test = test
+            with open(self.test) as f:
+                file_content = f.read()
+            file_content = self._preprocess(file_content)
+            raw_lines = file_content.split("\n", -1)
+            
+            for line_seq, line_content in enumerate(raw_lines):
+                if line_content.strip():
+                    self._process_line(line_seq, line_content.strip())
 
     def _get_tests(self):
         """获取测试文件"""
-        tests = []
-        tests_names = os.listdir(Configs.dir_names['tests'])
+        # tests_names = os.listdir(self.Configs.dir_names['tests'])
 
-        # tests_names.remove(".DS_Store")
-        for tests_name in tests_names[-1:]:
-            tests.append(os.path.join(Configs.dir_names['tests'], tests_name))
-        return tests
+        # # tests_names.remove(".DS_Store")
+        # for tests_name in tests_names[-1:]:
+        #     tests.append(os.path.join(self.Configs.dir_names['tests'], tests_name))
+        test_name = self.Configs.test_name
+        test = os.path.join(self.Configs.dir_names['tests'], test_name)
+        return test
 
     def _preprocess(self, file_content):
         """删除sql的注释"""
@@ -166,11 +170,11 @@ class LexicalAnalyzer():
                 return
 
             # KW IDN AND OR XOR NOT
-            if line_content[i] in Configs.letter + "_":
+            if line_content[i] in self.Configs.letter + "_":
                 current_word += line_content[i]
                 i += 1
 
-                while i < len(line_content) and line_content[i] in Configs.letter + Configs.digit + "_":
+                while i < len(line_content) and line_content[i] in self.Configs.letter + self.Configs.digit + "_":
                     current_word += line_content[i]
                     i += 1
 
@@ -296,18 +300,18 @@ class LexicalAnalyzer():
                     break
             
             # 数字
-            elif line_content[i] in Configs.digit:
+            elif line_content[i] in self.Configs.digit:
                 current_word += line_content[i]
                 i += 1
 
-                while i < len(line_content) and line_content[i] in Configs.digit:
+                while i < len(line_content) and line_content[i] in self.Configs.digit:
                     current_word += line_content[i]
                     i += 1
                 
                 if i < len(line_content) and line_content[i] == '.':
                     current_word += line_content[i]
                     i += 1
-                    while i < len(line_content) and line_content[i] in Configs.digit:
+                    while i < len(line_content) and line_content[i] in self.Configs.digit:
                         current_word += line_content[i]
                         i += 1 
                     self._process_word(current_word, "FLOAT")
@@ -331,7 +335,7 @@ class LexicalAnalyzer():
     
     def save_token_table(self):
         """保存token表"""
-        self.token_table.save(self.current_test)
+        self.token_table.save(self.test)
 
 
 
@@ -349,7 +353,7 @@ class LexicalAnalyzer():
         
 
 if __name__ == '__main__':
-    lex = LexicalAnalyzer()
+    lex = LexicalAnalyzer(Configs)
     lex.lexical_analyze()
     lex.print_token_table()
     lex.save_token_table()

@@ -1,3 +1,4 @@
+from fileinput import filename
 import sys
 import os
 
@@ -97,7 +98,7 @@ class TokenTable():
     
     def save(self, test_name):
         file_name = 'token_table_' + test_name.replace("tests/", "").replace(".sql", ".txt")
-        save_path = os.path.join(Configs.dir_names['output'], file_name)
+        save_path = os.path.join(Configs.dir_names['output'], "token_table", file_name)
         with open(save_path, 'w') as f:
             for token_line in self.token_table:
                 f.write(token_line + '\n')

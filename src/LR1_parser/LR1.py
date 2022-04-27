@@ -1,7 +1,8 @@
 from imp import init_frozen
 import sys
 import copy
-
+import os
+import pickle
 from LR1_parser.ds.FF import FIRST, FOLLOW
 from LR1_parser.ds.analysisTable import analysisTable
 from LR1_parser.ds.item import itemSets
@@ -20,33 +21,53 @@ class LR1_parser:
         
     def LR1_init(self, grammar_path):
         # 读入语法并生成语法四元组
-        grammar_obj = grammar(grammar_path)
-        grammar_obj.get_augumented_grammar()
-        self.grammar_obj = grammar_obj
-
+        if not os.path.exists(self.Configs.grammar_path_e):
+            grammar_obj = grammar(grammar_path)
+            grammar_obj.get_augumented_grammar()
+            self.grammar_obj = grammar_obj
+            pickle.dump(self.grammar_obj, open(self.Configs.grammar_path_e, 'wb'))
+        else:
+            self.grammar_obj = pickle.load(open(self.Configs.grammar_path_e, 'rb'))
+            
         # 生成FIRST集
-        FIRST_obj = FIRST(grammar_obj)
-        self.FIRST_obj = FIRST_obj
+        if not os.path.exists(self.Configs.first_sets_output_path_e):
+            FIRST_obj = FIRST(self.grammar_obj)
+            self.FIRST_obj = FIRST_obj
+            pickle.dump(self.FIRST_obj, open(self.Configs.first_sets_output_path_e, 'wb'))
+        else:
+            self.FIRST_obj = pickle.load(open(self.Configs.first_sets_output_path_e, 'rb'))
         
         # 生成FOLLOW集
-        FOLLOW_obj = FOLLOW(grammar_obj, FIRST_obj)
-        self.FOLLOW_obj = FOLLOW_obj
-
+        if not os.path.exists(self.Configs.follow_sets_output_path_e):
+            FOLLOW_obj = FOLLOW(self.grammar_obj, self.FIRST_obj)
+            self.FOLLOW_obj = FOLLOW_obj
+            pickle.dump(self.FOLLOW_obj, open(self.Configs.follow_sets_output_path_e, 'wb'))
+        else:
+            self.FOLLOW_obj = pickle.load(open(self.Configs.follow_sets_output_path_e, 'rb'))
+        
         # 生成项目集规范族
-        itemSets_obj = itemSets()
-        itemSets_obj.calculate_itemSets(grammar_obj, FIRST_obj)
-        self.itemSets_obj = itemSets_obj
-        
+        if not os.path.exists(self.Configs.item_sets_path_e):
+            itemSets_obj = itemSets()
+            itemSets_obj.calculate_itemSets(self.grammar_obj, self.FIRST_obj)
+            self.itemSets_obj = itemSets_obj
+            pickle.dump(self.itemSets_obj, open(self.Configs.item_sets_path_e, 'wb'))
+        else:
+            self.itemSets_obj = pickle.load(open(self.Configs.item_sets_path_e, 'rb'))
+
         # 生成分析表
-        analysisTable_obj = analysisTable(grammar_obj, itemSets_obj)
-        self.analysisTable_obj = analysisTable_obj
-        
+        if not os.path.exists(self.Configs.analysis_table_path_e):
+            analysisTable_obj = analysisTable(self.grammar_obj, self.itemSets_obj)
+            self.analysisTable_obj = analysisTable_obj
+        else:
+            self.analysisTable_obj = pickle.load(open(self.Configs.analysis_table_path_e, 'rb'))
+            
         # 将各集合与表格输出为文件
         if self.Configs.DUMP_DS_TO_FILE:
-            FIRST_obj.dump_first_sets_into_file(self.Configs.first_sets_output_path)
-            FOLLOW_obj.dump_follow_sets_into_file(self.Configs.follow_sets_output_path)
-            analysisTable_obj.dump_table_into_file(action_table_path=self.Configs.action_table_path, goto_table_path=self.Configs.goto_table_path)
-            itemSets_obj.dump_into_file()
+            self.FIRST_obj.dump_first_sets_into_file(self.Configs.first_sets_output_path)
+            self.FOLLOW_obj.dump_follow_sets_into_file(self.Configs.follow_sets_output_path)
+            self.analysisTable_obj.dump_table_into_file(action_table_path=self.Configs.action_table_path, goto_table_path=self.Configs.goto_table_path)
+            self.itemSets_obj.dump_into_file()
+            
     def parse(self, input_stack):
         
         if self.Configs.REDIRECT_STDOUT_TO_FILE:
