@@ -2,8 +2,6 @@ import os
 import sys
 import re
 
-from boto import connect_glacier
-
 sys.path.append(".")
 from utils.Configs import Configs
 from utils.datastructure import *

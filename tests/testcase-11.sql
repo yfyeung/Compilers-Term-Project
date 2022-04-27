@@ -1,1 +1,1 @@
-SELECT subject.name,score.id FROM subject JOIN score  on subject.id = score.subject_id;
+SELECT subject.name,score.id FROM subject JOIN score  on subject.id = score.subject_id

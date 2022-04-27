@@ -1,1 +1,1 @@
-INSERT INTO users (name, age) VALUES('华溢',21)
+INSERT INTO users (name, age) VALUES("华溢",21)

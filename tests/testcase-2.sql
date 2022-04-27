@@ -1,1 +1,1 @@
-INSERT INTO users (name, age) VALUES('姚明',25)
+INSERT INTO users (name, age) VALUES("姚明",25)

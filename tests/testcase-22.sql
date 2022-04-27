@@ -1,3 +1,3 @@
 SELECT SUM(quantityOrdered ) 
 FROM orderdetails 
-WHERE orderNumber = 10100;
+WHERE orderNumber = 10100

@@ -3,6 +3,11 @@ IDN
 SET
 IDN
 =
+STRING
+,
+IDN
+=
+FLOAT
 WHERE
 IDN
 =
