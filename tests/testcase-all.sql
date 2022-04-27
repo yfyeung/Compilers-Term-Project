@@ -1,5 +1,5 @@
 SELECT * FROM table_a 
-WHERE table_a.id == 1895
+WHERE table_a.id = 1895
 
 
 SELECT id AS xx1, name AS oo1 
@@ -9,7 +9,7 @@ INSERT INTO users (name, age) VALUES('姚明',25)
 
 INSERT INTO users (name, age) VALUES('华溢',21)
 
-INSERT INTO users (name, age) VALUES('杨总',21)，('昊哥',21)
+INSERT INTO users (name, age) VALUES('杨总',21),('昊哥',21)
 
 UPDATE tb_courses_new
 SET course_name='DB',course_grade=3.5
