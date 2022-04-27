@@ -6,106 +6,175 @@ from utils.Configs import Configs
 from utils.datastructure import *
 
 
-class Regex:
-    def __init__(self, regex=None):
-        self.input = regex
-        self.regex = ""
-        self.operatorStack = []
-        self.operandStack = []
-        self.priority = [
-            [1, 1, 1, -1, 1, 1],
-            [-1, 1, 1, -1, 1, 1], [-1, -1, 1, -1, 1, 1],
-            [-1, -1, -1, -1, 0, 2], [1, 1, 1, 1, 1, 1],
-            [-1, -1, -1, -1, -1, -1]
-        ]
-        self.prepare_string(_regex=regex)
+class Rex2Nfa:
+    def __init__(self, raw_regex):
+        self.raw_regex = raw_regex
+        self.preprocess_regex = self._preprocess(self.raw_regex)
+        self.regex = self._rex2nfa(self.preprocess_regex)
 
-    def transformNFA(self):
-        print("Input: {}".format(self.input))
-        print("Processed Input: {}".format(self.regex))
-        if not self.regex:
-            return None
-        else:
-            self.operatorStack.append("#")
-            i = 0
-            _regex = [x for x in self.regex] + ['#']
-            print("Regex: {} ".format(_regex))
-            while _regex[i] != '#' or self.operatorStack[-1] != '#':
-                if not self.is_operator(ch=_regex[i]):
-                    self.operandStack.append(_regex[i])
+    def _preprocess(self, raw_regex):
+        preprocess_regex = ""
+        raw_regex = list(raw_regex)
+        for i in range(len(raw_regex)):
+            if i != 0:
+                if raw_regex[i] == '*' or raw_regex[i] == '|' or raw_regex[i] == ')':
+                    preprocess_regex += raw_regex[i]
+                else:
+                    if raw_regex[i-1] == '|' or raw_regex[i-1] == '(':
+                        preprocess_regex += raw_regex[i]
+                    else:
+                        preprocess_regex += '&' 
+                        preprocess_regex += raw_regex[i]
+            else:
+                preprocess_regex += raw_regex[i]
+    
+        return preprocess_regex
+
+    def _rex2nfa(self, preprocess_regex):
+        OPTR = []
+        OPND = []
+
+        if not preprocess_regex:
+            raise Exception("raw_regex is empty!")
+        
+        OPTR.append("#")
+        regex = list(preprocess_regex) + ['#']
+
+        i = 0
+        while not (OPTR[-1] == '#' and regex[i] == '#'):
+            if not self._isOperator(regex[i]):
+                OPND.append(regex[i])
+                i += 1
+
+            else:
+                if self._priority_cmp(OPTR[-1], regex[i]) == -1:
+                    OPTR.append(regex[i])
                     i += 1
-                else:
-                    value = self.priority_operator(self.operatorStack[-1], _regex[i])
-                    if value == 1:
-                        ch = self.operatorStack.pop()
-                        if ch == '*':
-                            obj = self.operandStack.pop()
-                            graph1 = Graph()
-                            graph1.add_star(obj=obj)
-                            self.operandStack.append(graph1)
-                        elif ch == '&':
+    
+                elif self._priority_cmp(OPTR[-1], regex[i]) == 0:
+                    OPTR.pop()
+                    i += 1
 
-                            obj2 = self.operandStack.pop()
-                            obj1 = self.operandStack.pop()
-                            graph2 = Graph()
-                            graph2.add_concat(obj1=obj1, obj2=obj2)
+                elif self._priority_cmp(OPTR[-1], regex[i]) == 1:
+                    ch = OPTR.pop()
 
-                            self.operandStack.append(graph2)
-                        elif ch == '|':
-                            obj4 = self.operandStack.pop()
-                            obj3 = self.operandStack.pop()
-                            graph3 = Graph()
+                    MyGraph = Graph()
+                    if ch == '&':
+                        b = OPND.pop()
+                        a = OPND.pop()
+                        MyGraph.add_concat(a, b)
+                        
+                    elif ch == '*':
+                        a = OPND.pop()
+                        MyGraph.add_star(a)
 
-                            graph3.add_union(obj1=obj3, obj2=obj4)
+                    elif ch == '|':
+                        b = OPND.pop()
+                        a = OPND.pop()
+                        MyGraph.add_union(a, b)
 
-                            self.operandStack.append(graph3)
-                        else:
-                            pass
+                    OPND.append(MyGraph)
 
-                    elif value == 0:
-                        self.operatorStack.pop()
-                        i += 1
-                        pass
-                    elif value == -1:
-                        self.operatorStack.append(_regex[i])
-                        i += 1
-                        pass
-                    else:
-                        pass
-            print(" Finish transformation from regex to nfa ".center(50, '='))
-            if len(self.operandStack):
-                print(self.operandStack[-1])
-                return self.operandStack[-1]
-            else:
-                return None
+        if len(OPND):
+            print(OPND[-1])
+            return OPND[-1]
 
-    def is_operator(self, ch=None):
-        return ch in ['*', '&', '|', '(', ')', '#']
+    def _isOperator(self, ch):
+        if ch in ['*', '&', '|', '(', ')', '#']:
+            return True
+        else:
+            return False
 
-    def priority_operator(self, ch1=None, ch2=None):
-        priority_str = '*&|()#'
-        return self.priority[priority_str.find(ch1)][priority_str.find(ch2)]
+    def _priority_cmp(self, a, b):
+        if a == '*':
+            if b == '*':
+                return 1
+            elif b == '&':
+                return 1
+            elif b == '|':
+                return 1
+            elif b == '(':
+                return -1
+            elif b == ')':
+                return 1
+            elif b == '#':
+                return 1
+                
+        elif a == '&':
+            if b == '*':
+                return -1
+            elif b == '&':
+                return 1
+            elif b == '|':
+                return 1
+            elif b == '(':
+                return -1
+            elif b == ')':
+                return 1
+            elif b == '#':
+                return 1
 
-    # 添加连接符
-    # (a|b)*abb转换成 (a|b)*&a&b&b
-    def prepare_string(self, _regex=None):
-        self.regex = ""
-        temp = [x for x in _regex if x != " "]
-        _regex = temp
-        for i in range(len(_regex)):
-            if i == 0:
-                self.regex += _regex[i]
-            else:
-                if _regex[i] == '|' or _regex[i] == '*' or _regex[i] == ')':
-                    self.regex += _regex[i]
-                else:
-                    if _regex[i - 1] == '(' or _regex[i - 1] == '|':
-                        self.regex += _regex[i]
-                    else:
-                        self.regex += ('&' + _regex[i])
+        elif a == '|':
+            if b == '*':
+                return -1
+            elif b == '&':
+                return -1
+            elif b == '|':
+                return 1
+            elif b == '(':
+                return -1
+            elif b == ')':
+                return 1
+            elif b == '#':
+                return 1
+
+        elif a == '(':
+            if b == '*':
+                return -1
+            elif b == '&':
+                return -1
+            elif b == '|':
+                return -1
+            elif b == '(':
+                return -1
+            elif b == ')':
+                return 0
+            elif b == '#':
+                return 2
+
+        elif a == ')':
+            if b == '*':
+                return 1
+            elif b == '&':
+                return 1
+            elif b == '|':
+                return 1
+            elif b == '(':
+                return 1
+            elif b == ')':
+                return 1
+            elif b == '#':
+                return 1
+
+        elif a == '#':
+            if b == '*':
+                return -1
+            elif b == '&':
+                return -1
+            elif b == '|':
+                return -1
+            elif b == '(':
+                return -1
+            elif b == ')':
+                return -1
+            elif b == '#':
+                return -1
+
 
 
 if __name__ == '__main__':
-    regex_string = '(ab|c)*abb'
-    regexer = Regex(regex=regex_string)
-    regexer.transformNFA()
+    demo = "a|b*abb"
+    print(f"Input: {demo}")
+    
+    regexer = Rex2Nfa('(ab|c)*abb')
+    

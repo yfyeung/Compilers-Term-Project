@@ -113,7 +113,7 @@ class TokenTable():
 
 
 
-class Node(object):
+class Node():
     num = 0
     def __init__(self, id=None):
         if id is not None:
@@ -126,7 +126,7 @@ class Node(object):
         return str(self.id)
 
 
-class Edge(object):
+class Edge():
     def __init__(self, beginNode=None, endNode=None, label=None):
         self.beginNode = beginNode
         self.endNode = endNode
@@ -136,7 +136,7 @@ class Edge(object):
         return "Edge [begin={} end={} label={}]".format(str(self.beginNode), str(self.endNode), str(self.label))
 
 
-class Graph(object):
+class Graph():
     def __init__(self, beginNode=None, endNode=None, endNodes=None):
         self.beginNode = beginNode
         self.endNode = endNode
@@ -316,7 +316,7 @@ class Graph(object):
         return return_str
 
 
-class StateNode(object):
+class StateNode():
     id = 0
     def __init__(self, node_set=None):
         self.node_set = node_set
