@@ -1,0 +1,16 @@
+SELECT
+*
+FROM
+IDN
+WHERE
+IDN
+=
+INT
+IDN
+IDN
+=
+INT
+AND
+IDN
+=
+INT

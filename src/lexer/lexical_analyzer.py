@@ -17,10 +17,16 @@ class LexicalAnalyzer():
         self.Configs = Configs
         self.token_line = TokenLine()
         self.token_table = TokenTable()
-        self.test = self._get_tests()
+        self.test = None
 
+    def reset(self):
+        self.Configs = Configs
+        self.token_line = TokenLine()
+        self.token_table = TokenTable()
+        self.test = None
 
-    def lexical_analyze(self):
+    def lexical_analyze(self, test_name, Print, Save):
+        self.test = os.path.join(Configs.dir_names['tests'], test_name)
         """词法分析"""
         if not self.test:
             raise Exception("tests is empty!")
@@ -36,7 +42,10 @@ class LexicalAnalyzer():
             for line_seq, line_content in enumerate(raw_lines):
                 if line_content.strip():
                     self._process_line(line_seq, line_content.strip())
-
+        if Print:
+            self.print_token_table()
+        if Save:
+            self.save_token_table()
     def _get_tests(self):
         """获取测试文件"""
         # tests_names = os.listdir(self.Configs.dir_names['tests'])

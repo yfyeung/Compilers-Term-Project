@@ -1,4 +1,5 @@
 from imp import init_frozen
+from importlib.abc import Traversable
 import sys
 import copy
 import os
@@ -68,11 +69,11 @@ class LR1_parser:
             self.analysisTable_obj.dump_table_into_file(action_table_path=self.Configs.action_table_path, goto_table_path=self.Configs.goto_table_path)
             self.itemSets_obj.dump_into_file()
             
-    def parse(self, input_stack):
+    def parse(self, input_stack, REDIRECT_STDOUT_TO_FILE, save_path):
         
-        if self.Configs.REDIRECT_STDOUT_TO_FILE:
+        if REDIRECT_STDOUT_TO_FILE:
             old_std_out = sys.stdout
-            sys.stdout = open(self.Configs.parse_result_path, 'w')
+            sys.stdout = open(save_path, 'w')
         
         state_stack = Stack()
         symbol_stack = Stack()
@@ -93,7 +94,7 @@ class LR1_parser:
                     break
                 elif action is None:
                     print('{}\t{}\t{}#{}\t{}'.format(step,'/',symbol_stack.peek(),input_stack.peek(),'error'))
-                    exit(-1)
+                    break
                 else:
                     if action[0] == 's':
                         state_stack.push(int(action[1:]))
@@ -103,8 +104,7 @@ class LR1_parser:
                     elif action[0] == 'r':
                         production = self.grammar_obj.productions[int(action[1:])]
                         if production.index != int(action[1:]):
-                            print("Error: production index not match. Abort!")
-                            exit(-1)
+                            assert False, "Error: production index not match. Abort!"
                         if production.right == ['$']:
                             right_symbol_num = 0
                         else:
@@ -113,8 +113,7 @@ class LR1_parser:
                         right_symbols.reverse()
                         for i in range(right_symbol_num):
                             if (right_symbols[i] != symbol_stack.peek()):
-                                print("Error: symbol not match. Abort!")
-                                exit(-1)
+                                assert False, "Error: symbol not match. Abort!"
                             state_stack.pop()
                             symbol_stack.pop()
                         symbol_stack.push(production.left)
@@ -125,8 +124,7 @@ class LR1_parser:
                         print('{}\t{}\t{}#{}\t{}'.format(step,action[1],symbol_stack.peek(),input_stack.peek(),'reduction'))
                         step += 1
                     else:
-                        print("Error: action is neither acc nor None or 's' or 'r'. Abort!")
-                        exit(-1)
+                        assert False, "Error: action is neither acc nor None or 's' or 'r'. Abort!"
             elif input_front in self.grammar_obj.non_terminals:
                 goto = self.analysisTable_obj.gotoTable.goto_table[(state_front, input_front)]
                 if goto == None:
@@ -138,9 +136,15 @@ class LR1_parser:
                     print('{}\t{}\t{}#{}\t{}'.format(step,'/',symbol_stack.peek(),input_stack.peek(),'move'))
                     step += 1
                 else:
-                    print("Error: goto is neither None or 's'. Abort!")
-                    exit(-1)
+                    assert False, "Error: goto is neither None or 's'. Abort!"
             else:
-                print("Error: input is neither terminal nor non-terminal in grammar. Abort!")
-                exit(-1)
+                assert False, "Error: input is neither terminal nor non-terminal in grammar. Abort!"
                 
+                
+        sys.stdout = old_std_out
+        if action == 'acc':
+            return True
+        elif action is None:
+            return False
+        else:
+            assert False, "At the end of parsing, action is neither acc nor None. Abort!"

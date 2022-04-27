@@ -1,0 +1,5 @@
+DELETE   <KW,13>
+FROM   <KW,2>
+customers   <IDN,customers>
+ORDER BY   <KW,27>
+Name   <IDN,Name>

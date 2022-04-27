@@ -14,15 +14,14 @@ class Configs:
         'utils': 'utils'
     }
     
-    # test_file
-    test_file = "testcase-simple.sql"
+
     
     # input grammar
     grammar_name = "grammar_enhanced.txt"
     
-    '''
-        lexer参数
-    '''
+    
+    
+
 
     # token info
     KW = [
@@ -53,13 +52,7 @@ class Configs:
 
 
     
-    test_name = test_file
-    
-    '''
-        parser参数
-    '''
-    
-    
+
     # output dataStructures
     DUMP_DS_TO_FILE = True
     
@@ -79,12 +72,4 @@ class Configs:
     item_sets_path_e = os.path.join(dir_names['output'], 'ds_entity', grammar_name.replace(".txt", "_") + 'item_sets.pkl')
     go_path_e = os.path.join(dir_names['output'], 'ds_entity', grammar_name.replace(".txt", "_") + 'go.pkl')
     
-    check_dir_path = './output/ds_entity/'
-    # input file
-    input_file_name = test_file.replace(".sql", ".txt")
-    input_file = './output/token_table/' + "token_table_" + input_file_name
-    input_stack_output_file =  './output/input_stack/' + input_file_name
-    
-    # redirect stdout
-    REDIRECT_STDOUT_TO_FILE = True
-    parse_result_path = "./output/parse_result/parse_result_" + input_file_name
+

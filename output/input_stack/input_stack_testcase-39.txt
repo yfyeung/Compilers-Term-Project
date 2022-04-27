@@ -1,0 +1,13 @@
+SELECT
+AVG
+(
+IDN
+)
+FROM
+IDN
+WHERE
+IDN
+-
+IDN
+<
+INT

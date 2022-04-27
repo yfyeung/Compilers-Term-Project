@@ -1,0 +1,11 @@
+UPDATE   <KW,11>
+tb_courses_new   <IDN,tb_courses_new>
+SET   <KW,12>
+course_name   <IDN,course_name>
+=   <OP,1>
+WHERE   <KW,3>
+course_id   <IDN,course_id>
+=   <OP,1>
+2   <INT,2>
+ORDER BY   <KW,27>
+teacher_id   <IDN,teacher_id>

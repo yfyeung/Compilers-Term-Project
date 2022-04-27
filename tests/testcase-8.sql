@@ -1,0 +1,1 @@
+DELETE  a FROM tablename AS a LEFT JOIN temp_name AS b ON a.ID = b.ID WHERE b.ID IS not null;

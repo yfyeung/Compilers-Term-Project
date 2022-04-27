@@ -1,0 +1,13 @@
+INSERT
+INTO
+IDN
+VALUES
+(
+INT
+,
+(
+INT
+,
+(
+INT
+,

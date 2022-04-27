@@ -1,0 +1,13 @@
+INSERT   <KW,6>
+INTO   <KW,7>
+emp   <IDN,emp>
+VALUES   <KW,8>
+(   <SE,1>
+4   <INT,4>
+,   <SE,3>
+(   <SE,1>
+5   <INT,5>
+,   <SE,3>
+(   <SE,1>
+6   <INT,6>
+,   <SE,3>

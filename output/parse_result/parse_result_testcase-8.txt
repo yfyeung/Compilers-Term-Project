@@ -1,0 +1,2 @@
+1	/	DELETE#IDN	move
+2	/	DELETE#IDN	error

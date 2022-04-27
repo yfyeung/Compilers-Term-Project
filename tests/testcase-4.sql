@@ -1,0 +1,1 @@
+INSERT INTO users (name, age) VALUES('杨总',21),('昊哥',21)

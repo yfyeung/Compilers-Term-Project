@@ -1,0 +1,11 @@
+SELECT
+SUM
+(
+IDN
+)
+FROM
+IDN
+WHERE
+IDN
+=
+INT

@@ -1,0 +1,16 @@
+SELECT   <KW,1>
+*   <KW,5>
+FROM   <KW,2>
+student   <IDN,student>
+WHERE   <KW,3>
+id   <IDN,id>
+=   <OP,1>
+1   <INT,1>
+or   <IDN,or>
+id   <IDN,id>
+=   <OP,1>
+2   <INT,2>
+AND   <OP,8>
+age   <IDN,age>
+=   <OP,1>
+20   <INT,20>
