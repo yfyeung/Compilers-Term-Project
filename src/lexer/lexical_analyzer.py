@@ -3,7 +3,7 @@ import sys
 import re
 
 sys.path.append(".")
-from utils.utils import *
+from utils.Configs import Configs
 from utils.datastructure import *
 
 
@@ -37,11 +37,11 @@ class LexicalAnalyzer():
     def _get_tests(self):
         """获取测试文件"""
         tests = []
-        tests_names = os.listdir(dir_names['tests'])
+        tests_names = os.listdir(Configs.dir_names['tests'])
 
         # tests_names.remove(".DS_Store")
         for tests_name in tests_names[-1:]:
-            tests.append(os.path.join(dir_names['tests'], tests_name))
+            tests.append(os.path.join(Configs.dir_names['tests'], tests_name))
         return tests
 
     def _preprocess(self, file_content):
@@ -166,11 +166,11 @@ class LexicalAnalyzer():
                 return
 
             # KW IDN AND OR XOR NOT
-            if line_content[i] in letter + "_":
+            if line_content[i] in Configs.letter + "_":
                 current_word += line_content[i]
                 i += 1
 
-                while i < len(line_content) and line_content[i] in letter + digit + "_":
+                while i < len(line_content) and line_content[i] in Configs.letter + Configs.digit + "_":
                     current_word += line_content[i]
                     i += 1
 
@@ -296,18 +296,18 @@ class LexicalAnalyzer():
                     break
             
             # 数字
-            elif line_content[i] in digit:
+            elif line_content[i] in Configs.digit:
                 current_word += line_content[i]
                 i += 1
 
-                while i < len(line_content) and line_content[i] in digit:
+                while i < len(line_content) and line_content[i] in Configs.digit:
                     current_word += line_content[i]
                     i += 1
                 
                 if i < len(line_content) and line_content[i] == '.':
                     current_word += line_content[i]
                     i += 1
-                    while i < len(line_content) and line_content[i] in digit:
+                    while i < len(line_content) and line_content[i] in Configs.digit:
                         current_word += line_content[i]
                         i += 1 
                     self._process_word(current_word, "FLOAT")

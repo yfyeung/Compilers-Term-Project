@@ -2,9 +2,9 @@ import sys
 import os
 
 sys.path.append(".")
-from utils.utils import *
+from utils.Configs import Configs
 from utils.datastructure import *
-from lexer.rex2nfa import Regex
+from rex2nfa import Regex
 
 
 class NFA2DFA(object):

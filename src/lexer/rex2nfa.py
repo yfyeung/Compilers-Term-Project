@@ -2,7 +2,7 @@ import os
 import sys
 
 sys.path.append(".")
-from utils.utils import *
+from utils.Configs import Configs
 from utils.datastructure import *
 
 

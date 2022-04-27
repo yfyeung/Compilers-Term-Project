@@ -2,7 +2,7 @@ import sys
 import os
 
 sys.path.append(".")
-from utils.utils import *
+from utils.Configs import Configs
 
 
 class TokenLine():
@@ -25,13 +25,13 @@ class TokenLine():
     
     def _process_raw_line(self):
         if self.word_type == 'kW+IDN+4OP':
-            if self.word_content in KW:
+            if self.word_content in Configs.KW:
                 self.token_type = 'KW'
-                self.token_content = self._get_token_id(KW)
+                self.token_content = self._get_token_id(Configs.KW)
 
-            elif self.word_content in OP:
+            elif self.word_content in Configs.OP:
                 self.token_type = 'OP'
-                self.token_content = self._get_token_id(OP)
+                self.token_content = self._get_token_id(Configs.OP)
             
             else:
                 self.token_type = 'IDN'
@@ -39,24 +39,24 @@ class TokenLine():
 
         elif self.word_type == 'OP':
             self.token_type = 'OP'
-            self.token_content = self._get_token_id(OP)
+            self.token_content = self._get_token_id(Configs.OP)
         
         elif self.word_type == 'KW':
             self.token_type = 'KW'
-            self.token_content = self._get_token_id(KW)
+            self.token_content = self._get_token_id(Configs.KW)
         
         elif self.word_type == 'SE+1KW+3OP':
-            if self.word_content in KW:
+            if self.word_content in Configs.KW:
                 self.token_type = 'KW'
-                self.token_content = self._get_token_id(KW)
+                self.token_content = self._get_token_id(Configs.KW)
 
-            elif self.word_content in OP:
+            elif self.word_content in Configs.OP:
                 self.token_type = 'OP'
-                self.token_content = self._get_token_id(OP)
+                self.token_content = self._get_token_id(Configs.OP)
             
-            elif self.word_content in SE:
+            elif self.word_content in Configs.SE:
                 self.token_type = 'SE'
-                self.token_content = self._get_token_id(SE)
+                self.token_content = self._get_token_id(Configs.SE)
 
             else:
                 print(self.word_content)
@@ -97,7 +97,7 @@ class TokenTable():
     
     def save(self, test_name):
         file_name = 'token_table_' + test_name.replace("tests/", "").replace(".sql", ".txt")
-        save_path = os.path.join(dir_names['output'], file_name)
+        save_path = os.path.join(Configs.dir_names['output'], file_name)
         with open(save_path, 'w') as f:
             for token_line in self.token_table:
                 f.write(token_line + '\n')

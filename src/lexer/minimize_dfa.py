@@ -2,10 +2,10 @@ import sys
 import os
 
 sys.path.append(".")
-from utils.utils import *
+from utils.Configs import Configs
 from utils.datastructure import *
-from lexer.rex2nfa import Regex
-from lexer.nfa2dfa import NFA2DFA
+from rex2nfa import Regex
+from nfa2dfa import NFA2DFA
 
 
 
