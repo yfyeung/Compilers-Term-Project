@@ -171,6 +171,8 @@ class Rex2Nfa:
     def print_regex(self):
         print(self.regex)
 
+    def get_regex(self):
+        return self.regex
 
 if __name__ == '__main__':
     demo = "a|b*abb"

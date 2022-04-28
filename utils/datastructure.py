@@ -108,11 +108,6 @@ class TokenTable():
 
 
 
-
-
-
-
-
 class Node():
     num = 0
     def __init__(self, id=None):

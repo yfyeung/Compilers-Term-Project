@@ -4,10 +4,8 @@ import os
 sys.path.append(".")
 from utils.Configs import Configs
 from utils.datastructure import *
-from rex2nfa import Regex
+from rex2nfa import Rex2Nfa
 from nfa2dfa import NFA2DFA
-
-
 
 
 class DFAMinimizer(object):
@@ -73,6 +71,10 @@ class DFAMinimizer(object):
                     if repr not in terminal_nodes:
                         terminal_nodes.append(repr)
                 dfa_mini_dict[inst] = repr
+
+        # print("init node {} terminal nodes {}".format(init_node, terminal_nodes))
+        # for k, v in dfa_mini_dict.items():
+        #     print(k,v)
 
         edges = []
         for edge in self.DFA.edges:
@@ -199,8 +201,8 @@ if __name__ == '__main__':
     regex_string = regex_c
     regex_string = '(ab*|c)ca'
 
-    regexer = Regex(regex=regex_string)
-    nfa_graph = regexer.transformNFA()
+    regexer = Rex2Nfa(regex_string)
+    nfa_graph = regexer.get_regex()
 
     nfa2dfa = NFA2DFA(NFA=nfa_graph)
     dfa_graph = nfa2dfa.transformDFA()
