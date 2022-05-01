@@ -12,7 +12,8 @@ if __name__ == '__main__':
     lexer = LexicalAnalyzer(Configs) # 实例化词法分析器
     parser = LR1_parser(Configs) # 实例化LR1语法分析器
     
-    test_names = []
+    test_names = [] 
+    
     for i in range(39,40):
         test_names.append("testcase-{}.sql".format(i))
     

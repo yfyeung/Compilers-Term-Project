@@ -8,7 +8,6 @@ action_table_path = Configs.action_table_path
 goto_table_path = Configs.goto_table_path
 
 
-from prettytable import PrettyTable
 
 class actionTable():
     def __init__(self, grammar_obj, itemSets_obj):
