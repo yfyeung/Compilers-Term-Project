@@ -4,7 +4,7 @@ import os
 sys.path.append(".")
 from utils.Configs import Configs
 from utils.datastructure import *
-from rex2nfa import Regex
+from rex2nfa import Rex2Nfa
 
 
 class NFA2DFA(object):
@@ -120,7 +120,8 @@ class NFA2DFA(object):
 
 if __name__ == '__main__':
     regex_string = '(ab|c)*abb'
-    regexer = Regex(regex=regex_string)
-    nfa_graph = regexer.transformNFA()
+    regexer = Rex2Nfa(regex_string)
+    nfa_graph = regexer.get_regex()
     nfa2dfa = NFA2DFA(NFA=nfa_graph)
     nfa2dfa.transformDFA()
+
