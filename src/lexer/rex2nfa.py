@@ -6,7 +6,7 @@ class Rex2NFA:
     def __init__(self, regex):
         self.regex = regex
         self.preprocess_regex = self.preprocess(self.regex)
-        self.nfa_graph = self.rex2nfa(self.preprocess_regex)
+        self.nfa_graph = self._rex2nfa(self.preprocess_regex)
 
     def preprocess(self, regex):
         '''预处理, 补上省略的&'''
@@ -21,7 +21,7 @@ class Rex2NFA:
     
         return preprocess_regex
 
-    def rex2nfa(self, preprocess_regex):
+    def _rex2nfa(self, preprocess_regex):
         '''rex转nfa'''
         if not preprocess_regex:
             raise Exception("preprocess_regex is empty!")
@@ -104,9 +104,9 @@ class Rex2NFA:
     
     def print_nfa_graph(self):
         '''打印结果'''
-        print(' NFA '.center(50, '='))
+        print(' NFA '.center(40, '='))
         print(self.nfa_graph)
-        print(''.center(50, '='))
+        print(''.center(40, '='))
 
     def get_nfa_graph(self):
         '''获取结果'''

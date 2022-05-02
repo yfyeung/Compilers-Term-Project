@@ -9,16 +9,16 @@ class NFA2DFA(object):
     '''NFA转DFA'''
     def __init__(self, NFA=None):
         self.nfa_graph = NFA
-        self.alphabet = self.calculate_alphabet() # 字符集合
-        self.dfa_graph = self.transformDFA()
+        self.alphabet = self._calculate_alphabet() # 字符集合
+        self.dfa_graph = self._nfa2dfa()
 
-    def transformDFA(self):
+    def _nfa2dfa(self):
         '''转化为DFA'''
         if self.nfa_graph is None:
-            print("NFA not found".center(50, '='))
+            print("NFA not found".center(40, '='))
             return None
 
-        dfa_begin_state = StateNode(self.varepsilon_closure([self.nfa_graph.node_tail]))
+        dfa_begin_state = StateNode(self._varepsilon_closure([self.nfa_graph.node_tail]))
         dfa_begin_state.is_begin = True
         if self.nfa_graph.node_head.id in [node.id for node in dfa_begin_state.node_set]:
             dfa_begin_state.is_end = True
@@ -31,8 +31,8 @@ class NFA2DFA(object):
         while index < len(state_list):
             transform_matrix.append([None for x in range(len(self.alphabet))])
             for col, ch in enumerate(self.alphabet):
-                move_set = self.move(state_list[index].node_set, ch)
-                end_state = self.varepsilon_closure(move_set)
+                move_set = self._move(state_list[index].node_set, ch)
+                end_state = self._varepsilon_closure(move_set)
                 if len(end_state) == 0:
                     transform_matrix[index][col] = None
                     continue
@@ -68,7 +68,7 @@ class NFA2DFA(object):
         self.dfa_graph.node_heads = node_heads
         return self.dfa_graph
 
-    def calculate_alphabet(self):
+    def _calculate_alphabet(self):
         ''' 根据输入的nfa获取字符表'''
         if self.nfa_graph is None:
             return
@@ -80,7 +80,7 @@ class NFA2DFA(object):
 
         return alphabet
 
-    def move(self, node_set=None, ch=None):
+    def _move(self, node_set=None, ch=None):
         ''' 获取给定状态集合的移动集合'''
         target_set = []
         for node in node_set:
@@ -90,7 +90,7 @@ class NFA2DFA(object):
 
         return target_set
 
-    def varepsilon_closure(self, node_set=None):
+    def _varepsilon_closure(self, node_set=None):
         ''' 计算varepsilon闭包'''
         target_set = []
         stack = []
@@ -108,9 +108,9 @@ class NFA2DFA(object):
 
     def print_dfa_graph(self):
         '''打印结果'''
-        print(' DFA '.center(50, '='))
+        print(' DFA '.center(40, '='))
         print(self.dfa_graph)
-        print(''.center(50, '='))
+        print(''.center(40, '='))
 
     def get_dfa_graph(self):
         '''获取结果'''

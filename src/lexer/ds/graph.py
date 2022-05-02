@@ -18,7 +18,7 @@ class Edge():
         self.node_type = node_type
 
     def __str__(self):
-        return "Edge [begin={} end={} node_type={}]".format(str(self.node_tail), str(self.node_head), str(self.node_type))
+        return f"Edge {self.node_tail} -> {self.node_head}, node_type:{self.node_type}"
 
 
 class Graph():
@@ -57,8 +57,7 @@ class Graph():
             self.node_head = node_head
 
         else:
-            print("Unknown type {}".format(type(obj)))
-            exit(-1)
+            raise Exception(f"Unknown Type: {type(obj)}")
 
     def add_union(self, obj1=None, obj2=None):
         if isinstance(obj1, Graph) and isinstance(obj2, str):
@@ -166,9 +165,10 @@ class Graph():
 
     def __str__(self):
         if self.node_heads is None:
-            return_str = "Start={} node_head={} \n".format(self.node_tail, self.node_head)
+            return_str = f"start_node:{self.node_tail}\nnode_head:{self.node_head} \n"
         else:
-            return_str = "Start={} node_heads=[{}] \n".format(self.node_tail, ' '.join([str(node) for node in self.node_heads]))
+            nodes_heads = ' '.join([str(node) for node in self.node_heads])
+            return_str = f"start_node:{self.node_tail}\nnode_heads:[{nodes_heads}] \n"
         for edge in self.edges:
             return_str += str(edge) + '\n'
         return return_str

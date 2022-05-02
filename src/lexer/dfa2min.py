@@ -10,16 +10,16 @@ class DFA2Min(object):
         self.alphabet = alphabet
         self.matrix = [] # 行是起始结点序号, 列是字符, 元素是终止结点序号
         self.P = None
-        self.dfa_min_graph = self.transformDFAMin()
+        self.dfa_min_graph = self._nfa2dfaMin()
 
-    def transformDFAMin(self):
+    def _nfa2dfaMin(self):
         '''DFA最小化'''
         if self.dfa_graph is None:
-            print("DFA not found".center(50, '='))
+            print("DFA not found".center(40, '='))
             return None
 
-        self.store_matrix()
-        self.init_division()
+        self._store_matrix()
+        self._init_division()
 
         index = 0
         while index < len(self.P):
@@ -34,7 +34,7 @@ class DFA2Min(object):
                     break
                 for node_id in subset:
                     point_node_id = self.matrix[node_id][idx]
-                    set_id = self.find_set_id(node_id=point_node_id)
+                    set_id = self._find_set_id(node_id=point_node_id)
                     dct[node_id] = set_id
                 values = list(set(dct.values()))
                 if len(values) != 1:
@@ -69,8 +69,8 @@ class DFA2Min(object):
             new_edge = Edge(node_tail=begin_node, node_head=end_node, node_type=edge.node_type)
             edges.append(new_edge)
 
-        unique_edges = self.remove_duplicate(edges=edges)
-        reachable_edges = self.remove_unreachable(edges=unique_edges)
+        unique_edges = self._remove_duplicate(edges=edges)
+        reachable_edges = self._remove_unreachable(edges=unique_edges)
 
         self.dfa_min_graph = Graph()
         self.dfa_min_graph.edges = reachable_edges
@@ -79,21 +79,21 @@ class DFA2Min(object):
 
         return self.dfa_min_graph
 
-    def find_set_id(self, node_id):
+    def _find_set_id(self, node_id):
         '''找到集合id'''
         for i, subset in enumerate(self.P):
             if node_id in subset:
                 return i
         return -1
 
-    def remove_unreachable(self, edges=None):
+    def _remove_unreachable(self, edges=None):
         '''移除不可达的边'''
         return edges
 
-    def remove_duplicate(self, edges=None):
+    def _remove_duplicate(self, edges=None):
         '''去掉重复结点'''
         if edges is None:
-            print("edges is None".center(50, '='))
+            print("edges is None".center(40, '='))
             exit(-1)
 
         remove_list = []
@@ -110,7 +110,7 @@ class DFA2Min(object):
 
         return unique_edges
 
-    def store_matrix(self):
+    def _store_matrix(self):
         '''存储构造矩阵'''
         node_list = []
         for edge in self.dfa_graph.edges:
@@ -130,7 +130,7 @@ class DFA2Min(object):
             col = self.alphabet.index(edge.node_type)
             self.matrix[begin_node.id][col] = end_node.id
 
-    def init_division(self):
+    def _init_division(self):
         '''初始化P'''
         self.P = [[], []]
         nodes = []
@@ -153,7 +153,7 @@ class DFA2Min(object):
         elif len(self.P[1]) == 0:
             self.P.pop(1)
 
-    def move(self, node=None, ch=None):
+    def _move(self, node=None, ch=None):
         '''获取next node'''
         next_node = None
         for edge in self.dfa_graph.edges:
@@ -163,9 +163,9 @@ class DFA2Min(object):
 
     def print_dfa_min_graph(self):
         '''打印结果'''
-        print(' Minimized DFA '.center(50, '='))
+        print(' Minimized DFA '.center(40, '='))
         print(self.dfa_min_graph)
-        print(''.center(50, '='))
+        print(''.center(40, '='))
 
     def get_dfa_min_graph(self):
         '''获取结果'''
@@ -173,11 +173,11 @@ class DFA2Min(object):
 
     def print_construct_matrix(self):
         '''打印构造矩阵'''
-        print(' Construct matrix '.center(50, '='))
+        print(' Construct matrix '.center(40, '='))
         print(self.alphabet)
         for x in self.matrix:
             print(x)
-        print(''.center(50, '='))
+        print(''.center(40, '='))
 
 
 if __name__ == '__main__':
