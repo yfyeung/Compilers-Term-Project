@@ -117,7 +117,7 @@ FROM  sr, cs
 WHERE sr.client_snap_id = cs.id
         || sr.b_enable = "1"
 
-SELECT NOT 10,NOT(1-1),NOT-5,NOT NULL,NOT 1+1
+SELECT NOT 10,NOT(1-1),NOT-5,NOT NULL,NOT 2
 
 SELECT 1 AND -1,1 AND 0,1 AND NULL, 0 AND NULL
 

@@ -1,16 +1,16 @@
-from imp import init_frozen
-from importlib.abc import Traversable
 import sys
 import copy
 import os
 import pickle
-from LR1_parser.ds.FF import FIRST, FOLLOW
-from LR1_parser.ds.analysisTable import analysisTable
-from LR1_parser.ds.item import itemSets
-from LR1_parser.ds.grammar import grammar
-from LR1_parser.ds.Stack import Stack
+
+from .ds.FF import FIRST, FOLLOW
+from .ds.analysisTable import analysisTable
+from .ds.item import itemSets
+from .ds.grammar import grammar
+from .ds.stack import Stack
 
 class LR1_parser:
+    '''语法分析器'''
     def __init__(self, Configs):
         self.grammar_obj = None
         self.FIRST_obj = None
@@ -139,7 +139,6 @@ class LR1_parser:
                     assert False, "Error: goto is neither None or 's'. Abort!"
             else:
                 assert False, "Error: input is neither terminal nor non-terminal in grammar. Abort!"
-                
                 
         sys.stdout = old_std_out
         if action == 'acc':

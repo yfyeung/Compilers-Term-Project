@@ -1,7 +1,6 @@
 SELECT
 INT
 AND
--
 INT
 ,
 INT

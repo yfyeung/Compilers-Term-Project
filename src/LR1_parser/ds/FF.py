@@ -1,7 +1,7 @@
 import copy as cp
 
-from LR1_parser.ds.grammar import grammar
-from utils.Configs import Configs
+from .grammar import grammar
+from utils.configs import Configs
 
 grammar_path = Configs.grammar_path
 first_sets_output_path = Configs.first_sets_output_path
@@ -96,6 +96,7 @@ class FIRST():
         for first_set in output_list:
             output_file.write('  '+ first_set[0] + '=' + str(first_set[1]) + '\n')
         output_file.close()
+
 class FOLLOW():
     def __init__(self, grammar_obj, FIRST_obj):
         self.follow_sets = {}
@@ -159,6 +160,7 @@ class FOLLOW():
             
             if not changed: # Loop until all the follow sets don't change
                 break
+
     def dump_follow_sets_into_file(self, file_path):
         output_file = open(file_path, 'w')
         output_file.write('FOLLOW:\n')

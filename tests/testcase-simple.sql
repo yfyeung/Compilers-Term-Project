@@ -5,4 +5,4 @@ SELECT
   r.datatime
 FROM Table1
 GROUP BY r.uid
-ORDER BY r.age DESC
+ORDER BY r.age

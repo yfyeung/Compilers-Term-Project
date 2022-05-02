@@ -1,8 +1,7 @@
 SELECT   <KW,1>
 1   <INT,1>
 AND   <OP,8>
--   <OP,15>
-1   <INT,1>
+-1   <INT,-1>
 ,   <SE,3>
 1   <INT,1>
 AND   <OP,8>

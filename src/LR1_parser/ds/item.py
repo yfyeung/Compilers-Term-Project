@@ -1,12 +1,9 @@
-import sys
-sys.path.append(".")
-
 from matplotlib import collections
 import collections
 
-from LR1_parser.ds.grammar import grammar
-from LR1_parser.ds.FF import FIRST, FOLLOW
-from utils.Configs import Configs
+from .grammar import grammar
+from .FF import FIRST, FOLLOW
+from utils.configs import Configs
 
 grammar_path = Configs.grammar_path
 

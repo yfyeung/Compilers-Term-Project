@@ -5,12 +5,10 @@ INT
 NOT
 (
 INT
--
 INT
 )
 ,
 NOT
--
 INT
 ,
 NOT

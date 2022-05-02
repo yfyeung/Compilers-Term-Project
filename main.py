@@ -1,24 +1,32 @@
-import sys
 import os
-sys.path.append(".")
-
 
 from src.LR1_parser.LR1 import LR1_parser
-from utils.Configs import Configs
+from utils.configs import Configs
 from utils.transformer import token2inputStack
 from src.lexer.lexical_analyzer import LexicalAnalyzer
 
+
 if __name__ == '__main__':
-    lexer = LexicalAnalyzer(Configs) # 实例化词法分析器
-    parser = LR1_parser(Configs) # 实例化LR1语法分析器
+    # 创建output的子文件夹
+    if not os.path.exists(os.path.join(Configs.dir_names["output"], "ds_details")):
+        os.mkdir(os.path.join(Configs.dir_names["output"], "ds_details"))
+    if not os.path.exists(os.path.join(Configs.dir_names["output"], "ds_entity")):
+        os.mkdir(os.path.join(Configs.dir_names["output"], "ds_entity"))
+    if not os.path.exists(os.path.join(Configs.dir_names["output"], "input_stack")):
+        os.mkdir(os.path.join(Configs.dir_names["output"], "input_stack"))
+    if not os.path.exists(os.path.join(Configs.dir_names["output"], "parse_result")):
+        os.mkdir(os.path.join(Configs.dir_names["output"], "parse_result"))
+    if not os.path.exists(os.path.join(Configs.dir_names["output"], "token_table")):
+        os.mkdir(os.path.join(Configs.dir_names["output"], "token_table"))
+
+    lexer = LexicalAnalyzer(Configs) # 词法分析器
+    parser = LR1_parser(Configs) # LR1语法分析器
     
-    test_names = [] 
-    
-    for i in range(39,40):
-        test_names.append("testcase-{}.sql".format(i))
-    
-    
-    
+    test_names = []
+    for file in os.listdir(Configs.dir_names["tests"]):
+        if file.startswith("testcase-") and file.endswith(".sql"):
+            test_names.append(file)
+
     for test_name in test_names:
         print("testing {}.....".format(test_name))
         '''词法分析器根据预设配置，读取待解析文件，进行解析并输出中间结果'''
