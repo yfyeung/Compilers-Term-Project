@@ -56,17 +56,17 @@ class DFA2Min(object):
         for cluster in self.P:
             repr = cluster[0]
             for inst in cluster:
-                if self.dfa_graph.beginNode == inst:
+                if self.dfa_graph.node_tail == inst:
                     init_node = repr
-                if inst in self.dfa_graph.endNodes and repr not in terminal_nodes:
+                if inst in self.dfa_graph.node_heads and repr not in terminal_nodes:
                     terminal_nodes.append(repr)
                 dfa_min_dict[inst] = repr
 
         edges = []
         for edge in self.dfa_graph.edges:
-            begin_node = Node(id=dfa_min_dict[edge.beginNode.id])
-            end_node = Node(id=dfa_min_dict[edge.endNode.id])
-            new_edge = Edge(beginNode=begin_node, endNode=end_node, label=edge.label)
+            begin_node = Node(id=dfa_min_dict[edge.node_tail.id])
+            end_node = Node(id=dfa_min_dict[edge.node_head.id])
+            new_edge = Edge(node_tail=begin_node, node_head=end_node, node_type=edge.node_type)
             edges.append(new_edge)
 
         unique_edges = self.remove_duplicate(edges=edges)
@@ -74,8 +74,8 @@ class DFA2Min(object):
 
         self.dfa_min_graph = Graph()
         self.dfa_min_graph.edges = reachable_edges
-        self.dfa_min_graph.beginNode = init_node
-        self.dfa_min_graph.endNodes = terminal_nodes
+        self.dfa_min_graph.node_tail = init_node
+        self.dfa_min_graph.node_heads = terminal_nodes
 
         return self.dfa_min_graph
 
@@ -114,10 +114,10 @@ class DFA2Min(object):
         '''存储构造矩阵'''
         node_list = []
         for edge in self.dfa_graph.edges:
-            begin_node = edge.beginNode
+            begin_node = edge.node_tail
             if begin_node.id not in node_list:
                 node_list.append(begin_node.id)
-            end_node = edge.endNode
+            end_node = edge.node_head
             if end_node.id not in node_list:
                 node_list.append(end_node.id)
 
@@ -125,9 +125,9 @@ class DFA2Min(object):
         [self.matrix.append([-1 for i in range(len(self.alphabet))]) for i in range(num_node)]
 
         for edge in self.dfa_graph.edges:
-            begin_node = edge.beginNode
-            end_node = edge.endNode
-            col = self.alphabet.index(edge.label)
+            begin_node = edge.node_tail
+            end_node = edge.node_head
+            col = self.alphabet.index(edge.node_type)
             self.matrix[begin_node.id][col] = end_node.id
 
     def init_division(self):
@@ -135,13 +135,13 @@ class DFA2Min(object):
         self.P = [[], []]
         nodes = []
         for edge in self.dfa_graph.edges:
-            begin_node = edge.beginNode
-            end_node = edge.endNode
+            begin_node = edge.node_tail
+            end_node = edge.node_head
             nodes.append(begin_node)
             nodes.append(end_node)
 
         for node in nodes:
-            if node.id in self.dfa_graph.endNodes:
+            if node.id in self.dfa_graph.node_heads:
                 if node.id not in self.P[1]:
                     self.P[1].append(node.id)
             else:
@@ -157,8 +157,8 @@ class DFA2Min(object):
         '''获取next node'''
         next_node = None
         for edge in self.dfa_graph.edges:
-            if edge.beginNode == node and edge.label == ch:
-                next_node = edge.endNode
+            if edge.node_tail == node and edge.node_type == ch:
+                next_node = edge.node_head
         return next_node
 
     def print_dfa_min_graph(self):
@@ -178,6 +178,7 @@ class DFA2Min(object):
         for x in self.matrix:
             print(x)
         print(''.center(50, '='))
+
 
 if __name__ == '__main__':
     input_str = '(ab*|c)ca'

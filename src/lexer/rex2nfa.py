@@ -1,6 +1,3 @@
-import sys
-sys.path.append(".")
-
 from ds.graph import Graph
 
 
@@ -114,6 +111,7 @@ class Rex2NFA:
     def get_nfa_graph(self):
         '''获取结果'''
         return self.nfa_graph
+
 
 if __name__ == '__main__':
     input_str = '(ab|c)*abb'

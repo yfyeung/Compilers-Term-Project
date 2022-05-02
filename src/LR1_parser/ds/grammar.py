@@ -8,6 +8,7 @@ class production():
         self.right = right
         self.index = index
 
+
 class grammar():
     def __init__(self, grammar_file_path):
         # grammar quadruple
@@ -43,14 +44,13 @@ class grammar():
         
         self.terminals.sort()
         self.non_terminals.sort()
-
-        
         
     def get_augumented_grammar(self):
         self.non_terminals.append('rootp')
         self.start = 'rootp'
         self.productions.insert(0, production('rootp', ['root'], 0))
-        
+
+
 if __name__ == '__main__':
     grammar_obj = grammar(grammar_path)
     grammar_obj.get_augumented_grammar()

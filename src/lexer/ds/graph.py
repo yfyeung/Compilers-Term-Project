@@ -12,54 +12,49 @@ class Node():
 
 
 class Edge():
-    def __init__(self, beginNode=None, endNode=None, label=None):
-        self.beginNode = beginNode
-        self.endNode = endNode
-        self.label = label
+    def __init__(self, node_tail=None, node_head=None, node_type=None):
+        self.node_tail = node_tail
+        self.node_head = node_head
+        self.node_type = node_type
 
     def __str__(self):
-        return "Edge [begin={} end={} label={}]".format(str(self.beginNode), str(self.endNode), str(self.label))
+        return "Edge [begin={} end={} node_type={}]".format(str(self.node_tail), str(self.node_head), str(self.node_type))
 
 
 class Graph():
-    def __init__(self, beginNode=None, endNode=None, endNodes=None):
-        self.beginNode = beginNode
-        self.endNode = endNode
-        self.endNodes = endNodes
+    def __init__(self, node_tail=None, node_head=None, node_heads=None):
+        self.node_tail = node_tail
+        self.node_head = node_head
+        self.node_heads = node_heads
         self.edges = []
 
     def add_star(self, obj=None):
         if isinstance(obj, str):
             centerNode = Node()
-            beginNode = Node()
-            endNode = Node()
-            edgeLink = Edge(beginNode=centerNode, endNode=centerNode, label=str(obj))
-            beginEdgeEpsilon = Edge(beginNode=beginNode, endNode=centerNode, label="epsilon")
-            endEdgeEpsilon = Edge(beginNode=centerNode, endNode=endNode, label="epsilon")
+            node_tail = Node()
+            node_head = Node()
+            a = Edge(node_tail=centerNode, node_head=centerNode, node_type=str(obj))
+            b = Edge(node_tail=node_tail, node_head=centerNode, node_type="varepsilon")
+            c = Edge(node_tail=centerNode, node_head=node_head, node_type="varepsilon")
 
-            self.edges.append(edgeLink)
-            self.edges.append(beginEdgeEpsilon)
-            self.edges.append(endEdgeEpsilon)
-            self.beginNode = beginNode
-            self.endNode = endNode
+            self.edges += [a, b, c]
+            self.node_tail = node_tail
+            self.node_head = node_head
 
         elif isinstance(obj, Graph):
-            beginNode = Node()
-            endNode = Node()
-            edgeone = Edge(beginNode=beginNode, endNode=endNode, label="epsilon")
-            edgetwo = Edge(beginNode=beginNode, endNode=obj.beginNode, label="epsilon")
-            edgethree = Edge(beginNode=obj.endNode, endNode=endNode, label="epsilon")
-            edgefour = Edge(beginNode=obj.endNode, endNode=obj.beginNode, label="epsilon")
+            node_tail = Node()
+            node_head = Node()
+            a = Edge(node_tail=node_tail, node_head=node_head, node_type="varepsilon")
+            b = Edge(node_tail=node_tail, node_head=obj.node_tail, node_type="varepsilon")
+            c = Edge(node_tail=obj.node_head, node_head=node_head, node_type="varepsilon")
+            d = Edge(node_tail=obj.node_head, node_head=obj.node_tail, node_type="varepsilon")
 
             for edge in obj.edges:
                 self.edges.append(edge)
 
-            self.edges.append(edgeone)
-            self.edges.append(edgetwo)
-            self.edges.append(edgethree)
-            self.edges.append(edgefour)
-            self.beginNode = beginNode
-            self.endNode = endNode
+            self.edges += [a, b, c, d]
+            self.node_tail = node_tail
+            self.node_head = node_head
 
         else:
             print("Unknown type {}".format(type(obj)))
@@ -67,47 +62,43 @@ class Graph():
 
     def add_union(self, obj1=None, obj2=None):
         if isinstance(obj1, Graph) and isinstance(obj2, str):
-            beginNode = Node()
-            endNode = Node()
-            edgeone = Edge(beginNode=beginNode, endNode=obj1.beginNode, label="epsilon")
-            edgetwo = Edge(beginNode=obj1.endNode, endNode=endNode, label="epsilon")
-            edgethree = Edge(beginNode=beginNode, endNode=endNode, label=str(obj2))
+            node_tail = Node()
+            node_head = Node()
+            a = Edge(node_tail=node_tail, node_head=obj1.node_tail, node_type="varepsilon")
+            b = Edge(node_tail=obj1.node_head, node_head=node_head, node_type="varepsilon")
+            c = Edge(node_tail=node_tail, node_head=node_head, node_type=str(obj2))
 
             for edge in obj1.edges:
                 self.edges.append(edge)
 
-            self.edges.append(edgeone)
-            self.edges.append(edgetwo)
-            self.edges.append(edgethree)
-            self.beginNode = beginNode
-            self.endNode = endNode
+            self.edges += [a, b, c]
+            self.node_tail = node_tail
+            self.node_head = node_head
 
         elif isinstance(obj1, str) and isinstance(obj2, Graph):
-            beginNode = Node()
-            endNode = Node()
-            edgeone = Edge(beginNode=beginNode, endNode=obj2.beginNode, label="epsilon")
-            edgetwo = Edge(beginNode=obj2.endNode, endNode=endNode, label="epsilon")
-            edgethree = Edge(beginNode=beginNode, endNode=endNode, label=str(obj1))
+            node_tail = Node()
+            node_head = Node()
+            a = Edge(node_tail=node_tail, node_head=obj2.node_tail, node_type="varepsilon")
+            b = Edge(node_tail=obj2.node_head, node_head=node_head, node_type="varepsilon")
+            c = Edge(node_tail=node_tail, node_head=node_head, node_type=str(obj1))
 
             for edge in obj2.edges:
                 self.edges.append(edge)
 
-            self.edges.append(edgeone)
-            self.edges.append(edgetwo)
-            self.edges.append(edgethree)
-            self.beginNode = beginNode
-            self.endNode = endNode
+            self.edges += [a, b, c]
+            self.node_tail = node_tail
+            self.node_head = node_head
 
         elif isinstance(obj1, Graph) and isinstance(obj2, Graph):
-            beginNode = Node()
-            endNode = Node()
-            edgeone = Edge(beginNode=beginNode, endNode=obj1.beginNode, label="epsilon")
-            edgetwo = Edge(beginNode=beginNode, endNode=obj2.beginNode, label="epsilon")
-            edgethree = Edge(beginNode=obj1.endNode, endNode=endNode, label="epsilon")
-            edgefour = Edge(beginNode=obj2.endNode, endNode=endNode, label="epsilon")
+            node_tail = Node()
+            node_head = Node()
+            a = Edge(node_tail=node_tail, node_head=obj1.node_tail, node_type="varepsilon")
+            b = Edge(node_tail=node_tail, node_head=obj2.node_tail, node_type="varepsilon")
+            c = Edge(node_tail=obj1.node_head, node_head=node_head, node_type="varepsilon")
+            d = Edge(node_tail=obj2.node_head, node_head=node_head, node_type="varepsilon")
 
-            self.beginNode = beginNode
-            self.endNode = endNode
+            self.node_tail = node_tail
+            self.node_head = node_head
 
             for edge in obj1.edges:
                 self.edges.append(edge)
@@ -115,48 +106,44 @@ class Graph():
             for edge in obj2.edges:
                 self.edges.append(edge)
 
-            self.edges.append(edgeone)
-            self.edges.append(edgetwo)
-            self.edges.append(edgethree)
-            self.edges.append(edgefour)
+            self.edges += [a, b, c, d]
 
         elif isinstance(obj1, str) and isinstance(obj2, str):
-            beginNode = Node()
-            endNode = Node()
-            edgeone = Edge(beginNode=beginNode, endNode=endNode, label=str(obj1))
-            edgetwo = Edge(beginNode=beginNode, endNode=endNode, label=str(obj2))
+            node_tail = Node()
+            node_head = Node()
+            a = Edge(node_tail=node_tail, node_head=node_head, node_type=str(obj1))
+            b = Edge(node_tail=node_tail, node_head=node_head, node_type=str(obj2))
 
-            self.edges.append(edgeone)
-            self.edges.append(edgetwo)
-            self.beginNode = beginNode
-            self.endNode = endNode
+            self.edges += [a, b]
+            self.node_tail = node_tail
+            self.node_head = node_head
 
     def add_concat(self, obj1=None, obj2=None):
         if isinstance(obj1, Graph) and isinstance(obj2, str):
-            endNode = Node()
-            edgeone = Edge(beginNode=obj1.endNode, endNode=endNode, label=str(obj2))
+            node_head = Node()
+            a = Edge(node_tail=obj1.node_head, node_head=node_head, node_type=str(obj2))
             for edge in obj1.edges:
                 self.edges.append(edge)
 
-            self.edges.append(edgeone)
-            self.beginNode = obj1.beginNode
-            self.endNode = endNode
+            self.edges += [a]
+            self.node_tail = obj1.node_tail
+            self.node_head = node_head
 
         elif isinstance(obj1, str) and isinstance(obj2, Graph):
-            beginNode = Node()
-            edgeone = Edge(beginNode=beginNode, endNode=obj2.beginNode, label=str(obj1))
+            node_tail = Node()
+            a = Edge(node_tail=node_tail, node_head=obj2.node_tail, node_type=str(obj1))
 
             for edge in obj2.edges:
                 self.edges.append(edge)
 
-            self.edges.append(edgeone)
-            self.beginNode = beginNode
-            self.endNode = obj2.endNode
+            self.edges += [a]
+            self.node_tail = node_tail
+            self.node_head = obj2.node_head
 
         elif isinstance(obj1, Graph) and isinstance(obj2, Graph):
-            edgeone = Edge(beginNode=obj1.endNode, endNode=obj2.beginNode, label="epsilon")
-            self.beginNode = obj1.beginNode
-            self.endNode = obj2.endNode
+            a = Edge(node_tail=obj1.node_head, node_head=obj2.node_tail, node_type="varepsilon")
+            self.node_tail = obj1.node_tail
+            self.node_head = obj2.node_head
 
             for edge in obj1.edges:
                 self.edges.append(edge)
@@ -164,25 +151,24 @@ class Graph():
             for edge in obj2.edges:
                 self.edges.append(edge)
 
-            self.edges.append(edgeone)
+            self.edges += [a]
 
         elif isinstance(obj1, str) and isinstance(obj2, str):
-            beginNode = Node()
+            node_tail = Node()
             centerNode = Node()
-            endNode = Node()
-            edge1 = Edge(beginNode=beginNode, endNode=centerNode, label=str(obj1))
-            edge2 = Edge(beginNode=centerNode, endNode=endNode, label=str(obj2))
+            node_head = Node()
+            a = Edge(node_tail=node_tail, node_head=centerNode, node_type=str(obj1))
+            b = Edge(node_tail=centerNode, node_head=node_head, node_type=str(obj2))
 
-            self.beginNode = beginNode
-            self.endNode = endNode
-            self.edges.append(edge1)
-            self.edges.append(edge2)
+            self.node_tail = node_tail
+            self.node_head = node_head
+            self.edges += [a, b]
 
     def __str__(self):
-        if self.endNodes is None:
-            return_str = "Start={} EndNode={} \n".format(self.beginNode, self.endNode)
+        if self.node_heads is None:
+            return_str = "Start={} node_head={} \n".format(self.node_tail, self.node_head)
         else:
-            return_str = "Start={} EndNodes=[{}] \n".format(self.beginNode, ' '.join([str(node) for node in self.endNodes]))
+            return_str = "Start={} node_heads=[{}] \n".format(self.node_tail, ' '.join([str(node) for node in self.node_heads]))
         for edge in self.edges:
             return_str += str(edge) + '\n'
         return return_str

@@ -38,15 +38,15 @@ class FIRST():
                     if tmp_symbol in terminals:
                         self.first_sets[left_symbol].append(tmp_symbol)
                         break # If the production is a terminal, then break
-                    # If the production is a non-terminal, then add the first set of the right side[0] (except epsilon) to the first set of left side
+                    # If the production is a non-terminal, then add the first set of the right side[0] (except varepsilon) to the first set of left side
                     if tmp_symbol in non_terminals:
                         if '$' in self.first_sets[tmp_symbol]:
                             self.first_sets[left_symbol].extend(list(set(self.first_sets[tmp_symbol]) - set(['$'])))
                             right_symbols.remove(tmp_symbol)
-                            continue # If the first dict of the right side[0] include epsilon, then continue
+                            continue # If the first dict of the right side[0] include varepsilon, then continue
                         else:
                             self.first_sets[left_symbol].extend(self.first_sets[tmp_symbol])
-                            break # If the first dict of the right side[0] doesn't include epsilon, then break
+                            break # If the first dict of the right side[0] doesn't include varepsilon, then break
                     if tmp_symbol == '$':
                         self.first_sets[left_symbol].append('$')
                         break
@@ -59,6 +59,7 @@ class FIRST():
                     
             if not changed: # Loop until all the first sets don't changed
                 break
+            
     def calculate_first_set(self, symbols):
         first_set = []
         terminals = self.grammar_obj.terminals + ['$']
