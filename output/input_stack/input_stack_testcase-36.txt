@@ -1,0 +1,16 @@
+SELECT
+INT
+&&
+INT
+,
+INT
+&&
+INT
+,
+INT
+&&
+NULL
+,
+INT
+&&
+NULL

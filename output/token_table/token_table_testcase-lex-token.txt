@@ -1,0 +1,8 @@
+_   <IDN,_>
+1895   <INT,1895>
+-1895   <INT,-1895>
+1.732   <FLOAT,1.732>
+-192.233   <FLOAT,-192.233>
+-0.2323   <FLOAT,-0.2323>
+0.34232   <FLOAT,0.34232>
+_tju2414wrqwrf_afdf   <IDN,_tju2414wrqwrf_afdf>
