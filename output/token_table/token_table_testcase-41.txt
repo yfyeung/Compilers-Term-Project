@@ -1,0 +1,11 @@
+SELECT   <KW,1>
+AVG   <KW,20>
+(   <SE,1>
+buyprice   <IDN,buyprice>
+)   <SE,2>
+FROM   <KW,2>
+products   <IDN,products>
+WHERE   <KW,3>
+pass   <IDN,pass>
+=   <OP,1>
+FALSE   <KW,29>

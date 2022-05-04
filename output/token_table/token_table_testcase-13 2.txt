@@ -1,0 +1,12 @@
+SELECT   <KW,1>
+*   <KW,5>
+FROM   <KW,2>
+stu   <IDN,stu>
+JOIN   <KW,14>
+class   <IDN,class>
+ON   <KW,17>
+classid   <IDN,classid>
+=   <OP,1>
+class   <IDN,class>
+.   <OP,16>
+id   <IDN,id>

@@ -1,0 +1,2 @@
+1	/	SELECT#NOT	move
+2	/	SELECT#NOT	error

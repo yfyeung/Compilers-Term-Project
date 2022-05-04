@@ -1,0 +1,14 @@
+SELECT   <KW,1>
+MIN   <KW,18>
+(   <SE,1>
+daily_typing_pages   <IDN,daily_typing_pages>
+)   <SE,2>
+least   <IDN,least>
+,   <SE,3>
+MAX   <KW,19>
+(   <SE,1>
+daily_typing_pages   <IDN,daily_typing_pages>
+)   <SE,2>
+max   <IDN,max>
+FROM   <KW,2>
+employee_tbl   <IDN,employee_tbl>

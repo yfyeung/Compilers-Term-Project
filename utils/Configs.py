@@ -12,6 +12,7 @@ class Configs:
 
     # input grammar
     grammar_name = "grammar_enhanced.txt"
+    # grammar_name = "grammar_origin.txt"
 
     # token info
     KW = [

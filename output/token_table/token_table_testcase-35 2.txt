@@ -1,0 +1,16 @@
+SELECT   <KW,1>
+1   <INT,1>
+AND   <OP,8>
+-1   <INT,-1>
+,   <SE,3>
+1   <INT,1>
+AND   <OP,8>
+0   <INT,0>
+,   <SE,3>
+1   <INT,1>
+AND   <OP,8>
+NULL   <KW,32>
+,   <SE,3>
+0   <INT,0>
+AND   <OP,8>
+NULL   <KW,32>

@@ -19,6 +19,8 @@ class actionTable():
         for I in itemSets_obj.item_sets:
             item_set = I.item_set
             index = I.index
+            if index == 213:
+                a = 1
             go_from_I = [(i, j) for i, j in itemSets_obj.go.items() if i[0] == index]
             for go in go_from_I:
                 if go[0][1] in grammar_obj.terminals:
@@ -30,14 +32,18 @@ class actionTable():
                         exit(-1)  
                     self.action_table[(index, go[0][1])] = "s" + str(go[1])
             for item_ in item_set:
+                
                 if item_.dot_pos == len(item_.right):
                     for terminal in item_.terminals:
                         if not self.action_table.__contains__((index, terminal)):
                             print('Error: action table does\'t have the key: ', (index, terminal), "Abort!")
                             exit(-1)  
                         elif self.action_table[(index, terminal)] is not None:
-                            print('Error: action table confliction at: ', (index, terminal), "Abort!")
-                            exit(-1)  
+                            if self.action_table[(index, terminal)][0] == 's':
+                                continue
+                            else:
+                                print('Error: action table confliction at: ', (index, terminal), "Abort!")
+                                exit(-1)
                         self.action_table[(index, terminal)] = "r" + str(item_.index)
                 if item_.left == grammar_obj.start and item_.right == ['root'] and item_.dot_pos == len(item_.right) and '#' in item_.terminals:
                     self.action_table[(index, '#')] = "acc"

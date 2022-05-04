@@ -1,0 +1,13 @@
+SELECT   <KW,1>
+AVG   <KW,20>
+(   <SE,1>
+buyprice   <IDN,buyprice>
+)   <SE,2>
+FROM   <KW,2>
+products   <IDN,products>
+WHERE   <KW,3>
+id1   <IDN,id1>
+-   <OP,15>
+id2   <IDN,id2>
+<   <OP,3>
+5   <INT,5>

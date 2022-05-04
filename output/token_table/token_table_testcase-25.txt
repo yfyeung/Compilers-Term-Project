@@ -1,0 +1,11 @@
+SELECT   <KW,1>
+country   <IDN,country>
+FROM   <KW,2>
+Websites   <IDN,Websites>
+UNION   <KW,22>
+SELECT   <KW,1>
+country   <IDN,country>
+FROM   <KW,2>
+apps   <IDN,apps>
+ORDER BY   <KW,27>
+country   <IDN,country>

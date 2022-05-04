@@ -1,0 +1,6 @@
+SELECT   <KW,1>
+*   <KW,5>
+FROM   <KW,2>
+stu   <IDN,stu>
+JOIN   <KW,14>
+class   <IDN,class>

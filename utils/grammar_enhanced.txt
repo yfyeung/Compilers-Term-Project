@@ -72,7 +72,7 @@
 72. isNull -> IS nullNotnull
 73. isNull -> $
 74. expressionAtom -> constant
-75. expressionAtom -> selectElements
+75. expressionAtom -> fullColumnName
 76. expressionAtom -> functionCall
 77. nullNotnull -> oppositeOrNot NULL
 78. constant -> stringLiteral

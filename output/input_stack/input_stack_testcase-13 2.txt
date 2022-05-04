@@ -1,0 +1,12 @@
+SELECT
+*
+FROM
+IDN
+JOIN
+IDN
+ON
+IDN
+=
+IDN
+.
+IDN

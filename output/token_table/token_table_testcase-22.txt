@@ -1,0 +1,11 @@
+SELECT   <KW,1>
+SUM   <KW,21>
+(   <SE,1>
+quantityOrdered   <IDN,quantityOrdered>
+)   <SE,2>
+FROM   <KW,2>
+orderdetails   <IDN,orderdetails>
+WHERE   <KW,3>
+orderNumber   <IDN,orderNumber>
+=   <OP,1>
+10100   <INT,10100>
