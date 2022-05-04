@@ -59,9 +59,9 @@ class gotoTable():
         self.goto_table = {}
         self.calculate_goto_table(grammar_obj, itemSets_obj)
     def calculate_goto_table(self, grammar_obj, itemSets_obj):
-        state_num = len(itemSets_obj.item_sets)
-        for non_terminal in grammar_obj.non_terminals:
-            for state in range(state_num):
+        state_num = len(itemSets_obj.item_sets) # number of states
+        for non_terminal in grammar_obj.non_terminals: 
+            for state in range(state_num): 
                 self.goto_table[(state, non_terminal)] = None
         for I in itemSets_obj.item_sets:
             index = I.index
@@ -94,7 +94,7 @@ class analysisTable():
         self.action_table = actionTable(grammar_obj, itemSets_obj)
         self.gotoTable = gotoTable(grammar_obj, itemSets_obj)
         
-    def dump_table_into_file(self, action_table_path, goto_table_path):
+    def dump_table_into_file(self, action_table_path, goto_table_path): # dump action and goto table into files
         self.action_table.dump_table_into_file(action_table_path)
         self.gotoTable.dump_table_into_file(goto_table_path)
 

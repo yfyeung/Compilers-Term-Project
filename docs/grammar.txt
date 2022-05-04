@@ -47,85 +47,90 @@
 47. uidListRec -> $
 48. uid -> IDN
 49. fullColumnName -> uid dottedId
-50. dottedId -> . uid
+50. dottedId -> . dottedIdOrStar
 51. dottedId -> $
-52. expressions -> expression expressionRec
-53. expressionRec -> , expression expressionRec
-54. expressionRec -> $
-55. expression -> opposite expression
-56. expression -> predicate expressionRight
-57. expressionRight -> logicalOperator expression
-58. expressionRight -> IS oppositeOrNot trueValue
-59. expressionRight -> $
-60. opposite -> NOT
-61. opposite -> !
-62. oppositeOrNot -> NOT
-63. oppositeOrNot -> $
-64. trueValue -> TRUE
-65. trueValue -> FALSE
-66. trueValue -> UNKNOWN
-67. predicate -> expressionAtom predicateRight
-68. predicateRight -> comparisonOperator predicate
-69. predicateRight -> $
-70. expressionAtom -> constant
-71. expressionAtom -> fullColumnName
-72. expressionAtom -> functionCall
-73. constant -> stringLiteral
-74. constant -> decimalLiteral
-75. constant -> - decimalLiteral
-76. constant -> booleanLiteral
-77. decimalLiteral -> FLOAT
-78. decimalLiteral -> INT
-79. comparisonOperator -> =
-80. comparisonOperator -> >
-81. comparisonOperator -> <
-82. comparisonOperator -> <=
-83. comparisonOperator -> >=
-84. comparisonOperator -> !=
-85. comparisonOperator -> <=>
-86. logicalOperator -> AND
-87. logicalOperator -> &&
-88. logicalOperator -> XOR
-89. logicalOperator -> OR
-90. logicalOperator -> ||
-91. stringLiteral -> STRING
-92. booleanLiteral -> TRUE
-93. booleanLiteral -> FALSE
-94. functionCall -> aggregateWindowedFunction
-95. aggregateWindowedFunction -> function ( unionType fullColumnName )
-96. function -> AVG
-97. function -> MAX
-98. function -> MIN
-99. function -> SUM
-100. joinPart -> JOIN tableSourceItem joinRightPart
-101. joinPart -> joinDirection JOIN tableSourceItem ON expression
-102. joinRightPart -> ON expression
-103. joinRightPart -> $
-104. joinDirection -> LEFT
-105. joinDirection -> RIGHT
-106. insertStatement -> insertKeyword tableName insertStatementRight
-107. insertStatementRight -> insertStatementValue
-108. insertStatementRight -> ( uidList ) insertStatementValue
-108. insertKeyword -> INSERT into
-110. into -> INTO
-111. into -> $
-112. insertStatementValue -> insertFormat ( expressionsWithDefaults ) expressionsWithDefaultsListRec
-113. insertFormat -> VALUES
-114. insertFormat -> VALUE
-115. expressionsWithDefaultsListRec -> , ( expressionsWithDefaults ) expressionsWithDefaultsListRec
-116. expressionsWithDefaultsListRec -> $
-117. expressionsWithDefaults -> expressionOrDefault expressionOrDefaultListRec
-118. expressionsWithDefaults -> $
-119. expressionOrDefaultListRec -> , expressionOrDefault expressionOrDefaultListRec
-120. expressionOrDefaultListRec -> $
-121. expressionOrDefault -> expression
-122. expressionOrDefault -> DEFAULT
-123. updateStatement -> UPDATE tableName elementNameAlias SET updatedElement updatedElementListRec whereExpression
-124. updatedElementListRec -> , updatedElement updatedElementListRec
-125. updatedElementListRec -> $
-126. whereExpression -> WHERE expression
-127. whereExpression -> $
-128. updatedElement -> fullColumnName = expressionOrDefault
-129. deleteStatement -> DELETE FROM tableName deleteStatementRight
-130. deleteStatementRight -> whereExpression
-131. deleteStatementRight -> ( uidList ) whereExpression
+52. dottedIdOrStar -> uid
+53. dottedIdOrStar -> *
+54. expressions -> expression expressionRec
+55. expressionRec -> , expression expressionRec
+56. expressionRec -> $
+57. expression -> opposite expression
+58. expression -> predicate expressionRight
+59. expressionRight -> logicalOperator expression
+60. expressionRight -> IS oppositeOrNot trueValue
+61. expressionRight -> $
+62. opposite -> NOT
+63. opposite -> !
+64. oppositeOrNot -> NOT
+65. oppositeOrNot -> $
+66. trueValue -> TRUE
+67. trueValue -> FALSE
+68. trueValue -> UNKNOWN
+69. predicate -> expressionAtom predicateRight isNull
+70. predicateRight -> comparisonOperator predicate
+71. predicateRight -> $
+72. isNull -> IS nullNotnull
+73. isNull -> $
+74. expressionAtom -> constant
+75. expressionAtom -> selectElements
+76. expressionAtom -> functionCall
+77. nullNotnull -> oppositeOrNot NULL
+78. constant -> stringLiteral
+79. constant -> decimalLiteral
+80. constant -> - decimalLiteral
+81. constant -> booleanLiteral
+82. decimalLiteral -> FLOAT
+83. decimalLiteral -> INT
+84. comparisonOperator -> =
+85. comparisonOperator -> >
+86. comparisonOperator -> <
+87. comparisonOperator -> <=
+88. comparisonOperator -> >=
+89. comparisonOperator -> !=
+90. comparisonOperator -> <=>
+91. logicalOperator -> AND
+92. logicalOperator -> &&
+93. logicalOperator -> XOR
+94. logicalOperator -> OR
+95. logicalOperator -> ||
+96. stringLiteral -> STRING
+97. booleanLiteral -> TRUE
+98. booleanLiteral -> FALSE
+99. functionCall -> aggregateWindowedFunction
+100. aggregateWindowedFunction -> function ( unionType fullColumnName )
+101. function -> AVG
+102. function -> MAX
+103. function -> MIN
+104. function -> SUM
+105. joinPart -> JOIN tableSourceItem joinRightPart
+106. joinPart -> joinDirection JOIN tableSourceItem ON expression
+107. joinRightPart -> ON expression
+108. joinRightPart -> $
+109. joinDirection -> LEFT
+110. joinDirection -> RIGHT
+111. insertStatement -> insertKeyword tableName insertStatementRight
+112. insertStatementRight -> insertStatementValue
+113. insertStatementRight -> ( uidList ) insertStatementValue
+114. insertKeyword -> INSERT into
+115. into -> INTO
+116. into -> $
+117. insertStatementValue -> insertFormat ( expressionsWithDefaults ) expressionsWithDefaultsListRec
+118. insertFormat -> VALUES
+119. insertFormat -> VALUE
+120. expressionsWithDefaultsListRec -> , ( expressionsWithDefaults ) expressionsWithDefaultsListRec
+121. expressionsWithDefaultsListRec -> $
+122. expressionsWithDefaults -> expressionOrDefault expressionOrDefaultListRec
+123. expressionsWithDefaults -> $
+124. expressionOrDefaultListRec -> , expressionOrDefault expressionOrDefaultListRec
+125. expressionOrDefaultListRec -> $
+126. expressionOrDefault -> expression
+127. expressionOrDefault -> DEFAULT
+128. updateStatement -> UPDATE tableName elementNameAlias SET updatedElement updatedElementListRec whereExpression
+129. updatedElementListRec -> , updatedElement updatedElementListRec
+130. updatedElementListRec -> $
+131. whereExpression -> WHERE expression
+132. whereExpression -> $
+133. updatedElement -> fullColumnName = expressionOrDefault
+134. deleteStatement -> DELETE FROM tableName deleteStatementRight
+135. deleteStatementRight -> whereExpression
+136. deleteStatementRight -> ( uidList ) whereExpression
