@@ -1,0 +1,9 @@
+SELECT   <KW,1>
+DISTINCT   <KW,26>
+name   <IDN,name>
+FROM   <KW,2>
+stu   <IDN,stu>
+WHERE   <KW,3>
+id   <IDN,id>
+>=   <OP,4>
+244   <INT,244>

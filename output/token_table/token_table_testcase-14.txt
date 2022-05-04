@@ -1,0 +1,13 @@
+SELECT   <KW,1>
+id   <IDN,id>
+,   <SE,3>
+name   <IDN,name>
+,   <SE,3>
+MAX   <KW,19>
+(   <SE,1>
+daily_typing_pages   <IDN,daily_typing_pages>
+)   <SE,2>
+FROM   <KW,2>
+employee_tbl   <IDN,employee_tbl>
+GROUP BY   <KW,24>
+name   <IDN,name>

@@ -1,0 +1,4 @@
+1	/	DELETE#FROM	move
+2	/	FROM#IDN	move
+3	/	IDN#AS	move
+4	/	IDN#AS	error
