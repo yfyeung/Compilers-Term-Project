@@ -1,13 +1,11 @@
-from LR1_parser.ds.grammar import grammar
-from LR1_parser.ds.FF import FIRST, FOLLOW
-from LR1_parser.ds.item import itemSets
-from utils.Configs import Configs
+from .grammar import grammar
+from .FF import FIRST, FOLLOW
+from .item import itemSets
+from utils.configs import Configs
 
 grammar_path = Configs.grammar_path
 action_table_path = Configs.action_table_path
 goto_table_path = Configs.goto_table_path
-
-
 
 class actionTable():
     def __init__(self, grammar_obj, itemSets_obj):
@@ -86,8 +84,6 @@ class gotoTable():
             output_file.write('  '+ str(goto[0]) + '  ---->  ' + str(goto[1]) + '\n')
         output_file.close()
 
-
-        
         
 class analysisTable():
     def __init__(self, grammar_obj, itemSets_obj):

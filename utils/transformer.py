@@ -1,17 +1,9 @@
-import sys
-import os
-sys.path.append(".")
-
-
-from LR1_parser.ds.Stack import Stack
-
+from src.LR1_parser.ds.stack import Stack
 
 input_folder = "./tests/"
 waiting_to_transform_file = "token_table_annotation.txt"
-
 output_folder = "./output/input_stack/"
 transformed_file = "token_table_annotation_trans.txt"
-
 
 KW = {
     1: "SELECT",
@@ -85,7 +77,6 @@ def token2inputStack(input_file, output_file):
         type = items[0]
         content = items[1]
 
-        
         terminal = None
         if type == "KW":
             terminal = KW[int(content)]
@@ -110,13 +101,5 @@ def token2inputStack(input_file, output_file):
     input_stack = Stack()
     while not input_stack_reversed.isEmpty():
         input_stack.push(input_stack_reversed.pop())
-        
-    
+
     return input_stack
-    
-    
-    
-    
-    
-if __name__ == "__main__":
-    input_stack = token2inputStack(input_folder + waiting_to_transform_file, output_folder + transformed_file)
