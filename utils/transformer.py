@@ -1,4 +1,4 @@
-from src.LR1_parser.ds.stack import Stack
+from src.LR1_parser.ds.Stack import Stack
 
 input_folder = "./tests/"
 waiting_to_transform_file = "token_table_annotation.txt"

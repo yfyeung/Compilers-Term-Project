@@ -1,3 +1,5 @@
+import sys
+sys.path.append(".")
 from utils.configs import Configs
 
 grammar_path = Configs.grammar_path
@@ -31,6 +33,9 @@ class grammar():
         for index, line in enumerate(self.grammar_content): # Loop through the lines
             line = line[:-1] # remove \n
             words = line.split(' ')  # split the line by space
+            if 'whereExpressio' in words:
+                while 1:
+                    pass
             self.productions.append(production(words[1], words[3:], index + 1)) # Add the production to the list
             self.non_terminals.append(words[1]) # Add the non-terminal to the list
             all_symbols.extend([words[1]]+ words[3:]) # Add the symbols to the list

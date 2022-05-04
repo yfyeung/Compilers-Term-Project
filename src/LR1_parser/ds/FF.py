@@ -1,6 +1,8 @@
+import sys
+sys.path.append(".")
 import copy as cp
 
-from .grammar import grammar
+from src.LR1_parser.ds.grammar import grammar
 from utils.configs import Configs
 
 grammar_path = Configs.grammar_path

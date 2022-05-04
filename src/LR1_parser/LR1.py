@@ -7,7 +7,7 @@ from .ds.FF import FIRST, FOLLOW
 from .ds.analysisTable import analysisTable
 from .ds.item import itemSets
 from .ds.grammar import grammar
-from .ds.stack import Stack
+from .ds.Stack import Stack
 
 class LR1_parser:
     '''语法分析器'''
