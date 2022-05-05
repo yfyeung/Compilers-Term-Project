@@ -1,6 +1,6 @@
 import os
 
-from utils.Configs import Configs
+from utils.configs import Configs
 
 
 class TokenLine():

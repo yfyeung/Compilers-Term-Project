@@ -1,6 +1,6 @@
 import sys
 sys.path.append(".")
-from utils.Configs import Configs
+from utils.configs import Configs
 
 grammar_path = Configs.grammar_path
 

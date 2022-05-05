@@ -1,6 +1,6 @@
 import os
 
-from utils.Configs import Configs
+from utils.configs import Configs
 from .ds.token import TokenLine, TokenTable
 
 

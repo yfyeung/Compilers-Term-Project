@@ -3,7 +3,7 @@ sys.path.append(".")
 import copy as cp
 
 from src.LR1_parser.ds.grammar import grammar
-from utils.Configs import Configs
+from utils.configs import Configs
 
 grammar_path = Configs.grammar_path
 first_sets_output_path = Configs.first_sets_output_path

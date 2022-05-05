@@ -1,7 +1,7 @@
 from .grammar import grammar
 from .FF import FIRST, FOLLOW
 from .item import itemSets
-from utils.Configs import Configs
+from utils.configs import Configs
 
 grammar_path = Configs.grammar_path
 action_table_path = Configs.action_table_path
