@@ -1,0 +1,26 @@
+SELECT   <KW,1>
+r   <IDN,r>
+.   <OP,16>
+id   <IDN,id>
+,   <SE,3>
+r   <IDN,r>
+.   <OP,16>
+uid   <IDN,uid>
+,   <SE,3>
+r   <IDN,r>
+.   <OP,16>
+age   <IDN,age>
+,   <SE,3>
+r   <IDN,r>
+.   <OP,16>
+datatime   <IDN,datatime>
+FROM   <KW,2>
+Table1   <IDN,Table1>
+GROUP BY   <KW,24>
+r   <IDN,r>
+.   <OP,16>
+uid   <IDN,uid>
+ORDER BY   <KW,27>
+r   <IDN,r>
+.   <OP,16>
+age   <IDN,age>
