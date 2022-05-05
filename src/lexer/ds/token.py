@@ -62,7 +62,7 @@ class TokenLine():
 
         elif self.word_type == 'STRING':
             self.token_type = 'STRING'
-            self.token_content = self.word_content
+            self.token_content = eval(self.word_content)
 
         elif self.word_type == 'INT':
             self.token_type = 'INT'
