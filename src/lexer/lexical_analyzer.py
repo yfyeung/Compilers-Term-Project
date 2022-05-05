@@ -1,6 +1,6 @@
 import os
 
-from utils.configs import Configs
+from utils.Configs import Configs
 from .ds.token import TokenLine, TokenTable
 
 
@@ -239,7 +239,7 @@ class LexicalAnalyzer():
                     i += 1
 
                 current_word += line_content[i]
-                self._process_word(current_word, "STR")
+                self._process_word(current_word, "STRING")
                 current_word = ""
                 i += 1
 

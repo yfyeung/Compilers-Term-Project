@@ -90,7 +90,7 @@ def token2inputStack(input_file, output_file):
             terminal = "INT"
         elif type == "FLOAT":
             terminal = "FLOAT"
-        elif type == "STR":
+        elif type == "STRING":
             terminal = "STRING"
         else:
             assert False, "Unknown type: " + type

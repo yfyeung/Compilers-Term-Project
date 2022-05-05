@@ -17,4 +17,4 @@ sr   <IDN,sr>
 .   <OP,16>
 b_enable   <IDN,b_enable>
 =   <OP,1>
-"1"   <STR,"1">
+"1"   <STRING,"1">

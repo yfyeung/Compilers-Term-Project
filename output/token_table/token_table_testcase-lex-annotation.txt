@@ -12,7 +12,7 @@ show_instruments   <IDN,show_instruments>
 BOOLEAN   <IDN,BOOLEAN>
 )   <SE,2>
 COMMENT   <IDN,COMMENT>
-"this is not an annotation /* haha */, tju tju -- tju // end_line"   <STR,"this is not an annotation /* haha */, tju tju -- tju // end_line">
+"this is not an annotation /* haha */, tju tju -- tju // end_line"   <STRING,"this is not an annotation /* haha */, tju tju -- tju // end_line">
 SQL   <IDN,SQL>
 SECURITY   <IDN,SECURITY>
 INVOKER   <IDN,INVOKER>
@@ -32,7 +32,7 @@ setup_consumers   <IDN,setup_consumers>
 WHERE   <KW,3>
 enabled   <IDN,enabled>
 =   <OP,1>
-"NO"   <STR,"NO">
+"NO"   <STRING,"NO">
 IF   <IDN,IF>
 (   <SE,1>
 show_instruments   <IDN,show_instruments>
@@ -51,7 +51,7 @@ setup_instruments   <IDN,setup_instruments>
 WHERE   <KW,3>
 enabled   <IDN,enabled>
 =   <OP,1>
-"NO"   <STR,"NO">
+"NO"   <STRING,"NO">
 END   <IDN,END>
 IF   <IDN,IF>
 END   <IDN,END>
@@ -93,7 +93,7 @@ state   <IDN,state>
 AND   <OP,8>
 jobtitle   <IDN,jobtitle>
 !=   <OP,6>
-"--"   <STR,"--">
+"--"   <STRING,"--">
 DROP   <IDN,DROP>
 TABLE   <IDN,TABLE>
 TestPoint5   <IDN,TestPoint5>

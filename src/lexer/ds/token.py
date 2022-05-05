@@ -1,6 +1,6 @@
 import os
 
-from utils.configs import Configs
+from utils.Configs import Configs
 
 
 class TokenLine():
@@ -60,8 +60,8 @@ class TokenLine():
                 print(self.word_content)
                 print("ERROR in _process_raw_line(), SE+1KW+3OP NOT FOUND")
 
-        elif self.word_type == 'STR':
-            self.token_type = 'STR'
+        elif self.word_type == 'STRING':
+            self.token_type = 'STRING'
             self.token_content = self.word_content
 
         elif self.word_type == 'INT':

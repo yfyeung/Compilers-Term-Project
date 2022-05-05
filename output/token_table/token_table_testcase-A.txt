@@ -7,5 +7,5 @@ VALUES   <KW,8>
 ,   <SE,3>
 1.78   <FLOAT,1.78>
 ,   <SE,3>
-"SELECT"   <STR,"SELECT">
+"SELECT"   <STRING,"SELECT">
 )   <SE,2>
