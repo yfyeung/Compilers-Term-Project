@@ -1,1 +1,0 @@
-SELECT * FROM tex WHERE NOT tex.attri!="str" ORDER BY tex.ase

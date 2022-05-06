@@ -1,1 +1,0 @@
-INSERT INTO __table_1 VALUES("!#$__' ''_",0.2,DEFAULT,10, DEFAULT)

@@ -16,9 +16,9 @@ x6   <IDN,x6>
 )   <SE,2>
 VALUES   <KW,8>
 (   <SE,1>
-"Gone with wind_version(2.0)"   <STRING,"Gone with wind_version(2.0)">
+"Gone with wind_version(2.0)"   <STRING,Gone with wind_version(2.0)>
 ,   <SE,3>
-"1942"   <STRING,"1942">
+"1942"   <STRING,1942>
 ,   <SE,3>
 -12.125   <FLOAT,-12.125>
 ,   <SE,3>

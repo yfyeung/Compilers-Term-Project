@@ -45,7 +45,7 @@ t   <IDN,t>
 .   <OP,16>
 _2a_   <IDN,_2a_>
 =   <OP,1>
-"string1.0**"   <STRING,"string1.0**">
+"string1.0**"   <STRING,string1.0**>
 XOR   <OP,12>
 t   <IDN,t>
 .   <OP,16>

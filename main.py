@@ -24,10 +24,10 @@ if __name__ == '__main__':
     parser = LR1_parser(Configs) # LR1语法分析器
     
     test_names = []
-    # for file in os.listdir(Configs.dir_names["tests"]):
-    #     if file.startswith("testcase-") and file.endswith(".sql"):
-    #         test_names.append(file) 
-    test_names.append("testcase-HAVING.sql")
+    for file in os.listdir(Configs.dir_names["tests"]):
+        if file.startswith("testcase-") and file.endswith(".sql"):
+            test_names.append(file) 
+    # test_names.append("testcase-HAVING.sql")
     for test_name in test_names:
         print("testing {}.....".format(test_name))
         '''词法分析器根据预设配置，读取待解析文件，进行解析并输出中间结果'''

@@ -1,1 +1,0 @@
-SELECT * FROM Websites ORDER BY web.country,alexa;

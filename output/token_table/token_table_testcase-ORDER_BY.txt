@@ -8,7 +8,7 @@ tex   <IDN,tex>
 .   <OP,16>
 attri   <IDN,attri>
 !=   <OP,6>
-"str"   <STRING,"str">
+"str"   <STRING,str>
 ORDER BY   <KW,27>
 tex   <IDN,tex>
 .   <OP,16>
