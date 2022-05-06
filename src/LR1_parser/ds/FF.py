@@ -180,12 +180,12 @@ if __name__ == '__main__':
     grammar_obj = grammar(grammar_path)
     grammar_obj.get_augumented_grammar()
     FIRST_obj = FIRST(grammar_obj)
-    # for firstset in FIRST_obj.first_sets.items():
-    #     print(firstset)
-    # print(len(FIRST_obj.first_sets))
+    for firstset in FIRST_obj.first_sets.items():
+        print(firstset)
+    print(len(FIRST_obj.first_sets))
     FOLLOW_obj = FOLLOW(grammar_obj, FIRST_obj)
-    # for followset in FOLLOW_obj.follow_sets.items():
-    #     print(followset)
-    # print(len(FOLLOW_obj.follow_sets))
+    for followset in FOLLOW_obj.follow_sets.items():
+        print(followset)
+    print(len(FOLLOW_obj.follow_sets))
     FIRST_obj.dump_first_sets_into_file(first_sets_output_path)
     FOLLOW_obj.dump_follow_sets_into_file(follow_sets_output_path)

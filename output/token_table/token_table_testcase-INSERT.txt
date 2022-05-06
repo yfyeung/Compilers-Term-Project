@@ -1,6 +1,6 @@
 INSERT   <KW,6>
 INTO   <KW,7>
-ORDERs   <IDN,ORDERs>
+ORDER   <IDN,ORDER>
 (   <SE,1>
 movie_t1   <IDN,movie_t1>
 ,   <SE,3>

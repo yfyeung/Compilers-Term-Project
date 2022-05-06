@@ -97,11 +97,15 @@ class LR1_parser:
                     break
                 else:
                     if action[0] == 's':
-                        state_stack.push(int(action[1:]))
-                        symbol_stack.push(input_stack.pop())
                         print('{}\t{}\t{}#{}\t{}'.format(step,'/',symbol_stack.peek(),input_stack.peek(),'move'))
                         step += 1
+                        state_stack.push(int(action[1:]))
+                        symbol_stack.push(input_stack.pop())
+                        # print('{}\t{}\t{}#{}\t{}'.format(step,'/',symbol_stack.peek(),input_stack.peek(),'move'))
+                        # step += 1
                     elif action[0] == 'r':
+                        print('{}\t{}\t{}#{}\t{}'.format(step,action[1:],symbol_stack.peek(),input_stack.peek(),'reduction'))
+                        step += 1
                         production = self.grammar_obj.productions[int(action[1:])]
                         if production.index != int(action[1:]):
                             assert False, "Error: production index not match. Abort!"
@@ -121,8 +125,7 @@ class LR1_parser:
                         symbol_front = symbol_stack.peek()
                         state_stack.push(int(self.analysisTable_obj.gotoTable.goto_table[(state_front, symbol_front)][1:]))
                         
-                        print('{}\t{}\t{}#{}\t{}'.format(step,action[1],symbol_stack.peek(),input_stack.peek(),'reduction'))
-                        step += 1
+                        
                     else:
                         assert False, "Error: action is neither acc nor None or 's' or 'r'. Abort!"
             elif input_front in self.grammar_obj.non_terminals:
@@ -139,8 +142,8 @@ class LR1_parser:
                     assert False, "Error: goto is neither None or 's'. Abort!"
             else:
                 assert False, "Error: input is neither terminal nor non-terminal in grammar. Abort!"
-                
-        sys.stdout = old_std_out
+        if REDIRECT_STDOUT_TO_FILE:
+            sys.stdout = old_std_out
         if action == 'acc':
             return True
         elif action is None:

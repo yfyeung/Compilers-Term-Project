@@ -20,7 +20,6 @@ WHERE   <KW,3>
 NOT   <OP,13>
 BY_HAHA   <IDN,BY_HAHA>
 IS   <KW,31>
-!   <OP,14>
 NULL   <KW,32>
 GROUP BY   <KW,24>
 ORDERs   <IDN,ORDERs>
