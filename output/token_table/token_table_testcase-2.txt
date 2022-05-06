@@ -8,7 +8,7 @@ age   <IDN,age>
 )   <SE,2>
 VALUES   <KW,8>
 (   <SE,1>
-"姚明"   <STRING,"姚明">
+"姚明"   <STRING,姚明>
 ,   <SE,3>
 25   <INT,25>
 )   <SE,2>
