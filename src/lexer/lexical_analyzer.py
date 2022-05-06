@@ -176,21 +176,31 @@ class LexicalAnalyzer():
                     i += 1
 
                 if current_word == "ORDER":
-                    if i + 2 < len(line_content) and line_content[i : i+3] == " BY":
+                    if i + 3 < len(line_content) and line_content[i : i+4] == " BY ":
                         current_word += " BY"
-                        self._process_word(current_word, "SE+1KW+3OP")
+                        self._process_word(current_word, "kW+IDN+4OP")
                         current_word = ""
-                        i += 3
+                        i += 4
+
+                    elif i == len(line_content) or (i + 1 < len(line_content) and line_content[i + 1] != " "):
+                        self._process_word(current_word, "kW+IDN+4OP")
+                        current_word = ""
+                    
                     else:
                         print("ERROR ORDER BY")
                         break
 
                 elif current_word == "GROUP":
-                    if i + 2 < len(line_content) and line_content[i : i+3] == " BY":
+                    if i + 3 < len(line_content) and line_content[i : i+4] == " BY ":
                         current_word += " BY"
-                        self._process_word(current_word, "SE+1KW+3OP")
+                        self._process_word(current_word, "kW+IDN+4OP")
                         current_word = ""
-                        i += 3
+                        i += 4
+                    
+                    elif i == len(line_content) or (i + 1 < len(line_content) and line_content[i + 1] != " "):
+                        self._process_word(current_word, "kW+IDN+4OP")
+                        current_word = ""
+
                     else:
                         print("ERROR GROUP BY")
                         break
