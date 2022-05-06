@@ -1,0 +1,1 @@
+SELECT MIN(t.a_1),MAX(t.b),AVG(t._2a_),SUM(t.a_) FROM t WHERE t.a_1!=30.9 OR t.b>=0.2AND t._2a_="string1.0**"XOR t.a_<=-20.1

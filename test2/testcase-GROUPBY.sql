@@ -1,0 +1,1 @@
+SELECT name,SUM(length) FROM movie_1 GROUP BY name

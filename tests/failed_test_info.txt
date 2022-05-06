@@ -12,3 +12,5 @@ DELETE + AS/JOIN
 34-38类型的语法似乎不支持
 语法规定“-”减号必须和INT或者FLOAT类型搭配在一起 而不是IDN（解决）
 
+ORDER可以作为IDN吗
+

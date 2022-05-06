@@ -1,0 +1,1 @@
+DELETE FROM MovieExec_1 WHERE MovieExec_1.mT="star wars"AND my=1942&&sn="sydney"

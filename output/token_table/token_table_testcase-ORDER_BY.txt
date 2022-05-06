@@ -1,0 +1,15 @@
+SELECT   <KW,1>
+*   <KW,5>
+FROM   <KW,2>
+tex   <IDN,tex>
+WHERE   <KW,3>
+NOT   <OP,13>
+tex   <IDN,tex>
+.   <OP,16>
+attri   <IDN,attri>
+!=   <OP,6>
+"str"   <STRING,"str">
+ORDER BY   <KW,27>
+tex   <IDN,tex>
+.   <OP,16>
+ase   <IDN,ase>

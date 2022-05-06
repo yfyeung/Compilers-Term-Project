@@ -1,0 +1,1 @@
+SELECT t.a,t.b,SUM(t.c),MAX(tt.d) FROM t,tt WHERE t.a>=t.d&&t.c!=t.b GROUP BY t.a HAVING MIN(t.a)>-10.0 AND SUM(t.d)<=0 ORDER BY t.b

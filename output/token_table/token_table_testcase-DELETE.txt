@@ -1,0 +1,17 @@
+DELETE   <KW,13>
+FROM   <KW,2>
+MovieExec_1   <IDN,MovieExec_1>
+WHERE   <KW,3>
+MovieExec_1   <IDN,MovieExec_1>
+.   <OP,16>
+mT   <IDN,mT>
+=   <OP,1>
+"star wars"   <STRING,"star wars">
+AND   <OP,8>
+my   <IDN,my>
+=   <OP,1>
+1942   <INT,1942>
+&&   <OP,9>
+sn   <IDN,sn>
+=   <OP,1>
+"sydney"   <STRING,"sydney">

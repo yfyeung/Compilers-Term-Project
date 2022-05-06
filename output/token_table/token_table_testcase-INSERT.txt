@@ -1,0 +1,18 @@
+INSERT   <KW,6>
+INTO   <KW,7>
+ORDERs   <IDN,ORDERs>
+(   <SE,1>
+movie_t1   <IDN,movie_t1>
+,   <SE,3>
+movie_y1   <IDN,movie_y1>
+,   <SE,3>
+starName   <IDN,starName>
+)   <SE,2>
+VALUES   <KW,8>
+(   <SE,1>
+"Gone with wind_version(2.0)"   <STRING,"Gone with wind_version(2.0)">
+,   <SE,3>
+1942   <INT,1942>
+,   <SE,3>
+-12.125   <FLOAT,-12.125>
+)   <SE,2>
