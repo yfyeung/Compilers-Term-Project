@@ -31,4 +31,5 @@ t   <IDN,t>
 order   <IDN,order>
 )   <SE,2>
 <   <OP,3>
--12.340   <FLOAT,-12.340>
+-   <OP,15>
+12.340   <FLOAT,12.340>

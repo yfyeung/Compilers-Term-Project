@@ -52,6 +52,7 @@ IDN
 IDN
 )
 >
+-
 FLOAT
 AND
 SUM

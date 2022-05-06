@@ -209,35 +209,12 @@ class LexicalAnalyzer():
                     self._process_word(current_word, "kW+IDN+4OP")
                     current_word = ""
 
-            # 单符号 负数
+            # 单符号
             elif line_content[i] in ["(", ")", ",", "*", "=", "-", "."]:
-                if line_content[i] == "-" and i + 1 < len(line_content) and line_content[i+1] in self.cfgs.digit:
-                    current_word += line_content[i]
-                    i += 1
-
-                    while i < len(line_content) and line_content[i] in self.cfgs.digit:
-                        current_word += line_content[i]
-                        i += 1
-
-                    if i < len(line_content) and line_content[i] == '.':
-                        current_word += line_content[i]
-                        i += 1
-
-                        while i < len(line_content) and line_content[i] in self.cfgs.digit:
-                            current_word += line_content[i]
-                            i += 1
-                        
-                        self._process_word(current_word, "FLOAT")
-                        current_word = ""
-                    else:
-                        self._process_word(current_word, "INT")
-                        current_word = ""
-                
-                else:
-                    current_word += line_content[i]
-                    self._process_word(current_word, "SE+1KW+3OP")
-                    current_word = ""
-                    i += 1
+                current_word += line_content[i]
+                self._process_word(current_word, "SE+1KW+3OP")
+                current_word = ""
+                i += 1
 
             # 字符串
             elif line_content[i] == '"':
