@@ -1,7 +1,7 @@
 SELECT   <KW,1>
 t   <IDN,t>
 .   <OP,16>
-GROUPs   <IDN,GROUPs>
+GROUP   <IDN,GROUP>
 BY_HAHA   <IDN,BY_HAHA>
 ,   <SE,3>
 MIN   <KW,18>
