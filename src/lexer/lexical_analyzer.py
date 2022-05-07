@@ -266,7 +266,7 @@ class LexicalAnalyzer():
                 if i < len(line_content) and line_content[i] == '=':
                     current_word += line_content[i]
                     i += 1
-                    if line_content[i] == '>':
+                    if i < len(line_content) and line_content[i] == '>':
                         current_word += line_content[i]
                         self._process_word(current_word, "OP")
                         current_word = ""
