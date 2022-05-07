@@ -1,0 +1,11 @@
+INSERT
+INTO
+IDN
+VALUES
+(
+INT
+,
+FLOAT
+,
+STRING
+)

@@ -1,0 +1,15 @@
+INSERT   <KW,6>
+INTO   <KW,7>
+__table_1   <IDN,__table_1>
+VALUES   <KW,8>
+(   <SE,1>
+"!#$__' ''_"   <STRING,!#$__' ''_>
+,   <SE,3>
+0.2   <FLOAT,0.2>
+,   <SE,3>
+DEFAULT   <KW,10>
+,   <SE,3>
+10   <INT,10>
+,   <SE,3>
+DEFAULT   <KW,10>
+)   <SE,2>
