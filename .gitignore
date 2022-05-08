@@ -30,3 +30,4 @@ Temporary Items
 *.pyc
 ./output
 ./.VSCodeCounter/
+./ans
