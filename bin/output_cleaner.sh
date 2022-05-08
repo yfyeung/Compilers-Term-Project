@@ -3,3 +3,4 @@ rm ./output/parse_result/*
 rm ./output/token_table/*
 rm ./output/ds_entity/*
 rm ./output/ds_details/*
+echo "output cleaned successfully!"
