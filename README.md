@@ -53,6 +53,7 @@ matplotlib==3.4.3
 │       │   ├── item.py
 │       │   └── stack.py
 │       └── LR1.py                # 语法分析器主程序
+├── docs                          # 文档
 ├── tests                         # 测试用例 
 └── utils                         # 全局工具
     ├── configs.py                # 配置

@@ -7,7 +7,7 @@
 │   │   ├── graph.py
 │   │   └── token.py
 │   ├── lexical_analyzer.py  # 词法分析器主程序
-│   ├── rex2nfa.py           # 转NFA
+│   ├── rex2nfa.py           # 正则表达式转NFA
 │   ├── nfa2dfa.py           # NFA确定化
 │   └── dfa2min.py           # DFA最小化
 └── LR1_parser               # LR1语法分析器
