@@ -28,6 +28,6 @@ Temporary Items
 
 
 *.pyc
-./output
+output/*
 .VSCodeCounter/*
 ans/*

@@ -71,8 +71,10 @@ def token2inputStack(input_file, output_file):
     with open(input_file, "r") as f:
         input_lines = f.readlines()
     output_file_ = open(output_file, "w")
-    for line in input_lines:
-        words = line.split("   ")
+    for index, line in enumerate(input_lines):
+        if index == len(input_lines) - 1:
+            line = line + "\n"
+        words = line.split("\t")
         items = words[1][1:-2].split(",")
         type = items[0]
         content = items[1]
