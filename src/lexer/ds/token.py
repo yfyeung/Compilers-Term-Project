@@ -94,7 +94,7 @@ class TokenTable():
             print(token_line)
 
     def save(self, test_name):
-        file_name = 'token_table_' + test_name.split(os.path.sep)[1].replace(".sql", ".txt")
+        file_name = 'token_table_' + test_name.split(os.path.sep)[1].replace(".sql", ".tsv")
         save_path = os.path.join(Configs.dir_names['output'], "token_table", file_name)
         with open(save_path, 'w') as f:
             for token_line in self.token_table:

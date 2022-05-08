@@ -86,11 +86,12 @@ class LR1_parser:
         while(len(input_stack.items) > 0):
             input_front = input_stack.peek()
             state_front = state_stack.peek()
+
             
             if input_front in self.grammar_obj.terminals or input_front == "#":
                 action = self.analysisTable_obj.action_table.action_table[(state_front, input_front)]
                 if action == 'acc':
-                    print('{}\t{}\t{}#{}\t{}'.format(step,'/',symbol_stack.peek(),input_stack.peek(),'accept'))
+                    print('{}\t{}\t{}#{}\t{}'.format(step,'/',symbol_stack.peek(),input_stack.peek(),'accept'), end='')
                     break
                 elif action is None:
                     print('{}\t{}\t{}#{}\t{}'.format(step,'/',symbol_stack.peek(),input_stack.peek(),'error'))

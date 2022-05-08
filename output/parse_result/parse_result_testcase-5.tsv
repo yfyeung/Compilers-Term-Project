@@ -1,0 +1,58 @@
+1	/	##SELECT	move
+2	14	SELECT#*	reduction
+3	/	unionType#*	move
+4	27	*#FROM	reduction
+5	30	selectElementHead#FROM	reduction
+6	26	selectElementListRec#FROM	reduction
+7	/	selectElements#FROM	move
+8	/	FROM#IDN	move
+9	48	IDN#WHERE	reduction
+10	44	uid#WHERE	reduction
+11	35	tableName#WHERE	reduction
+12	42	elementNameAlias#WHERE	reduction
+13	41	tableSourceItem#WHERE	reduction
+14	39	joinParts#WHERE	reduction
+15	38	tableSource#WHERE	reduction
+16	36	tableSourceListRec#WHERE	reduction
+17	/	tableSources#WHERE	move
+18	/	WHERE#IDN	move
+19	48	IDN#=	reduction
+20	51	uid#=	reduction
+21	49	dottedId#=	reduction
+22	76	fullColumnName#=	reduction
+23	/	expressionAtom#=	move
+24	85	=#INT	reduction
+25	/	comparisonOperator#INT	move
+26	84	INT#ORDER BY	reduction
+27	80	decimalLiteral#ORDER BY	reduction
+28	75	constant#ORDER BY	reduction
+29	74	expressionAtom#ORDER BY	reduction
+30	72	predicateRight#ORDER BY	reduction
+31	73	predicate#ORDER BY	reduction
+32	72	predicateRight#ORDER BY	reduction
+33	61	predicate#ORDER BY	reduction
+34	58	expressionRight#ORDER BY	reduction
+35	132	expression#ORDER BY	reduction
+36	18	whereExpression#ORDER BY	reduction
+37	21	fromClause#ORDER BY	reduction
+38	23	groupByClause#ORDER BY	reduction
+39	/	havingClause#ORDER BY	move
+40	/	ORDER BY#IDN	move
+41	48	IDN##	reduction
+42	51	uid##	reduction
+43	49	dottedId##	reduction
+44	76	fullColumnName##	reduction
+45	74	expressionAtom##	reduction
+46	72	predicateRight##	reduction
+47	61	predicate##	reduction
+48	58	expressionRight##	reduction
+49	56	expression##	reduction
+50	54	expressionRec##	reduction
+51	24	expressions##	reduction
+52	17	orderByClause##	reduction
+53	15	selectClause##	reduction
+54	8	querySpecification##	reduction
+55	6	unionStatements##	reduction
+56	2	selectStatement##	reduction
+57	1	dmlStatement##	reduction
+58	/	root##	accept

@@ -19,12 +19,12 @@ for result_name in result_names:
     try:
         result = open(os.path.join(dir_name["result"], result_name), "r").readlines()
     except:
-        print("RESULT_FILE: {} not found".format(result_name))
+        print("RESULT_FILE: {} not found\n".format(result_name))
         continue
     try:
         ans = open(os.path.join(dir_name["ans"], ans_name), "r").readlines()
     except:
-        print("ANSWER_FILE: {} not found".format(ans_name))
+        print("ANSWER_FILE: {} not found\n".format(ans_name))
         continue
     flag = True
     for index, result_line in enumerate(result):

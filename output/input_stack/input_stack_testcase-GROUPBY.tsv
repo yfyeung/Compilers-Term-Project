@@ -1,0 +1,11 @@
+SELECT
+IDN
+,
+SUM
+(
+IDN
+)
+FROM
+IDN
+GROUP BY
+IDN

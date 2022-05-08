@@ -1,0 +1,23 @@
+SELECT
+IDN
+,
+AVG
+(
+IDN
+.
+IDN
+)
+FROM
+IDN
+,
+IDN
+WHERE
+IDN
+.
+IDN
+=
+IDN
+.
+IDN
+GROUP BY
+IDN

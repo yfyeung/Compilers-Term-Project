@@ -1,0 +1,15 @@
+"filename", "language", "Python", "Markdown", "comment", "blank", "total"
+"/Users/lizian/Desktop/compilers-term-project/src/LR1_parser/LR1.py", "Python", 127, 0, 8, 18, 153
+"/Users/lizian/Desktop/compilers-term-project/src/LR1_parser/ds/FF.py", "Python", 161, 0, 7, 24, 192
+"/Users/lizian/Desktop/compilers-term-project/src/LR1_parser/ds/Stack.py", "Python", 13, 0, 0, 6, 19
+"/Users/lizian/Desktop/compilers-term-project/src/LR1_parser/ds/analysisTable.py", "Python", 99, 0, 0, 15, 114
+"/Users/lizian/Desktop/compilers-term-project/src/LR1_parser/ds/grammar.py", "Python", 52, 0, 2, 14, 68
+"/Users/lizian/Desktop/compilers-term-project/src/LR1_parser/ds/item.py", "Python", 165, 0, 22, 21, 208
+"/Users/lizian/Desktop/compilers-term-project/src/README.md", "Markdown", 0, 137, 0, 71, 208
+"/Users/lizian/Desktop/compilers-term-project/src/lexer/dfa2min.py", "Python", 164, 0, 0, 32, 196
+"/Users/lizian/Desktop/compilers-term-project/src/lexer/ds/graph.py", "Python", 147, 0, 0, 41, 188
+"/Users/lizian/Desktop/compilers-term-project/src/lexer/ds/token.py", "Python", 78, 0, 0, 27, 105
+"/Users/lizian/Desktop/compilers-term-project/src/lexer/lexical_analyzer.py", "Python", 278, 0, 17, 52, 347
+"/Users/lizian/Desktop/compilers-term-project/src/lexer/nfa2dfa.py", "Python", 109, 0, 0, 23, 132
+"/Users/lizian/Desktop/compilers-term-project/src/lexer/rex2nfa.py", "Python", 98, 0, 0, 23, 121
+"Total", "-", 1491, 137, 56, 367, 2051

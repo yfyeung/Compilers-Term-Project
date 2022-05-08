@@ -1,0 +1,23 @@
+SELECT
+IDN
+,
+SUM
+(
+IDN
+)
+,
+SUM
+(
+IDN
+)
+FROM
+IDN
+GROUP BY
+IDN
+HAVING
+SUM
+(
+IDN
+)
+>
+INT

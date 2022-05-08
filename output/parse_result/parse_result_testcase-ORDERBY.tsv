@@ -1,0 +1,69 @@
+1	/	##SELECT	move
+2	14	SELECT#*	reduction
+3	/	unionType#*	move
+4	27	*#FROM	reduction
+5	30	selectElementHead#FROM	reduction
+6	26	selectElementListRec#FROM	reduction
+7	/	selectElements#FROM	move
+8	/	FROM#IDN	move
+9	48	IDN#WHERE	reduction
+10	44	uid#WHERE	reduction
+11	35	tableName#WHERE	reduction
+12	42	elementNameAlias#WHERE	reduction
+13	41	tableSourceItem#WHERE	reduction
+14	39	joinParts#WHERE	reduction
+15	38	tableSource#WHERE	reduction
+16	36	tableSourceListRec#WHERE	reduction
+17	/	tableSources#WHERE	move
+18	/	WHERE#NOT	move
+19	62	NOT#IDN	reduction
+20	/	opposite#IDN	move
+21	48	IDN#.	reduction
+22	/	uid#.	move
+23	/	.#IDN	move
+24	48	IDN#!=	reduction
+25	52	uid#!=	reduction
+26	50	dottedIdOrStar#!=	reduction
+27	49	dottedId#!=	reduction
+28	76	fullColumnName#!=	reduction
+29	/	expressionAtom#!=	move
+30	90	!=#STRING	reduction
+31	/	comparisonOperator#STRING	move
+32	97	STRING#ORDER BY	reduction
+33	79	stringLiteral#ORDER BY	reduction
+34	75	constant#ORDER BY	reduction
+35	74	expressionAtom#ORDER BY	reduction
+36	72	predicateRight#ORDER BY	reduction
+37	73	predicate#ORDER BY	reduction
+38	72	predicateRight#ORDER BY	reduction
+39	61	predicate#ORDER BY	reduction
+40	58	expressionRight#ORDER BY	reduction
+41	57	expression#ORDER BY	reduction
+42	132	expression#ORDER BY	reduction
+43	18	whereExpression#ORDER BY	reduction
+44	21	fromClause#ORDER BY	reduction
+45	23	groupByClause#ORDER BY	reduction
+46	/	havingClause#ORDER BY	move
+47	/	ORDER BY#IDN	move
+48	48	IDN#.	reduction
+49	/	uid#.	move
+50	/	.#IDN	move
+51	48	IDN##	reduction
+52	52	uid##	reduction
+53	50	dottedIdOrStar##	reduction
+54	49	dottedId##	reduction
+55	76	fullColumnName##	reduction
+56	74	expressionAtom##	reduction
+57	72	predicateRight##	reduction
+58	61	predicate##	reduction
+59	58	expressionRight##	reduction
+60	56	expression##	reduction
+61	54	expressionRec##	reduction
+62	24	expressions##	reduction
+63	17	orderByClause##	reduction
+64	15	selectClause##	reduction
+65	8	querySpecification##	reduction
+66	6	unionStatements##	reduction
+67	2	selectStatement##	reduction
+68	1	dmlStatement##	reduction
+69	/	root##	accept

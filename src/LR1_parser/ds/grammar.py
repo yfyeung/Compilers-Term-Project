@@ -33,9 +33,10 @@ class grammar():
         for index, line in enumerate(self.grammar_content): # Loop through the lines
             line = line[:-1] # remove \n
             words = line.split(' ')  # split the line by space
-            if 'whereExpressio' in words:
-                while 1:
-                    pass
+            if "GROUP_BY" in words:
+                words[words.index("GROUP_BY")] = "GROUP BY"
+            if "ORDER_BY" in words:
+                words[words.index("ORDER_BY")] = "ORDER BY"
             self.productions.append(production(words[1], words[3:], index + 1)) # Add the production to the list
             self.non_terminals.append(words[1]) # Add the non-terminal to the list
             all_symbols.extend([words[1]]+ words[3:]) # Add the symbols to the list
@@ -46,6 +47,7 @@ class grammar():
         if '$' in self.terminals:
             self.terminals.remove('$')
         self.start = self.productions[0].left # Set the start symbol
+
         
         self.terminals.sort()
         self.non_terminals.sort()
