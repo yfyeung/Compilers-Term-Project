@@ -11,7 +11,7 @@ class TokenLine():
         self.token_content = token_content
 
     def __str__(self):
-        return f'{self.word_content}   <{self.token_type},{self.token_content}>'
+        return f'{self.word_content}\t<{self.token_type},{self.token_content}>'
 
     def input_raw_line(self, word_content, word_type):
         self.word_content = word_content
@@ -19,7 +19,7 @@ class TokenLine():
         self._process_raw_line()
 
     def output_token_line(self):
-        return f'{self.word_content}   <{self.token_type},{self.token_content}>'
+        return f'{self.word_content}\t<{self.token_type},{self.token_content}>'
 
     def _process_raw_line(self):
         if self.word_type == 'kW+IDN+4OP':
@@ -97,8 +97,9 @@ class TokenTable():
         file_name = 'token_table_' + test_name.split(os.path.sep)[1].replace(".sql", ".tsv")
         save_path = os.path.join(Configs.dir_names['output'], "token_table", file_name)
         with open(save_path, 'w') as f:
-            for token_line in self.token_table:
+            for token_line in self.token_table[:-1]:
                 f.write(token_line + '\n')
+            f.write(self.token_table[-1])
 
     def reset(self):
         self.token_table = []
