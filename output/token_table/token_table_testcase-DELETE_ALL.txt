@@ -1,3 +1,0 @@
-DELETE   <KW,13>
-FROM   <KW,2>
-group   <IDN,group>

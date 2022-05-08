@@ -11,8 +11,14 @@ class Configs:
     }
 
     # input grammar
-    grammar_name = "grammar_enhanced.txt"
-    # grammar_name = "grammar_origin.txt"
+    grammar_name = "grammar_sql--_enhanced.txt"
+
+    
+    test_names = []
+    for file in os.listdir(dir_names["tests"]):
+        if file.startswith("testcase-") and file.endswith(".sql"):
+            test_names.append(file) 
+
 
     # token info
     KW = [
@@ -58,3 +64,18 @@ class Configs:
     follow_sets_output_path_e = os.path.join(dir_names['output'], 'ds_entity', grammar_name.replace(".txt", "_") + 'follow_sets.pkl')
     item_sets_path_e = os.path.join(dir_names['output'], 'ds_entity', grammar_name.replace(".txt", "_") + 'item_sets.pkl')
     go_path_e = os.path.join(dir_names['output'], 'ds_entity', grammar_name.replace(".txt", "_") + 'go.pkl')
+
+
+    # 创建output的子文件夹
+    if not os.path.exists(os.path.join(dir_names["output"], "ds_details")):
+        os.mkdir(os.path.join(dir_names["output"], "ds_details"))
+    if not os.path.exists(os.path.join(dir_names["output"], "ds_entity")):
+        os.mkdir(os.path.join(dir_names["output"], "ds_entity"))
+    if not os.path.exists(os.path.join(dir_names["output"], "input_stack")):
+        os.mkdir(os.path.join(dir_names["output"], "input_stack"))
+    if not os.path.exists(os.path.join(dir_names["output"], "parse_result")):
+        os.mkdir(os.path.join(dir_names["output"], "parse_result"))
+    if not os.path.exists(os.path.join(dir_names["output"], "token_table")):
+        os.mkdir(os.path.join(dir_names["output"], "token_table"))
+        
+    

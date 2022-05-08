@@ -17,14 +17,54 @@
     │   ├── grammar.py
     │   ├── item.py
     │   └── stack.py
-    └── LR1.py               # 词法分析器主程序
+    └── LR1.py               # 语法分析器主程序
 ```
 
 
 
 ## 词法分析器
 
+### lexical_analyzer.py
 
+该文件定义了**词法分析器**
+
+- 成员函数
+  - reset：重置token表
+  - lexical_analyze：词法分析器主函数
+  - print_token_table：打印token表
+  - save_token_table：保存token表
+  - _get_tests：获取测试文件
+  - _preprocess：删除sql的注释
+  - _process_line：处理每一行
+  - _process_word：处理并保存单词
+
+### rex2nfa.py
+
+该文件定义了**正则表达式转NFA机制**
+
+
+
+### nfa2dfa.py
+
+该文件定义了**NFA确定化机制**
+
+
+
+### dfa2min.py
+
+该文件定义了**DFA最小化机制**
+
+
+
+### graph.py
+
+该文件定义了**图相关的数据结构**
+
+
+
+### token.py
+
+该文件定义了**符号表相关的数据结构**
 
 
 

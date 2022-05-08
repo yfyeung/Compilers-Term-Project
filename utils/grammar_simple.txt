@@ -1,30 +1,4 @@
-1. root -> dmlStatement
-2. dmlStatement -> selectStatement
-3. dmlStatement -> insertStatement
-4. dmlStatement -> updateStatement
-5. dmlStatement -> deleteStatement
-6. selectStatement -> querySpecification unionStatements
-7. unionStatements -> unionStatement unionStatements
-8. unionStatements -> $
-9. unionStatement -> unionStatementKey unionStatementQuery
-10. unionStatementKey -> UNION unionType
-11. unionStatementQuery -> querySpecification
-12. unionType -> ALL
-13. unionType -> DISTINCT
-14. unionType -> $
-15. querySpecification -> SELECT unionType selectElements selectClause
-16. querySpecification -> ( querySpecification )
-17. selectClause -> fromClause groupByClause havingClause orderByClause
-18. fromClause -> FROM tableSources whereExpression
-19. fromClause -> $
-20. groupByClause -> GROUP BY expressions
-21. groupByClause -> $
-22. havingClause -> HAVING expression
-23. havingClause -> $
-24. orderByClause -> ORDER BY expressions
-25. orderByClause -> $
-26. selectElements -> selectElementHead selectElementListRec
-27. selectElementHead -> *
-28. selectElementHead -> selectElement
-29. selectElementListRec -> , selectElement selectElementListRec
-30. selectElementListRec -> $
+1. root -> A root
+3. root -> b
+4. A -> root A
+5. A -> a
